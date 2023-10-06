@@ -1,0 +1,15 @@
+{
+    "scripts": {
+        "client": "npm run dev --prefix client",
+        "server": "npm run dev --prefix server",
+        "test:server": "npm test --prefix server",
+        "test:client": "npm test --prefix client",
+        "dev": "concurrently --kill-others \"npm run server\" \"npm run client\"",
+        "install:client": "npm install --prefix client",
+        "install:server": "npm install --prefix server",
+        "install:all": "npm run install:client && npm run install:server"
+    },
+    "devDependencies": {
+        "concurrently": "^8.2.1"
+    }
+}
