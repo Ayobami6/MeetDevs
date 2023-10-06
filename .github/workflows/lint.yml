@@ -3,9 +3,9 @@ name: ESLint Check
 on:
   push:
     branches:
-      - ["main", "staging"]
+      - ["*"]
     pull_request:
-      - ["main", "staging"]
+      - ["*"]
 
 jobs:
   lint:
