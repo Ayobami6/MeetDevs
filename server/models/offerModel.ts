@@ -8,9 +8,18 @@ const OfferSchema = new Schema<Offer>({
     employerId: String,
     title: String,
     description: String,
-    accepted: Boolean,
-    createdAt: Date,
-    updatedAt: Date,
+    accepted: {
+        type: Boolean,
+        default: false,
+    },
+    createdAt: {
+        type: Date,
+        default: new Date(),
+    },
+    updatedAt: {
+        type: Date,
+        default: new Date(),
+    },
 });
 
 const Offer = mongoose.model('Offer', OfferSchema);
