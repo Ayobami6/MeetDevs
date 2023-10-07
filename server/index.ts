@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
+import employerRoutes from './routes/employerRoute';
 
 dotenv.config();
 
@@ -16,6 +17,8 @@ const PORT: number = 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use('/employer', employerRoutes);
 
 app.get('/', (req, res) => {
     res.send('Welcome to MeetDevs');
