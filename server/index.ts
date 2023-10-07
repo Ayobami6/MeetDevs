@@ -18,17 +18,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-	res.send('Welcome to MeetDevs');
+    res.send('Welcome to MeetDevs');
 });
 
 mongoose
-	.connect(dbConnString, { useNewUrlParser: true })
-	.then(() => {
-		console.log('Database Connected');
-		app.listen(PORT, () => {
-			console.log(`Server is running on Port ${PORT}`);
-		});
-	})
-	.catch((error) => {
-		console.log(error);
-	});
+    .connect(dbConnString, { useNewUrlParser: true })
+    .then(() => {
+        console.log('Database Connected');
+        app.listen(PORT, () => {
+            console.log(`Server is running on Port ${PORT}`);
+        });
+    })
+    .catch((error) => {
+        console.log(error);
+    });
