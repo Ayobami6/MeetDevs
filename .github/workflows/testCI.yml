@@ -24,7 +24,7 @@ jobs:
         run: npm install
 
       - name: Install all server dependencies
-        run: npm install:all
+        run: npm run install:all
 
       - name: Run Server test
         run: npm run test:server
