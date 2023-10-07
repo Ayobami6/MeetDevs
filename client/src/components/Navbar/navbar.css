@@ -1,0 +1,27 @@
+.nav {
+  background-color: transparent;
+  height: 10vh;
+  width: 100%;
+  display: flex;
+  z-index: 1;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6vh 12vw;
+  position: fixed;
+  top: 0;
+
+  /* Animations */
+  transition-timing-function: ease-in;
+  transition: all 0.5s;
+}
+
+.black {
+  background-color: #111;
+}
+
+.logo {
+  height: 5.5vh;
+  width: 10vw;
+  color: var(--color-primary);
+  font-size: 1.5rem;
+}
