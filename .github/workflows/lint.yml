@@ -2,10 +2,9 @@ name: ESLint Check
 
 on:
   push:
-    branches:
-      - ["main", "staging"]
-    pull_request:
-      - ["main", "staging"]
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
 
 jobs:
   lint:
