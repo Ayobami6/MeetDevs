@@ -1,8 +1,9 @@
 import mongoose from 'mongoose';
+import { Employer } from '../interfaces/employerInterface';
 
 const { Schema } = mongoose;
 
-const EmployerSchema = new Schema({
+const EmployerSchema = new Schema<Employer>({
     name: {
         type: String,
         required: true,
