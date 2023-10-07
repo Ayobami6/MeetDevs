@@ -1,0 +1,32 @@
+name: Run Test
+
+on:
+  push:
+    branches: ["staging", "main"]
+  pull_request:
+    branches: ["staging", "main"]
+
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout codes
+        uses: actions/checkout@v2
+
+      - name: Set up Nodejs
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+
+      - name: Install root Dependencies
+        run: npm install
+
+      - name: Install all server dependencies
+        run: npm install:all
+
+      - name: Run Server test
+        run: npm run test:server
+      
+
