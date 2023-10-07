@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
+import mongoose, { ConnectOptions } from 'mongoose';
 
 dotenv.config();
 
@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 });
 
 mongoose
-    .connect(dbConnString, { useNewUrlParser: true })
+    .connect(dbConnString, { useNewUrlParser: true } as ConnectOptions)
     .then(() => {
         console.log('Database Connected');
         app.listen(PORT, () => {
