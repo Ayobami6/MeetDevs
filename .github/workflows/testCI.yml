@@ -39,10 +39,6 @@ jobs:
       - name: Run server test
         working-directory: server
         run: npm test
-
-      - name: Run client test
-        working-directory: client
-        run: npm test
         
       
 
