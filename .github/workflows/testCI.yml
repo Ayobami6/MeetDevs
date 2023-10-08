@@ -26,6 +26,9 @@ jobs:
       - name: Install all server dependencies
         run: npm run install:all
 
+      - name: Run build for TS bundle
+        run: npm run build
+
       - name: Run server test
         working-directory: server
         run: npm test
