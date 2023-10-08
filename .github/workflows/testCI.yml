@@ -11,6 +11,12 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    env:
+      TEST_DB_NAME: ${{ secrets.TEST_DB_NAME }}
+      DB_USERNAME: ${{ secrets.DB_USERNAME }}
+      DB_PWD: ${{ secrets.DB_PWD }}
+
+
     steps:
       - name: Checkout codes
         uses: actions/checkout@v2
