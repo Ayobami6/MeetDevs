@@ -27,6 +27,7 @@ jobs:
         run: npm run install:all
 
       - name: Run build for TS bundle
+        working-directory: server
         run: npm run build
 
       - name: Run server test
