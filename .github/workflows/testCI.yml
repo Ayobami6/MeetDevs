@@ -26,7 +26,13 @@ jobs:
       - name: Install all server dependencies
         run: npm run install:all
 
-      - name: Run Server test
-        run: npm run test:server
+      - name: Run server test
+        working-directory: server
+        run: npm test
+
+      - name: Run client test
+        working-directory: client
+        run: npm test
+        
       
 
