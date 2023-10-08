@@ -28,7 +28,7 @@ jobs:
 
       - name: Run build for TS bundle
         working-directory: server
-        run: npm run build
+        run: npm run bundle
 
       - name: Run server test
         working-directory: server

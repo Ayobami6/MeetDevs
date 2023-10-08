@@ -6,6 +6,7 @@
     "scripts": {
         "lint": "eslint . --ext .ts",
         "build": "tsc --w",
+        "bundle": "tsc",
         "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --detectOpenHandles --forceExit",
         "dev": "nodemon --experimental-json-modules --exec babel-node dist/index.js"
     },
