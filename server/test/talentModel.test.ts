@@ -14,6 +14,7 @@ describe('test Talent Model', () => {
             name: 'Test',
             email: 'test@test.dev',
             hashedPassword: 'secret',
+            jobRole: 'Backend',
             hasOffer: false,
             rank: 0,
         };
