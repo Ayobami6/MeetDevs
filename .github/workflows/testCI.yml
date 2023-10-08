@@ -1,0 +1,44 @@
+name: Run Test
+
+on:
+  push:
+    branches: ["staging", "main"]
+  pull_request:
+    branches: ["staging", "main"]
+
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    env:
+      TEST_DB_NAME: ${{ secrets.TEST_DB_NAME }}
+      DB_USERNAME: ${{ secrets.DB_USERNAME }}
+      DB_PWD: ${{ secrets.DB_PWD }}
+
+
+    steps:
+      - name: Checkout codes
+        uses: actions/checkout@v2
+
+      - name: Set up Nodejs
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+
+      - name: Install root Dependencies
+        run: npm install
+
+      - name: Install all server dependencies
+        run: npm run install:all
+
+      - name: Run build for TS bundle
+        working-directory: server
+        run: npm run bundle
+
+      - name: Run server test
+        working-directory: server
+        run: npm test
+        
+      
+

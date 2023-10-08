@@ -6,6 +6,7 @@
     "scripts": {
         "lint": "eslint . --ext .ts",
         "build": "tsc --w",
+        "bundle": "tsc",
         "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --detectOpenHandles --forceExit",
         "dev": "nodemon --experimental-json-modules --exec babel-node dist/index.js"
     },
@@ -37,8 +38,8 @@
         "@types/jest": "^29.5.5",
         "@types/mongoose": "^5.11.97",
         "@types/node": "^20.6.1",
-        "@typescript-eslint/eslint-plugin": "^6.7.0",
-        "@typescript-eslint/parser": "^6.7.0",
+        "@typescript-eslint/eslint-plugin": "^6.7.4",
+        "@typescript-eslint/parser": "^6.7.4",
         "babel-jest": "^29.7.0",
         "cross-env": "^7.0.3",
         "dotenv": "^16.3.1",
