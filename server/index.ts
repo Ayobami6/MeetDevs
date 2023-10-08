@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import mongoose, { ConnectOptions } from 'mongoose';
 import employerRoutes from './routes/employerRoute';
 import offerRoutes from './routes/offerRoutes';
+import { talentRoutes } from './routes/talentRoute';
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ app.use(bodyParser.json());
 
 app.use('/employers', employerRoutes);
 app.use('/offers', offerRoutes);
+app.use('/talents', talentRoutes);
 
 app.get('/', (req, res) => {
     res.send('Welcome to MeetDevs');
