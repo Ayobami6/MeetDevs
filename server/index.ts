@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import mongoose, { ConnectOptions } from 'mongoose';
 import employerRoutes from './routes/employerRoute';
 import offerRoutes from './routes/offerRoutes';
-import { talentRoutes } from './routes/talentRoute';
+import talentRoutes from './routes/talentRoute';
 import { errorHandler } from './errors/customError';
 
 dotenv.config();
@@ -42,3 +42,5 @@ mongoose
     .catch((error) => {
         console.log(error);
     });
+
+export default app;
