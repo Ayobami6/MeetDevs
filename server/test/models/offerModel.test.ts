@@ -1,6 +1,6 @@
-import { connectDB, disconnectDB } from './dbTestConnection';
-import OfferModel from '../models/offerModel';
-import { Offer } from '../interfaces/offerInterface';
+import { connectDB, disconnectDB } from '../dbTestConnection';
+import OfferModel from '../../models/offerModel';
+import { Offer } from '../../interfaces/offerInterface';
 
 describe('test offer Model', () => {
     beforeAll(async () => {

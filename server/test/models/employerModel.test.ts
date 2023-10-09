@@ -1,6 +1,6 @@
-import { connectDB, disconnectDB } from './dbTestConnection';
-import EmployerModel from '../models/employerModel';
-import { Employer } from '../interfaces/employerInterface';
+import { connectDB, disconnectDB } from '../dbTestConnection';
+import EmployerModel from '../../models/employerModel';
+import { Employer } from '../../interfaces/employerInterface';
 
 describe('test Employer Model', () => {
     beforeAll(async () => {

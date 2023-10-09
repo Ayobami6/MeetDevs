@@ -1,23 +1,11 @@
-import { Request, Response } from 'express';
-// import { Document } from 'mongoose';
 import OfferModel from '../models/offerModel';
-import { Offer } from '../interfaces/offerInterface';
+import { ResponseDocument } from '../interfaces/offerInterface';
+import { GenericRequest, GenericResponse } from '../generics/types';
 
-// type generics
-type GenericRequest<T> = Request & {
-    body: T;
-};
-
-type GenericResponse<T> = Response<T>;
-
-interface ResponseDocument extends Offer {
-    links?: Array<object>;
-    message?: string;
-}
 // create offer controller
 export const createOffer = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ResponseDocument>
+    res: GenericResponse<ResponseDocument, string>
 ) => {
     try {
         const offerData: T = req.body;
@@ -46,7 +34,7 @@ export const createOffer = async <T>(
 // get all offers
 export const getAllOffers = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ResponseDocument>
+    res: GenericResponse<ResponseDocument, string>
 ) => {
     try {
         const offers = await OfferModel.find();
@@ -70,7 +58,7 @@ export const getAllOffers = async <T>(
 // get an offer
 export const getOffer = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ResponseDocument>
+    res: GenericResponse<ResponseDocument, string>
 ) => {
     try {
         const { id } = req.params;
@@ -96,7 +84,7 @@ export const getOffer = async <T>(
 // update offer
 export const updateOffer = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ResponseDocument>
+    res: GenericResponse<ResponseDocument, string>
 ) => {
     try {
         const { id } = req.params;
@@ -123,7 +111,7 @@ export const updateOffer = async <T>(
 // delete offer
 export const deleteOffer = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ResponseDocument>
+    res: GenericResponse<ResponseDocument, string>
 ) => {
     try {
         const { id } = req.params;
