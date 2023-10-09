@@ -1,16 +1,20 @@
-import Navbar from "./components/Navbar/Navbar";
-import LandingPage from "./pages/Landing-Page/index";
-import Footer from "./components/Footer/Footer";
-import "./App.css";
+import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import LandingPage from './pages/Landing-Page/LandingPage'
+import Auth from './pages/Auth/Auth'
+import Talent from './pages/Talent/Talent'
 
-function App() {
+const App = () => {
   return (
-    <>
-      <Navbar />
-      <LandingPage />
-      <Footer />
-    </>
-  );
+    <BrowserRouter>
+    <Routes>
+       <Route path='/' element={<LandingPage />}/>
+        <Route path='/auth' element={ <Auth /> }/>
+        <Route path='/talent' element={<Talent/>}/>
+    </Routes>
+    </BrowserRouter>
+   
+  )
 }
 
-export default App;
+export default App

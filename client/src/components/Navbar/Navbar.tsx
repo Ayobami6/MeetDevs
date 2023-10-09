@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Button from "../Button/Button";
 import "./navbar.css";
 
@@ -21,7 +22,9 @@ const Navbar = () => {
   return (
     <div className={`nav ${show && "black"}`}>
       <h1 className="logo">Meet Devs</h1>
-      <Button text="Sign In" size="sm"/>
+      <Link to={'/auth'}>
+        <Button text="Sign In" size="sm"/>
+      </Link>
     </div>
   );
 };
