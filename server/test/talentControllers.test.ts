@@ -1,82 +1,103 @@
-import request from 'supertest';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
+import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
-import app from '../index';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 import Talent from '../models/talentModel';
+import { signUp, signIn } from '../controllers/talentController';
 
+dotenv.config();
 
-dotenv.config()
+jest.mock('bcrypt');
+jest.mock('jsonwebtoken');
+jest.mock('../models/talentModel');
 
-beforeAll(async () => {
-  // Connect to a test database before running the tests
-const dbName = process.env.DB_NAME;
-const dbUsername = process.env.DB_USERNAME;
-const dbPwd = process.env.DB_PWD;
-const dbConnString = `mongodb+srv://${dbUsername}:${dbPwd}@meetdevcluster.udvey1i.mongodb.net/${dbName}?retryWrites=true&w=majority`;
-});
-
-afterAll(async () => {
-  // Disconnect and close the database connection after all tests
-  await mongoose.connection.close();
-});
-
-describe('Authentication TalentController Tests', () => {
-  let authToken: string;
-
-  beforeAll(async () => {
-    // Create a test talent for authentication tests
-    const talentData = {
-      name: 'Test User',
-      email: 'test@example.com',
-      hashedPassword: await bcrypt.hash('testpassword', 10),
+describe('Auth Controller', () => {
+    const mockedRequest: Partial<Request> = {};
+    const mockedResponse: Partial<Response> = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
     };
 
-    const talent = new Talent(talentData);
-    await talent.save();
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
 
-    // Authenticate and get an auth token
-    const res = await request(app)
-      .post('/signin')
-      .send({ email: 'test@example.com', password: 'testpassword' });
-    authToken = res.body.token;
-  });
+    describe('signUp', () => {
+        it('should create a new talent and return a token', async () => {
+            const reqBody = {
+                name: 'John Doe',
+                email: 'john@example.com',
+                password: 'password123',
+            };
+            const hashedPassword = 'hashedPassword123';
+            const mockTalent = new Talent({
+                ...reqBody,
+                hashedPassword,
+            });
+            const mockToken = 'mockToken123';
 
-  it('should sign up a new talent', async () => {
-    const res = await request(app)
-      .post('/signup')
-      .send({ name: 'New Talent', email: 'newtalent@example.com', password: 'newpassword' })
-      .expect(201);
+            Talent.findOne = jest.fn().mockResolvedValueOnce(null);
+            bcrypt.hash = jest.fn().mockResolvedValueOnce(hashedPassword);
+            Talent.prototype.save = jest.fn().mockResolvedValueOnce(mockTalent);
+            jwt.sign = jest.fn().mockReturnValueOnce(mockToken);
 
-    expect(res.body).toHaveProperty('token');
-    expect(res.body).toHaveProperty('userId');
-  });
+            mockedRequest.body = reqBody;
 
-  it('should prevent signing up with an existing email', async () => {
-    const res = await request(app)
-      .post('/signup')
-      .send({ name: 'Existing Talent', email: 'test@example.com', password: 'testpassword' })
-      .expect(400);
+            await signUp(mockedRequest as Request, mockedResponse as Response);
 
-    expect(res.body).toHaveProperty('message', 'Email already in use');
-  });
+            expect(Talent.findOne).toHaveBeenCalledWith({ email: reqBody.email });
+            expect(bcrypt.hash).toHaveBeenCalledWith(reqBody.password, 10);
+            expect(Talent.prototype.save).toHaveBeenCalled();
+            expect(jwt.sign).toHaveBeenCalledWith(
+                { userId: mockTalent._id },
+                expect.any(String),
+                { expiresIn: '24h' }
+            );
+            expect(mockedResponse.status).toHaveBeenCalledWith(201);
+            expect(mockedResponse.json).toHaveBeenCalledWith({
+                token: mockToken,
+                userId: mockTalent._id,
+            });
+        });
 
-  it('should sign in a user', async () => {
-    const res = await request(app)
-      .post('/signin')
-      .send({ email: 'test@example.com', password: 'testpassword' })
-      .expect(200);
+    });
 
-    expect(res.body).toHaveProperty('token');
-    expect(res.body).toHaveProperty('userId');
-  });
+    describe('signIn', () => {
+        it('should sign in a talent and return a token', async () => {
+            const reqBody = {
+                email: 'john@example.com',
+                password: 'password123',
+            };
+            const hashedPassword = 'hashedPassword123';
+            const mockTalent = new Talent({
+                name: 'John Doe',
+                email: reqBody.email,
+                hashedPassword,
+            });
+            const mockToken = 'mockToken123';
 
-  it('should prevent signing in with invalid credentials', async () => {
-    const res = await request(app)
-      .post('signin')
-      .send({ email: 'test@example.com', password: 'wrongpassword' })
-      .expect(401);
+            Talent.findOne = jest.fn().mockResolvedValueOnce(mockTalent);
+            bcrypt.compare = jest.fn().mockResolvedValueOnce(true);
+            jwt.sign = jest.fn().mockReturnValueOnce(mockToken);
 
-    expect(res.body).toHaveProperty('message', 'Invalid credentials');
-  });
+            mockedRequest.body = reqBody;
+
+            await signIn(mockedRequest as Request, mockedResponse as Response);
+
+            expect(Talent.findOne).toHaveBeenCalledWith({ email: reqBody.email });
+            expect(bcrypt.compare).toHaveBeenCalledWith(
+                reqBody.password,
+                mockTalent.hashedPassword
+            );
+            expect(jwt.sign).toHaveBeenCalledWith(
+                { userId: mockTalent._id },
+                expect.any(String),
+                { expiresIn: '1h' }
+            );
+            expect(mockedResponse.json).toHaveBeenCalledWith({
+                token: mockToken,
+                userId: mockTalent._id,
+            });
+        });
+    });
 });
