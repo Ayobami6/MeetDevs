@@ -65,7 +65,7 @@ export const signIn = async (req: Request, res: Response) => {
         res.status(500).json({ message: 'Server error' });
     }
 
-}
+};
 /**
  *  Returns all talents objects from the database and
  * returns it as a json response
@@ -174,4 +174,4 @@ export const deleteTalent = async (
         next(err);
 
     }
-}
+};
