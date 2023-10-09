@@ -5,7 +5,6 @@ import bcrypt from 'bcrypt';
 import app from '../index';
 import Talent from '../models/talentModel';
 
-
 dotenv.config();
 
 beforeAll(async () => {
@@ -17,8 +16,6 @@ afterAll(async () => {
 });
 
 describe('Authentication TalentController Tests', () => {
-    let authToken: string;
-
     beforeAll(async () => {
         const talentData = {
             name: 'Test User',
@@ -29,10 +26,9 @@ describe('Authentication TalentController Tests', () => {
         const talent = new Talent(talentData);
         await talent.save();
 
-        const res = await request(app)
+        await request(app)
             .post('/signin')
             .send({ email: 'test@example.com', password: 'testpassword' });
-        authToken = res.body.token;
     });
 
     it('should sign up a new talent', async () => {
