@@ -4,7 +4,7 @@ export interface Talent {
     hashedPassword: string;
     jobRole: string;
     experience?: Array<Experience>;
-    skill?: Array<string>;
+    skills?: Array<string>;
     education?: Array<Education>;
     hasOffer: boolean;
     rank: number;
