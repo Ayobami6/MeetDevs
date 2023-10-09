@@ -64,7 +64,7 @@ export const updateTalent = async (
     next: NextFunction,
 ): Promise<Response | undefined> => {
     try {
-        let { talent } = req;
+        const { id } = req.params;
         const {
             name,
             bio,
@@ -76,8 +76,8 @@ export const updateTalent = async (
             skills,
         }: TT = req.body;
 
-        talent = (await Talent.findOneAndUpdate(
-            { email: talent.email },
+        const talent = (await Talent.findByIdAndUpdate(
+            id,
             {
                 name,
                 bio,
@@ -103,23 +103,11 @@ export const deleteTalent = async (
     next: NextFunction,
 ): Promise<Response | undefined> => {
     try {
-        const { talent } = req;
-
-        await Talent.findOneAndDelete({
-            email: talent.email,
-            name: talent.name,
-        });
+        const { id } = req.params;
+        await Talent.findByIdAndDelete(id);
 
         return res.status(204).json();
     } catch (err) {
         next(err);
     }
-};
-
-export const getCurrentTalent = async (
-    req: Request & { talent: Talent },
-    res: Response,
-): Promise<Response | undefined> => {
-    const { talent } = req;
-    return res.json(talent);
 };

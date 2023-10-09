@@ -24,10 +24,10 @@ export const isTalentAuthenticated = async (
         const secret = process.env.JWT_SECRET ?? 'default';
 
         const info = (await jwt.verify(token, secret)) as JwtPayload & {
-            email: string;
+            id: string;
         };
 
-        const talent = await Talent.findOne({ email: info.email });
+        const talent = await Talent.findById(info.id);
 
         if (!talent) throw new CustomError('Unauthorized', 401);
 
