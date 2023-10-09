@@ -1,0 +1,36 @@
+.accordion {
+    width: 80%;
+    height: 10vh;
+    background-color: #2a2a2a;
+    padding: 46px 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 8px;
+    margin-bottom: 0;
+    border-bottom: 2px solid black;
+    transition: 0.2s linear all;
+  }
+  .accordion:hover {
+    background-color: #3f3f3f;
+    cursor: pointer;
+  }
+  .accordion > button:hover {
+    cursor: pointer;
+  }
+  .accordion > button {
+    background-color: transparent;
+    border: none;
+    font-size: 3rem;
+  }
+  .ans {
+    max-height: fit-content;
+    background-color: #353535;
+    text-color: var(--color-primary);
+    padding: 25px;
+    font-size: 1.5rem;
+    font-weight: 400;
+    width: 80%;
+  }

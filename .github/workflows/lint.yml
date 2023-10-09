@@ -1,0 +1,38 @@
+name: ESLint Check
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout codes
+        uses: actions/checkout@v2
+
+      - name: Set up Nodejs
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+
+      - name: Install dependencies for server
+        run: npm install
+        working-directory: server
+
+
+      - name: Install dependencies for client
+        run: npm install
+        working-directory: client
+        
+      - name: Run ESLint server
+        working-directory: server
+        run: npm run lint
+
+      - name: Run ESLint client
+        working-directory: client
+        run: npm run lint
+        

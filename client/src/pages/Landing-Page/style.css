@@ -1,0 +1,53 @@
+.home {
+  height: 80vh;
+  width: 100%;
+  overflow: hidden;
+  background: radial-gradient(transparent -40%, black);
+}
+.bg-img {
+  object-fit: cover;
+  object-position: center;
+  position: fixed;
+  z-index: -1;
+}
+.home > .main {
+  width: 80%;
+  position: relative;
+  top: 41%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.main > p {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: -1px;
+  line-height: 65px;
+  margin: 15px;
+  padding: 10px 20px;
+}
+
+.home_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+.faq {
+  min-height: 100vh;
+  width: 100%;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.faq > h1 {
+  text-align: center;
+  font-size: 2.8rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 65px;
+  margin: 10px;
+}
