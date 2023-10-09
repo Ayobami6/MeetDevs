@@ -20,7 +20,7 @@ const Auth: React.FC = () => {
                     src='src/assets/auth3.jpg'
                     className='bg-img bg-cover w-fit'
                 />
-                <div className='text-7xl mx-5 py-4 text-green-900'>
+                <div className='text-7xl mx-5 py-4 text-green-700'>
                     MeetDevs
                 </div>
                 {isSignup ? (
