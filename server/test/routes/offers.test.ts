@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import request from 'supertest';
 import express from 'express';
-import { connectDB, disconnectDB, dropCollection } from '../dbTestConnection';
+import { connectDB, disconnectDB, dropDB } from '../dbTestConnection';
 import { GenericResponse } from '../../generics/types';
 import offerRoutes from '../../routes/offerRoutes';
 
@@ -19,10 +19,8 @@ describe('test offer endpoints', () => {
         await app.use('/offers', offerRoutes);
     });
     afterAll(async () => {
+        await dropDB();
         await disconnectDB();
-    });
-    afterEach(async () => {
-        await dropCollection('offers');
     });
 
     it('test get all offers /offers', async () => {
@@ -30,6 +28,11 @@ describe('test offer endpoints', () => {
             await request(app).get('/offers');
         console.log(res.text);
         expect(res.statusCode).toEqual(200);
-        expect(JSON.parse(res.text)[0]).toHaveProperty('_id');
+        expect(JSON.parse(res.text)).toHaveProperty('offers');
+        expect(JSON.parse(res.text)).toHaveProperty('links');
+        expect(JSON.parse(res.text)['offers']).toBeInstanceOf(Array);
+        expect(JSON.parse(res.text)['offers'][0].hasOwnProperty('_id')).toBe(
+            true,
+        );
     });
 });

@@ -6,15 +6,14 @@ import {
     getTalentById,
     updateTalent,
 } from '../controllers/talentController';
-import { isTalentAuthenticated } from '../middlewares/talentAuth';
+// import { isTalentAuthenticated } from '../middlewares/talentAuth';
 
 const talentRoutes = Router();
 
 talentRoutes.post('/signup', signUp);
 talentRoutes.post('/signin', signIn);
 
-
-talentRoutes.use(isTalentAuthenticated);
+// talentRoutes.use(isTalentAuthenticated);
 
 talentRoutes.put('/:id', updateTalent);
 talentRoutes.delete('/:id', deleteTalent);

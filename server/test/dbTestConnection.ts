@@ -24,11 +24,9 @@ export const disconnectDB = async () => {
     }
 };
 
-export const dropCollection = async (collection: string) => {
+export const dropDB = async () => {
     try {
-        if (mongoose.connection.collections[collection]) {
-            await mongoose.connection.collections[collection].drop();
-        }
+        await mongoose.connection.db.dropDatabase();
     } catch (error) {
         console.log(error);
     }
