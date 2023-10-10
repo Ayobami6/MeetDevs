@@ -34,7 +34,11 @@ describe('Authentication TalentController Tests', () => {
     it('should sign up a new talent', async () => {
         const res = await request(app)
             .post('/signup')
-            .send({ name: 'New Talent', email: 'newtalent@example.com', password: 'newpassword' })
+            .send({
+                name: 'New Talent',
+                email: 'newtalent@example.com',
+                password: 'newpassword',
+            })
             .expect(201);
 
         expect(res.body).toHaveProperty('token');
@@ -44,7 +48,11 @@ describe('Authentication TalentController Tests', () => {
     it('should prevent signing up with an existing email', async () => {
         const res = await request(app)
             .post('/signup')
-            .send({ name: 'Existing Talent', email: 'test@example.com', password: 'testpassword' })
+            .send({
+                name: 'Existing Talent',
+                email: 'test@example.com',
+                password: 'testpassword',
+            })
             .expect(400);
 
         expect(res.body).toHaveProperty('message', 'Email already in use');
