@@ -1,14 +1,13 @@
-import Home from "./Home";
-import Faq from "./FAQ";
-import "./style.css"
+import Home from './Home';
+import Faq from './FAQ';
 
 const LandingPage = () => {
-  return (
-    <>
-      <Home />
-      <Faq />
-    </>
-  );
+    return (
+        <>
+            <Home />
+            <Faq />
+        </>
+    );
 };
 
 export default LandingPage;
