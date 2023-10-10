@@ -5,7 +5,7 @@ import { GenericRequest, GenericResponse } from '../generics/types';
 // create offer controller
 export const createOffer = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ResponseDocument, string>
+    res: GenericResponse<ResponseDocument, string>,
 ) => {
     try {
         const offerData: T = req.body;
@@ -34,12 +34,12 @@ export const createOffer = async <T>(
 // get all offers
 export const getAllOffers = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ResponseDocument, string>
+    res: GenericResponse<ResponseDocument, string>,
 ) => {
     try {
         const offers = await OfferModel.find();
         res.status(200).json({
-            ...offers,
+            offers,
             links: [
                 { rel: 'self', href: '/offers' },
                 { rel: 'talent', href: '/talents' },
@@ -58,14 +58,14 @@ export const getAllOffers = async <T>(
 // get an offer
 export const getOffer = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ResponseDocument, string>
+    res: GenericResponse<ResponseDocument, string>,
 ) => {
     try {
         const { id } = req.params;
         const offer = await OfferModel.findById(id);
         if (!offer) return res.status(404).json({ message: 'Offer not found' });
         res.status(200).json({
-            ...offer,
+            ...offer.toJSON(),
             links: [
                 { rel: 'self', href: '/offers' },
                 { rel: 'talent', href: '/talents' },
@@ -84,7 +84,7 @@ export const getOffer = async <T>(
 // update offer
 export const updateOffer = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ResponseDocument, string>
+    res: GenericResponse<ResponseDocument, string>,
 ) => {
     try {
         const { id } = req.params;
@@ -92,7 +92,7 @@ export const updateOffer = async <T>(
         const offer = await OfferModel.findByIdAndUpdate(id, data);
         if (!offer) return res.status(404).json({ message: 'Offer not found' });
         res.status(200).json({
-            ...offer,
+            offer,
             links: [
                 { rel: 'self', href: '/offers' },
                 { rel: 'talent', href: '/talents' },
@@ -111,7 +111,7 @@ export const updateOffer = async <T>(
 // delete offer
 export const deleteOffer = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ResponseDocument, string>
+    res: GenericResponse<ResponseDocument, string>,
 ) => {
     try {
         const { id } = req.params;
