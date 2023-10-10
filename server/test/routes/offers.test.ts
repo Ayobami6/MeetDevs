@@ -12,6 +12,14 @@ describe('test offer endpoints', () => {
     let app;
     beforeAll(async () => {
         await connectDB();
+        const offerData = {
+            talentId: 'tes0343',
+            employerId: 'teyt776',
+            title: 'Backend Job',
+        };
+
+        const offer = new OfferModel(offerData);
+        await offer.save();
     });
     beforeEach(async () => {
         app = express();
@@ -31,8 +39,6 @@ describe('test offer endpoints', () => {
         expect(JSON.parse(res.text)).toHaveProperty('offers');
         expect(JSON.parse(res.text)).toHaveProperty('links');
         expect(JSON.parse(res.text)['offers']).toBeInstanceOf(Array);
-        expect(JSON.parse(res.text)['offers'][0].hasOwnProperty('_id')).toBe(
-            true,
-        );
+        expect(JSON.parse(res.text)['offers'][0]).toHaveProperty('_id');
     });
 });
