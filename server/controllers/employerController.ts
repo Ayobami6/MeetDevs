@@ -43,11 +43,11 @@ export const employerSignup = async (
         if (!employer) throw new CustomError('Could not create user', 400);
         await employer.save();
 
-        const accessToken = jwt.sign({ id: employer._id }, JWT_SECRET, {
+        const token = jwt.sign({ id: employer._id }, JWT_SECRET, {
             expiresIn: '24h',
         });
         return res.status(201).json({
-            accessToken,
+            token,
             message: 'user created successfully',
             data: {
                 ...employer.toJSON(),
@@ -72,11 +72,11 @@ export const employerLogin = async (
 
         const employer = await Employer.findOne({ email });
         if (!employer) throw new CustomError('User not found', 404);
-        const accessToken = jwt.sign({ id: employer._id }, JWT_SECRET, {
+        const token = jwt.sign({ id: employer._id }, JWT_SECRET, {
             expiresIn: '24h',
         });
         return res.status(201).json({
-            accessToken,
+            token,
             message: 'user logged in successfully',
             data: {
                 ...employer.toJSON(),
