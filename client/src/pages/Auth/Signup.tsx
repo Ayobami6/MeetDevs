@@ -14,6 +14,9 @@ const Signup = ({ handleIsMemberClick }) => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
+    const [user, setuser] = useState(
+        JSON.parse(localStorage.getItem('talentProfile'))
+    );
     const handleSignUp = async () => {
         const userData = {
             email,
@@ -32,6 +35,10 @@ const Signup = ({ handleIsMemberClick }) => {
                     'http://0.0.0.0:3000/talents/signup',
                     userData
                 );
+                localStorage.setItem(
+                    'talentProfile',
+                    JSON.stringify({ ...res.data })
+                );
                 setLoading(false);
                 enqueueSnackbar('Signup Sucessful!', { variant: 'success' });
                 navigate('/auth');
@@ -41,10 +48,12 @@ const Signup = ({ handleIsMemberClick }) => {
             // else to employer endpoint
         } catch (error) {
             setLoading(false);
-            console.log(error.message);
-            enqueueSnackbar('Signup Failed', { variant: 'error' });
+            console.log(error.response.data.message);
+            enqueueSnackbar(error.response.data.message, { variant: 'error' });
+            console.log(user); // for debugging purposes
         }
     };
+
     return (
         <div className='flex flex-col bg-opacity-75 bg-black rounded-lg w-[420px] p-8 shadow-xl mx-auto my-10'>
             <div className='mx-10'>
