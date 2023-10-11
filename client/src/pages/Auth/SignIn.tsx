@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
@@ -41,6 +40,19 @@ const SignIn = ({ handleIsMemberClick }: SignInProps) => {
                 navigate('/talent');
 
                 // send request to talent signin endpoint
+            } else {
+                setLoading(true);
+                const res = await axios.post(
+                    'http://0.0.0.0:3000/employers/login',
+                    credentials
+                );
+                localStorage.setItem(
+                    'talentProfile',
+                    JSON.stringify({ ...res.data })
+                );
+                setLoading(false);
+                enqueueSnackbar('Signin Sucessful!', { variant: 'success' });
+                navigate('/employer');
             }
             // else to employer endpoint
         } catch (error) {

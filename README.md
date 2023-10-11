@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="logo-removebg.png" alt="logo" width="210"  height="auto" />
+  <img src="logo-removebg.png" alt="logo" width="300"  height="auto" />
   <br/>
 
   <h3><b>MeetDevs</b></h3>

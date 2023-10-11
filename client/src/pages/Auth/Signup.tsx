@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import { useSnackbar } from 'notistack';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import Submit from '../../components/Loading/Submit';
+import { authenticate } from '../../api/auth';
 
 const Signup = ({ handleIsMemberClick }) => {
     const [loading, setLoading] = useState(false);
@@ -24,14 +25,15 @@ const Signup = ({ handleIsMemberClick }) => {
             password,
         };
         try {
+            let res;
+            if (password !== confirmPassword) {
+                enqueueSnackbar('Password Does not Match', {
+                    variant: 'error',
+                });
+            }
             if (isTalent) {
-                if (password !== confirmPassword) {
-                    enqueueSnackbar('Password Does not Match', {
-                        variant: 'error',
-                    });
-                }
                 setLoading(true);
-                const res = await axios.post(
+                res = await axios.post(
                     'http://0.0.0.0:3000/talents/signup',
                     userData
                 );
@@ -44,11 +46,25 @@ const Signup = ({ handleIsMemberClick }) => {
                 navigate('/auth');
 
                 // send request to talent signin endpoint
+            } else {
+                setLoading(true);
+                res = await axios.post(
+                    'http://0.0.0.0:3000/employers/signup',
+                    userData
+                );
+                console.log(res);
+                localStorage.setItem(
+                    'talentProfile',
+                    JSON.stringify({ ...res.data })
+                );
+                setLoading(false);
+                enqueueSnackbar('Signup Sucessful!', { variant: 'success' });
+                navigate('/auth');
             }
             // else to employer endpoint
         } catch (error) {
             setLoading(false);
-            console.log(error.response.data.message);
+            console.log(error);
             enqueueSnackbar(error.response.data.message, { variant: 'error' });
             console.log(user); // for debugging purposes
         }
