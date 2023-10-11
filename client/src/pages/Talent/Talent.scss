@@ -1,0 +1,33 @@
+.talent-page {
+  position: relative;
+  width: 100%;
+  border: 1px solid red;
+  height: 100dvh;
+
+  icons .home-icon {
+    border: 1px solid green;
+    position: absolute;
+    margin: 1rem;
+  }
+
+  // search bar
+  .search-con {
+    border: 1px solid green;
+    width: 25rem;
+    border-radius: 100px;
+    height: 3rem;
+    padding: 0px 0.7rem;
+
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    right: 2rem;
+
+    input {
+      border: none;
+      outline: none;
+      font-size: 1;
+      border-radius: 100px;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+.talent-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 2rem;
+  height: 6rem;
+  box-shadow: 1px 0px 6px gray;
+  z-index: 1000;
+}
+.talent-nav .nav-con {
+  display: flex;
+  gap: 3rem;
+}
+.talent-nav .nav-con h3 {
+  color: green;
+  font-weight: bold;
+  font-size: larger;
+  text-decoration: underline;
+  line-height: 20px;
+}
+.talent-nav .nav-con .nav-items-con {
+  display: flex;
+  gap: 2rem;
+}/*# sourceMappingURL=TalentNav.css.map */
