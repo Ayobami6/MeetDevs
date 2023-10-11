@@ -1,0 +1,23 @@
+.add-info-con {
+  display: flex;
+  gap: 1rem;
+  width: 16rem;
+  justify-content: space-between;
+}
+.add-info-con > div {
+  border: 1px solid var(--color-primary);
+  border-radius: 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+.add-info-con > button {
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  padding: 1rem;
+}
+.add-info-con > button > svg {
+  color: white;
+  font-size: 1.3rem;
+}/*# sourceMappingURL=AddInfo.css.map */
