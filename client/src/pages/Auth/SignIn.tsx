@@ -9,7 +9,11 @@ interface SignInCredential {
     password: string;
 }
 
-const SignIn = ({ handleIsMemberClick }) => {
+interface SignInProps {
+    handleIsMemberClick: () => void;
+}
+
+const SignIn = ({ handleIsMemberClick }: SignInProps) => {
     const [isTalent, setIsTalent] = useState(true);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

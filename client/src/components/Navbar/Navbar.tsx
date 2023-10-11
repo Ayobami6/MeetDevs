@@ -21,8 +21,7 @@ const Navbar = () => {
     }, []);
     return (
         <div className={`nav ${show && 'black'}`}>
-            {/* <h1 className="logo">Meet Devs</h1> */}
-            <img src='src/assets/logo.png' alt='logo' width={150} />
+            <h1 className='logo'>Meet Devs</h1>
             <Link to={'/auth'}>
                 <Button text='Sign In' size='sm' />
             </Link>
