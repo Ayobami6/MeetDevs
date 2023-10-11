@@ -3,7 +3,7 @@ import Accordion from "../../components/Accordion/Accordion";
 
 const Faq: React.FC = () => {
   return (
-    <div className="faq">
+    <div className="faq border-t-8 border-b-8 border-solid border-gray-600 bg-slate-900">
       <h1>Frequently Asked Questions</h1>
       <Accordion
         title="How does Meet Devs ensure that developers work for only one employer at a time?"
