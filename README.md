@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="logo-removebg.png" alt="logo" width="170"  height="auto" />
+  <img src="logo-removebg.png" alt="logo" width="210"  height="auto" />
   <br/>
 
   <h3><b>MeetDevs</b></h3>
@@ -108,6 +108,15 @@ cd MeetDevs
 npm install
 npm run install:all
 ```
+- Create a .env file with the following variable names
+
+```
+DB_NAME=your_db_name
+DB_USERNAME=your_username
+DB_PWD=your_db_password
+TEST_DB_NAME=test_db_name
+JWT_SECRET=jwt_secret
+```
 
 - Run both server and client concurrently
 
@@ -147,7 +156,6 @@ Example:
 ```
  -->
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- AUTHORS -->
 
@@ -169,13 +177,11 @@ Feel free to check the [issues page](https://github.com/Ayobami6/Peersonline/iss
 
 If you like this project, help us by giving a ⭐️!
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 📝 License <a name="license"></a>
 
 This project is [MIT](./LICENSE) licensed.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 👥 Authors <a name="authors"></a>
 
