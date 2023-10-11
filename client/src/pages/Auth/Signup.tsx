@@ -1,13 +1,49 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
+import { useSnackbar } from 'notistack';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Submit from '../../components/Loading/Submit';
 
 const Signup = ({ handleIsMemberClick }) => {
+    const [loading, setLoading] = useState(false);
     const [isTalent, setIsTalent] = useState(true);
-    const handleSignIn = () => {
-        if (isTalent) {
-            // send request to talent signin endpoint
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const { enqueueSnackbar } = useSnackbar();
+    const navigate = useNavigate();
+    const handleSignUp = async () => {
+        const userData = {
+            email,
+            name,
+            password,
+        };
+        try {
+            if (isTalent) {
+                if (password !== confirmPassword) {
+                    enqueueSnackbar('Password Does not Match', {
+                        variant: 'error',
+                    });
+                }
+                setLoading(true);
+                const res = await axios.post(
+                    'http://0.0.0.0:3000/talents/signup',
+                    userData
+                );
+                setLoading(false);
+                enqueueSnackbar('Signup Sucessful!', { variant: 'success' });
+                navigate('/auth');
+
+                // send request to talent signin endpoint
+            }
+            // else to employer endpoint
+        } catch (error) {
+            setLoading(false);
+            console.log(error.message);
+            enqueueSnackbar('Signup Failed', { variant: 'error' });
         }
-        // else to employer endpoint
     };
     return (
         <div className='flex flex-col bg-opacity-75 bg-black rounded-lg w-[420px] p-8 shadow-xl mx-auto my-10'>
@@ -31,25 +67,41 @@ const Signup = ({ handleIsMemberClick }) => {
                 </div>
                 <input
                     type='text'
+                    value={email}
                     className='border-1 text-2xl border-black-500 rounded-lg bg-gray-600 h-50 px-4 my-3 py-4 w-full justify-center'
                     placeholder='Email'
+                    onChange={(e) => setEmail(e.target.value)}
                 />
                 <input
                     type='text'
+                    value={name}
                     className='border-1 text-2xl border-black-500 rounded-lg bg-gray-600 h-50 px-4 my-3 py-4 w-full justify-center'
                     placeholder='Name'
+                    onChange={(e) => setName(e.target.value)}
                 />
                 <input
                     type='text'
+                    value={password}
                     className='border-1 text-2xl border-black-500 rounded-lg bg-gray-600 h-50 px-4 my-3 py-4 w-full justify-center'
                     placeholder='Password'
+                    onChange={(e) => setPassword(e.target.value)}
                 />
                 <input
                     type='text'
+                    value={confirmPassword}
                     className='border-1 text-2xl border-black-500 rounded-lg bg-gray-600 h-50 px-4 my-3 py-4 w-full justify-center'
                     placeholder='Confirm Password'
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                 />
-                <button className='w-full text-white bg-green-700 rounded-lg my-9 self-center text-lg font-bold p-4'>
+                <button
+                    className='w-full text-white bg-green-700 rounded-lg my-6 self-center text-lg font-bold p-4'
+                    onClick={handleSignUp}
+                >
+                    {loading ? (
+                        <p className='inline-block animate-spin mr-3 w-4 h-4 border-b-2 border-t-2 border-white-400 border-solid rounded-full'></p>
+                    ) : (
+                        ''
+                    )}
                     Sign up as {isTalent ? 'Talent' : 'Employer'}
                 </button>
                 <h2 className='text-black-600 font-bold my-12 text-2xl'>
