@@ -1,39 +1,83 @@
-import React from 'react';
-import SectionTitle from '../../components/SectionTitle';
+import { IoIosPeople } from "react-icons/io";
+import {GiFlexibleLamp} from "react-icons/gi";
+import {MdLaptopMac} from "react-icons/md";
+import {CiBadgeDollar} from "react-icons/ci";
+import { IconType } from "react-icons";
 
-const AboutUs: React.FC = () => {
+interface MotivationItem {
+  iconPath: IconType;
+  title: string;
+  subtitle: string;
+}
+
+const motivationItems: MotivationItem[] = [
+  {
+    iconPath: IoIosPeople,
+    title: "Exclusive Connections",
+    subtitle:
+      "Our approach is unique. We ensure that developers commit to only one employer at a time. This exclusivity guarantees undivided attention and dedication to your projects, fostering exceptional results.",
+  },
+  {
+    iconPath: CiBadgeDollar,
+    title: "Global Talent Pool",
+    subtitle:
+      "We connect you with tech talent from all corners of the world. This global reach allows you to tap into a diverse range of skills, experiences, and perspectives.",
+  },
+  {
+    iconPath: MdLaptopMac,
+    title: "Efficient Hiring",
+    subtitle:
+      "Our platform streamlines the hiring process, making it faster and more efficient. Access a pool of dedicated developers, shortening the time it takes to bring exceptional talent on board.",
+  },
+  {
+    iconPath: GiFlexibleLamp,
+    title: "Flexibility",
+    subtitle:
+      "Whether you're seeking full-time, part-time, or freelance talent, MeetDevs caters to your needs. Specify your requirements, and we'll connect you with developers who fit the bill",
+  },
+];
+
+export default function AboutUs() {
   return (
-    <div className="flex flex-row flex-wrap justify-between p-8 bg-gray-100">
-        <SectionTitle 
-            title='About Us - MeetDevs'
-            body ="At MeetDevs, we believe in the power of connection. We're more than just a job-matching platform; we're the bridge that connects talented developers with forward-thinking employers, revolutionizing the tech talent landscape."
-        />
-        <SectionTitle   
-            title="Our Mission"
-            body="Our mission is simple yet transformative: to create an ecosystem where every developer's unique skills and potential can shine, where employers find the perfect match for their tech needs, and where innovation knows no boundaries." 
-        />
-        <SectionTitle 
-            title="What Sets Us Apart"
-            body="MeetDevs stands out for one compelling reason: our commitment to exclusivity. We believe that developers should have the freedom to focus entirely on one employer at a time. This exclusive dedication ensures unparalleled productivity and quality results for employers while offering developers an opportunity for deep immersion in their projects."
-        />
-        <SectionTitle
-            title="How We Achieve This"
-            body= {<ul className="list-disc list-inside">
-            <li>Dedicated Matching: We employ cutting-edge algorithms to match developers and employers based on their specific needs, creating synergistic partnerships that drive success.</li>
-            <li>Global Reach: MeetDevs transcends borders. We connect talent and opportunities from around the world, expanding possibilities and breaking geographical constraints.</li>
-            <li>Innovation Hub: Beyond job listings, MeetDevs fosters a community of collaboration and continuous learning. Stay updated with industry trends, connect with peers, and push the boundaries of what's possible.</li>
-          </ul>}
-        />
-        <SectionTitle 
-            title="Our Commitment"
-            body="MeetDevs is more than a platform; it's a commitment to fostering growth and innovation. We are dedicated to providing a secure, efficient, and enriching environment for developers and employers alike."
-        />
-        <SectionTitle 
-            title="Join Us Today"
-            body="Whether you're a developer ready to take your career to new heights or an employer seeking exceptional tech talent, MeetDevs is the place where dreams become realities. Join us today and experience the future of tech talent acquisition and collaboration."
-        />
+    <div className="bg-slate-900 border-t-8 border-gray-600">
+      <section className="flex flex-col mx-20 px-15 items-center justify-center py-14 bg-neutral-light-grayish-blue lg:py-24">
+        <div className="container text-center lg:text-left">
+          <div className="grid lg:grid-cols-2 mb-8 lg:mb-16">
+            <div className="col-span-1 justify-center">
+              <h2 className="text-3xl lg:text-4xl text-primary-dark-blue pb-5">
+                Why choose MeetDevs?
+              </h2>
+              <p className="text-lg lg:text-lg font-light leading-5">
+                We believe in the power of connection. We're more than just a
+                job-matching platform; we're the bridge that connects talented
+                developers with forward-thinking employers, revolutionizing the
+                tech talent landscape.
+              </p>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 gap-9 lg:gap-6 lg:grid-cols-4">
+            {motivationItems.map((item) => {
+              return (
+                <div key={item.title} className="justify-center">
+                    {/* Increase size of the icons */}
+                  <div className="flex justify-center lg:justify-start ">
+                    <div className="rounded bg-green-500 p-2">
+                      <item.iconPath className="text-6xl"/>
+                      </div>
+                  </div>
+
+                  <h2 className="text-lg text-primary-dark-blue py-4 lg:pt-9 lg:pb-6 lg:text-xl lg:font-bold">
+                    {item.title}
+                  </h2>
+                  <p className="text-lg lg:text-lg font-light leading-5">
+                    {item.subtitle}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
     </div>
   );
-};
-
-export default AboutUs;
+}

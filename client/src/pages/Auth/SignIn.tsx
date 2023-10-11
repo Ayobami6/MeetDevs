@@ -1,7 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState } from 'react';
+import * as React from 'react';
+const { useState } = React;
 
-const SignIn = ({ handleIsMemberClick }) => {
+interface SignInProps {
+    handleIsMemberClick: () => void;
+}
+
+const SignIn = ({ handleIsMemberClick }: SignInProps) => {
     const [isTalent, setIsTalent] = useState(true);
     const handleSignIn = () => {
         if (isTalent) {
