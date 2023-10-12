@@ -106,7 +106,7 @@ const SignIn = ({ handleIsMemberClick }: SignInProps) => {
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 <button
-                    className='w-full text-white bg-green-700 rounded-lg my-9 self-center text-lg font-bold p-4'
+                    className='w-full text-white bg-green-500 rounded-lg my-9 self-center text-lg font-bold p-4'
                     onClick={handleSignIn}
                 >
                     {loading ? (
@@ -116,10 +116,10 @@ const SignIn = ({ handleIsMemberClick }: SignInProps) => {
                     )}
                     Sign in as {isTalent ? 'Talent' : 'Employer'}
                 </button>
-                <h2 className='text-black-600 font-bold my-12 text-2xl'>
+                <h2 className='text-white my-12 text-2xl font-semibold'>
                     New to MeetDevs?{' '}
                     <a
-                        className='inline text-2xl text-white underline'
+                        className='inline text-2xl text-green-500 hover:cursor-pointer'
                         onClick={handleIsMemberClick}
                     >
                         Sign up now
