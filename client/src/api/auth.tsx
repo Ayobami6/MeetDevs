@@ -16,5 +16,3 @@ export const authenticate = async (
     );
     return res;
 };
-
-export const employerAuth = async (endpoint: string) => {};
