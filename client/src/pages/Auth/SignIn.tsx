@@ -70,13 +70,13 @@ const SignIn = ({ handleIsMemberClick }: SignInProps) => {
                 <div className='text-center my-6'>
                     <button
                         className='bg-green-500 rounded-lg font-bold hover:bg-green-700 text-white p-4'
-                        onClick={() => setIsTalent(!isTalent)}
+                        onClick={() => setIsTalent(false)}
                     >
                         Employer
                     </button>
                     <button
                         className='bg-green-500 hover:bg-green-700 font-bold rounded-lg text-white mx-10 p-4'
-                        onClick={() => setIsTalent(!isTalent)}
+                        onClick={() => setIsTalent(true)}
                     >
                         Talent
                     </button>
