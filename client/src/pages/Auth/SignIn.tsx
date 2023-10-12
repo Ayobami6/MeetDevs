@@ -23,7 +23,7 @@ const SignIn = ({ handleIsMemberClick }: SignInProps) => {
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
-    
+
     const handleSignIn = async () => {
         const credentials: SignInCredential = {
             email,
@@ -107,6 +107,7 @@ const SignIn = ({ handleIsMemberClick }: SignInProps) => {
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 <button
+
                     className='w-full text-white bg-green-500 rounded-lg my-9 self-center text-lg font-bold p-4'
                     onClick={handleSignIn}
                 >
