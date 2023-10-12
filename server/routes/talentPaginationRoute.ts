@@ -5,7 +5,7 @@ import paginateTalents from '../pagination/talentPagination';
 const talentPaginationRoute = Router();
 
 talentPaginationRoute.get('/talents', (req: Request, res: Response) => {
-  paginateTalents(req, res);
+    paginateTalents(req, res);
 });
 
 export default talentPaginationRoute;
