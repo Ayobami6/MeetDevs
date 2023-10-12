@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import SignIn from './SignIn';
 import SignUp from './Signup';
+import Navbar from '../../components/Navbar/Navbar2';
 
 const Auth: React.FC = () => {
     const [isSignup, setIsSignup] = useState(false);
@@ -19,8 +20,8 @@ const Auth: React.FC = () => {
                     src='src/assets/auth3.jpg'
                     className='bg-img bg-cover w-fit'
                 />
-                <div className='text-7xl mx-5 py-4 text-green-700'>
-                    MeetDevs
+                <div className='text-left mx-3 py-4'>
+                    <Navbar isAuth={true} />
                 </div>
                 {isSignup ? (
                     <SignUp handleIsMemberClick={handleIsMemberClick} />
