@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 import mongoose, { ConnectOptions } from 'mongoose';
 import employerRoutes from './routes/employerRoute';
 import offerRoutes from './routes/offerRoutes';
@@ -20,6 +21,7 @@ const PORT: number = 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
 
 app.use('/employers', employerRoutes);
 app.use('/offers', offerRoutes);
