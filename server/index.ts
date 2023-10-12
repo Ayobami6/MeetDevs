@@ -6,6 +6,7 @@ import mongoose, { ConnectOptions } from 'mongoose';
 import employerRoutes from './routes/employerRoute';
 import offerRoutes from './routes/offerRoutes';
 import talentRoutes from './routes/talentRoute';
+import talentPaginationRoute from './routes/talentPaginationRoute';
 import { errorHandler } from './errors/customError';
 
 dotenv.config();
@@ -26,6 +27,7 @@ app.use(cors());
 app.use('/employers', employerRoutes);
 app.use('/offers', offerRoutes);
 app.use('/talents', talentRoutes);
+app.use('/api', talentPaginationRoute);
 
 app.get('/', (req, res) => {
     res.send('Welcome to MeetDevs');
