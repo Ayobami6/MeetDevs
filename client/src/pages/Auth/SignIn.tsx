@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axios, {AxiosError} from 'axios';
 
 interface SignInCredential {
     email: string;
     password: string;
+}
+
+interface ErrorResponse {
+    message: string;
 }
 
 interface SignInProps {
@@ -19,6 +23,7 @@ const SignIn = ({ handleIsMemberClick }: SignInProps) => {
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
+    
     const handleSignIn = async () => {
         const credentials: SignInCredential = {
             email,
@@ -56,9 +61,13 @@ const SignIn = ({ handleIsMemberClick }: SignInProps) => {
             }
             // else to employer endpoint
         } catch (error) {
-            setLoading(false);
-            console.log(error.response.data.message);
-            enqueueSnackbar(error.response.data.message, { variant: 'error' });
+            const axiosError = error as AxiosError;
+            if (axiosError.response) {
+                const responseData = axiosError.response.data as ErrorResponse;
+                setLoading(false);
+                console.log(responseData.message);
+                enqueueSnackbar(responseData.message, { variant: 'error' });
+            }
         }
     };
     return (
