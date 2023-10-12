@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axios, {AxiosError} from 'axios';
 
 interface SignInCredential {
     email: string;
     password: string;
+}
+
+interface ErrorResponse {
+    message: string;
 }
 
 interface SignInProps {
@@ -19,6 +23,7 @@ const SignIn = ({ handleIsMemberClick }: SignInProps) => {
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
+
     const handleSignIn = async () => {
         const credentials: SignInCredential = {
             email,
@@ -56,11 +61,16 @@ const SignIn = ({ handleIsMemberClick }: SignInProps) => {
             }
             // else to employer endpoint
         } catch (error) {
-            setLoading(false);
-            console.log(error.response.data.message);
-            enqueueSnackbar(error.response.data.message, { variant: 'error' });
+            const axiosError = error as AxiosError;
+            if (axiosError.response) {
+                const responseData = axiosError.response.data as ErrorResponse;
+                setLoading(false);
+                console.log(responseData.message);
+                enqueueSnackbar(responseData.message, { variant: 'error' });
+            }
         }
     };
+    
     return (
         <div className='flex flex-col bg-opacity-75 bg-black rounded-lg w-[420px] p-8 shadow-xl mx-auto my-10'>
             <div className='mx-10'>
@@ -97,7 +107,8 @@ const SignIn = ({ handleIsMemberClick }: SignInProps) => {
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 <button
-                    className='w-full text-white bg-green-700 rounded-lg my-9 self-center text-lg font-bold p-4'
+
+                    className='w-full text-white bg-green-500 rounded-lg my-9 self-center text-lg font-bold p-4'
                     onClick={handleSignIn}
                 >
                     {loading ? (
@@ -107,10 +118,10 @@ const SignIn = ({ handleIsMemberClick }: SignInProps) => {
                     )}
                     Sign in as {isTalent ? 'Talent' : 'Employer'}
                 </button>
-                <h2 className='text-black-600 font-bold my-12 text-2xl'>
+                <h2 className='text-white my-12 text-2xl font-semibold'>
                     New to MeetDevs?{' '}
                     <a
-                        className='inline text-2xl text-white underline'
+                        className='inline text-2xl text-green-500 hover:cursor-pointer'
                         onClick={handleIsMemberClick}
                     >
                         Sign up now

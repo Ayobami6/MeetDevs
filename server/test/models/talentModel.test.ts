@@ -15,6 +15,7 @@ describe('test Talent Model', () => {
             email: 'test@test.dev',
             hashedPassword: 'secret',
             jobRole: 'Backend',
+            location: 'Lagos, Nigeria',
             hasOffer: false,
             rank: 0,
         };
