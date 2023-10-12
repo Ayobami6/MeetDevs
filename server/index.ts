@@ -6,6 +6,7 @@ import mongoose, { ConnectOptions } from 'mongoose';
 import employerRoutes from './routes/employerRoute';
 import offerRoutes from './routes/offerRoutes';
 import talentRoutes from './routes/talentRoute';
+
 import talentPaginationRoute from './routes/talentPaginationRoute';
 import { errorHandler } from './errors/customError';
 
