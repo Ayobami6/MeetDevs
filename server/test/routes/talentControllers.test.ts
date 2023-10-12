@@ -42,7 +42,7 @@ describe('Authentication TalentController Tests', () => {
             password: 'newpassword',
         });
         expect(JSON.parse(res.text)).toHaveProperty('token');
-        expect(JSON.parse(res.text)).toHaveProperty('userId');
+        expect(JSON.parse(res.text)).toHaveProperty('newTalent');
     });
 
     it('should prevent signing up with an existing email', async () => {
@@ -56,7 +56,7 @@ describe('Authentication TalentController Tests', () => {
 
         expect(JSON.parse(res.text)).toHaveProperty(
             'message',
-            'Email already in use',
+            'Email already in use'
         );
     });
 
@@ -67,7 +67,7 @@ describe('Authentication TalentController Tests', () => {
             .expect(200);
 
         expect(JSON.parse(res.text)).toHaveProperty('token');
-        expect(JSON.parse(res.text)).toHaveProperty('userId');
+        expect(JSON.parse(res.text)).toHaveProperty('talent');
     });
 
     it('should prevent signing in with invalid credentials', async () => {
@@ -78,7 +78,7 @@ describe('Authentication TalentController Tests', () => {
 
         expect(JSON.parse(res.text)).toHaveProperty(
             'message',
-            'Invalid credentials',
+            'Invalid credentials'
         );
     });
 });

@@ -1,7 +1,7 @@
 {
     "name": "server",
     "version": "1.0.0",
-    "description": "Credit Card API Validation",
+    "description": "MeetDevs",
     "main": "index.js",
     "scripts": {
         "lint": "eslint . --ext .ts",

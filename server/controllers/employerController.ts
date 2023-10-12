@@ -6,24 +6,10 @@ import { CustomError } from '../errors/customError';
 
 const JWT_SECRET = process.env.JWT_SECRET ?? 'your-secret-key';
 
-export const createEmployer = async (req, res) => {
-    const employerData = req.body;
-    try {
-        const employer = await Employer.create({
-            ...employerData,
-            createdAt: new Date().toISOString(),
-        });
-        res.status(201).json(employer);
-    } catch (error) {
-        console.log(error);
-        res.status(500).send('Internal Server error');
-    }
-};
-
 export const employerSignup = async (
     req: Request,
     res: Response,
-    next: NextFunction,
+    next: NextFunction
 ): Promise<Response | undefined> => {
     const { name, email, password } = req.body;
 
@@ -62,7 +48,7 @@ export const employerSignup = async (
 export const employerLogin = async (
     req: Request,
     res: Response,
-    next: NextFunction,
+    next: NextFunction
 ): Promise<Response | undefined> => {
     const { email, password } = req.body;
 
