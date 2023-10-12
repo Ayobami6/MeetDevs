@@ -61,7 +61,7 @@ export default function AboutUs() {
                 <div key={item.title} className="justify-center">
                     {/* Increase size of the icons */}
                   <div className="flex justify-center lg:justify-start ">
-                    <div className="rounded bg-green-500 p-2">
+                    <div className="rounded bg-green-500 p-2 transform transition-all duration-300 ease-in-out hover:scale-150">
                       <item.iconPath className="text-6xl"/>
                       </div>
                   </div>
