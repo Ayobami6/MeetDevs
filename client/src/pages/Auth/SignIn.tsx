@@ -70,6 +70,7 @@ const SignIn = ({ handleIsMemberClick }: SignInProps) => {
             }
         }
     };
+    
     return (
         <div className='flex flex-col bg-opacity-75 bg-black rounded-lg w-[420px] p-8 shadow-xl mx-auto my-10'>
             <div className='mx-10'>
