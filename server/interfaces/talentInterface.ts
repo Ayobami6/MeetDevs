@@ -3,7 +3,7 @@ export interface Talent {
     email: string;
     hashedPassword: string;
     jobRole: string;
-    location: string;
+    location?: string;
     hasOffer: boolean;
     rank: number;
     socials?: Array<string>;

@@ -137,16 +137,7 @@ export const updateTalent = async (
 ): Promise<Response | undefined> => {
     try {
         const { id } = req.params;
-        const {
-            name,
-            bio,
-            profileImg,
-            projects,
-            certifications,
-            github,
-            socials,
-            skills,
-        }: TT = req.body;
+        const { name, bio, profileImg, github, socials }: TT = req.body;
 
         const talent = (await Talent.findByIdAndUpdate(
             id,
@@ -154,11 +145,8 @@ export const updateTalent = async (
                 name,
                 bio,
                 profileImg,
-                projects,
-                certifications,
                 github,
                 socials,
-                skills,
             },
             { new: true }
         )) as Talent;
