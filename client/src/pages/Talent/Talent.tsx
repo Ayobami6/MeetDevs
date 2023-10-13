@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import TalentNav from '../../components/Navbar/TalentNav';
 import './Talent.css';
 import AddInfo from '../../components/talentProfile/AddInfo';
-import { FaFile, FaPlus } from 'react-icons/fa';
+import { FaFile } from 'react-icons/fa';
 import TButton from '../../components/Button/TButton';
 import AddNewComp from '../../components/talentProfile/AddNewComp.tsx';
 import AddExperienceModal from '../../components/Modal/AddExperienceModal.tsx';
@@ -10,6 +10,7 @@ import AddExperienceModal from '../../components/Modal/AddExperienceModal.tsx';
 const Talent = (): JSX.Element => {
   const { talentProfile } = localStorage;
   const temp = talentProfile ? JSON.parse(talentProfile as string).talent : {};
+  // @ts-ignore
   const [user, setUser] = useState(temp);
   console.log(user.name);
   return (
