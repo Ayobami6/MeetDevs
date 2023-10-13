@@ -1,32 +1,31 @@
-import './styles/AddExperienceModal.css';
-import TButton from '../Button/TButton.tsx';
 import { modalProps } from './interfaces/modaInterface.ts';
+import TButton from '../Button/TButton.tsx';
 import { useRef } from 'react';
 import { presentOrNot } from './utils/helpers.ts';
-
-function AddExperienceModal({ show, setShow }: modalProps): JSX.Element {
-  const endDateRef = useRef<HTMLInputElement>(null);
-  const textRef = useRef<HTMLInputElement>(null);
-
+import './styles/AddProjectModal.css';
+function AddProjectModal({ show, setShow }: modalProps) {
   const modalStyle = show ? 'showModal' : '';
+  const endDateRef = useRef<HTMLInputElement>(null);
+  const textRef = useRef<HTMLHeadingElement>(null);
 
   return (
     <div className={'Modal ' + modalStyle}>
-      <div className={'content'}>
+      <div className='content'>
         <div className={'header-11'}>
-          <h1>Add Position</h1>{' '}
+          <h1>Add Project</h1>{' '}
           <TButton value={'X'} onClick={() => setShow(false)} />
         </div>
         <hr />
         <form>
           <div className='form-control'>
-            <label htmlFor='title'>Title</label>
-            <input type='text' name={'title'} />
+            <label htmlFor='name'>Name</label>
+            <input type='text' name={'name'} />
           </div>
           <div className='form-control'>
-            <label htmlFor='company'>Company</label>
-            <input type='text' name={'company'} />
+            <label htmlFor='link'>Link</label>
+            <input type='url' name={'link'} />
           </div>
+
           <div className={'flex start-end'}>
             <div className='form-control'>
               <label htmlFor='start'>Start</label>
@@ -54,20 +53,6 @@ function AddExperienceModal({ show, setShow }: modalProps): JSX.Element {
             <textarea name={'description'} />
           </div>
 
-          <div className='form-control'>
-            <label htmlFor={'description'}>Company</label>
-            <input type='text' name={'description'} />
-          </div>
-          <div className='form-control'>
-            <label htmlFor={'country'}>Country</label>
-            <input type='text' name={'country'} />
-          </div>
-
-          <div className='form-control'>
-            <label htmlFor={'city'}>City</label>
-            <input type='text' name={'city'} />
-          </div>
-
           {/*  add a save button */}
           <div className='form-control'>
             <TButton value={'Save'} type={'submit'} />
@@ -78,4 +63,4 @@ function AddExperienceModal({ show, setShow }: modalProps): JSX.Element {
   );
 }
 
-export default AddExperienceModal;
+export default AddProjectModal;

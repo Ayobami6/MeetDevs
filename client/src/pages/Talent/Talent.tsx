@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import TalentNav from '../../components/Navbar/TalentNav';
 import './Talent.css';
 import AddInfo from '../../components/talentProfile/AddInfo';
@@ -6,11 +6,16 @@ import { FaFile } from 'react-icons/fa';
 import TButton from '../../components/Button/TButton';
 import AddNewComp from '../../components/talentProfile/AddNewComp.tsx';
 import AddExperienceModal from '../../components/Modal/AddExperienceModal.tsx';
+import AddProjectModal from '../../components/Modal/AddProjectModal.tsx';
+import AddEducationModal from '../../components/Modal/AddEducationModal.tsx';
 
 const Talent = (): JSX.Element => {
   const { talentProfile } = localStorage;
   const temp = talentProfile ? JSON.parse(talentProfile as string).talent : {};
   const [user, _setUser] = useState(temp);
+  const [showexp, setShowexp] = useState(false);
+  const [showproj, setShowproj] = useState(false);
+  const [showedu, setShowedu] = useState(false);
   console.log(user.name);
   return (
     <>
@@ -38,10 +43,31 @@ const Talent = (): JSX.Element => {
 
         <div className='tt-content'>
           <div className='main'>
-            <AddNewComp title={'experience'} />
-            <AddExperienceModal />
-            <AddNewComp title={'projects'} />
-            <AddNewComp title={'education'} />
+            <AddNewComp
+              title={'experience'}
+              children={
+                <AddExperienceModal show={showexp} setShow={setShowexp} />
+              }
+              onClick={() => {
+                setShowexp(true);
+              }}
+            />
+            <AddNewComp
+              title={'projects'}
+              onClick={() => {
+                setShowproj(true);
+              }}
+            >
+              <AddProjectModal show={showproj} setShow={setShowproj} />
+            </AddNewComp>
+            <AddNewComp
+              title={'education'}
+              onClick={() => {
+                setShowedu(true);
+              }}
+            >
+              <AddEducationModal show={showedu} setShow={setShowedu} />
+            </AddNewComp>
           </div>
           <div className='sub-info'></div>
         </div>
