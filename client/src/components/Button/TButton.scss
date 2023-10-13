@@ -1,0 +1,15 @@
+$--color-bg: #1f1f38;
+$--color-bg-variant: #2c2c6c;
+$--color-primary: #3c8c56;
+$--color-primary-variant: rgba(77, 181, 255, 0.4);
+
+.TButton {
+  padding: 8px 12px;
+  border: 2px solid var(--color-primary);
+  border-radius: 8px;
+  background-color: transparent;
+
+  &:hover {
+    background-color: rgba($--color-primary, 0.2);
+  }
+}

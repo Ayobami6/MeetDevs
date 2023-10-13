@@ -1,6 +1,7 @@
 .talent-page {
   position: relative;
-  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
   height: 100dvh;
   padding: 1rem;
   padding-top: 2rem;
@@ -14,68 +15,21 @@
      object-fit: contain;
   aspect-ratio: 1/1;
 }
-.talent-page .search-home {
-  display: flex;
-  width: 100%;
-  justify-content: flex-end;
-  position: relative;
-}
-.talent-page .search-home .home-icon {
-  border: 1px solid green;
-  position: absolute;
-  border-radius: 50%;
-  padding: 0.2rem;
-  cursor: pointer;
-  transition: box-shadow 200ms ease-in-out;
-  left: 2rem;
-}
-.talent-page .search-home .home-icon:hover {
-  box-shadow: 0 0 10px var(--color-primary);
-}
-.talent-page .search-home .home-icon svg {
-  font-size: 2rem;
-  color: var(--color-primary);
-}
-.talent-page .search-home .search-con {
-  border: 1px solid green;
-  width: 25rem;
-  border-radius: 100px;
-  height: 3rem;
-  padding: 0.1rem 0.7rem;
-  position: relative;
-  box-shadow: 0 0 0.1rem var(--color-primary);
-  justify-self: flex-end;
-  display: flex;
-  justify-content: space-between;
-  right: 2rem;
-}
-.talent-page .search-home .search-con input {
-  border: none;
-  outline: none;
-  font-size: 1;
-  border-radius: 100px;
-  width: 100%;
-  font-size: 1.2rem;
-}
-.talent-page .search-home .search-con svg {
-  font-size: 1.5rem;
-  color: var(--color-primary);
-}
-.talent-page .search-home .search-con #search {
-  width: 3rem;
-}
 .talent-page .profile-info-card {
   border: 1px solid var(--color-primary);
   border-radius: 1rem;
-  max-width: 25rem;
-  min-width: 25rem;
+  max-width: 100%;
   padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
 .talent-page .profile-info-card .info-con {
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
-.talent-page .profile-info-card .info-con .p-img {
+.talent-page .profile-info-card .p-img {
   width: 5rem;
   border-radius: 8rem;
   overflow: hidden;

@@ -10,13 +10,15 @@
 .talent-nav .nav-con {
   display: flex;
   gap: 3rem;
+  align-items: center;
 }
-.talent-nav .nav-con h3 {
-  color: green;
-  font-weight: bold;
-  font-size: larger;
-  text-decoration: underline;
-  line-height: 20px;
+.talent-nav .nav-con img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 10rem;
+}
+.talent-nav .nav-con a {
+  font-size: 1.2rem;
 }
 .talent-nav .nav-con .nav-items-con {
   display: flex;

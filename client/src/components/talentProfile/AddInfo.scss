@@ -1,7 +1,7 @@
 .add-info-con {
   display: flex;
   gap: 1rem;
-  width: 16rem;
+  width: 20rem;
   justify-content: space-between;
   // TODO: start from here
   > div {
@@ -15,7 +15,7 @@
   > button {
     border-radius: 50%;
     background-color: var(--color-primary);
-    padding: 1rem;
+    padding: 1rem 1.2rem;
 
     > svg {
       color: white;
