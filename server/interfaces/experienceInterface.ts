@@ -7,3 +7,8 @@ export interface Experience {
     country: string;
     description: string;
 }
+
+export interface ExperienceResponse extends Experience {
+    links?: Array<object>;
+    message?: string;
+}

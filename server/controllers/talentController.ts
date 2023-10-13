@@ -10,6 +10,13 @@ dotenv.config();
 
 const JWT_SECRET: string = process.env.JWT_SECRET || 'string';
 
+//  TODO
+/* 
+we need to enhance the signup and signin endpoint
+for some validations
+name, email and password must be provided on signup if 
+not throw an error, Check the employer controller for how that is done
+ */
 export const signUp = async (req: Request, res: Response) => {
     try {
         const { name, email, password } = req.body;
