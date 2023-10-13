@@ -10,8 +10,7 @@ import AddExperienceModal from '../../components/Modal/AddExperienceModal.tsx';
 const Talent = (): JSX.Element => {
   const { talentProfile } = localStorage;
   const temp = talentProfile ? JSON.parse(talentProfile as string).talent : {};
-  // @ts-ignore
-  const [user, setUser] = useState(temp);
+  const [user, _setUser] = useState(temp);
   console.log(user.name);
   return (
     <>
