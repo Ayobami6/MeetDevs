@@ -1,3 +1,81 @@
-
+.AddExperienceModal {
+  position: fixed;
+  height: 100dvh;
+  width: 100dvw;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.3);
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.AddExperienceModal .content {
+  display: flex;
+  background-color: #111111;
+  flex-direction: column;
+  color: white;
+  max-height: 100%;
+  min-height: 30rem;
+  width: 40rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+.AddExperienceModal .content > h1 {
+  font-weight: bolder;
+  padding-left: 20px;
+}
+.AddExperienceModal .content hr {
+  width: 100%;
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.AddExperienceModal .content > form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.AddExperienceModal .content > form .start-end {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  width: 100%;
+}
+.AddExperienceModal .content > form .form-control {
+  width: 100%;
+}
+.AddExperienceModal .content > form .form-control label {
+  display: block;
+}
+.AddExperienceModal .content > form .form-control input[type=text] {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  width: 100%;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.3rem;
+  outline: none;
+}
+.AddExperienceModal .content > form .form-control input[type=text]:focus {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+.AddExperienceModal .content > form .form-control input[type=date] {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  width: 100%;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.3rem;
+  outline: none;
+}
+.AddExperienceModal .content > form .form-control input[type=date]:focus {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+.AddExperienceModal .content > form .form-control textarea {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0.3rem;
+  width: 100%;
+  min-height: 6rem;
+}
 
 /*# sourceMappingURL=AddExperienceModal.css.map */
