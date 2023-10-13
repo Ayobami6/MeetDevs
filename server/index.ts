@@ -7,9 +7,10 @@ import employerRoutes from './routes/employerRoute';
 import offerRoutes from './routes/offerRoutes';
 import talentRoutes from './routes/talentRoute';
 import skillRoute from './routes/skillRoute';
+import experienceRoute from './routes/experienceRoute';
 
 import talentPaginationRoute from './routes/talentPaginationRoute';
-import { errorHandler } from './errors/customError';
+// import { errorHandler } from './errors/customError';
 
 dotenv.config();
 
@@ -31,13 +32,14 @@ app.use('/offers', offerRoutes);
 app.use('/talents', talentRoutes);
 app.use('/api', talentPaginationRoute); //paginated api for talents
 app.use('/skills', skillRoute);
+app.use('/experience', experienceRoute);
 
 // misc
 app.get('/', (req, res) => {
     res.send('Welcome to MeetDevs');
 });
 
-app.use(errorHandler);
+// app.use(errorHandler);
 
 mongoose
     .connect(dbConnString, { useNewUrlParser: true } as ConnectOptions)

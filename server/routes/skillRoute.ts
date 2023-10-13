@@ -13,6 +13,6 @@ router.post('/', addSkill);
 router.get('/:id', getASkill);
 router.get('/', getAllSkill);
 router.put('/:id', updateSkill);
-router.delete('/:', deleteSkill);
+router.delete('/:id', deleteSkill);
 
 export default router;
