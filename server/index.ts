@@ -1,9 +1,14 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 import mongoose, { ConnectOptions } from 'mongoose';
 import employerRoutes from './routes/employerRoute';
 import offerRoutes from './routes/offerRoutes';
+import talentRoutes from './routes/talentRoute';
+
+import talentPaginationRoute from './routes/talentPaginationRoute';
+import { errorHandler } from './errors/customError';
 
 dotenv.config();
 
@@ -18,13 +23,18 @@ const PORT: number = 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
 
 app.use('/employers', employerRoutes);
 app.use('/offers', offerRoutes);
+app.use('/talents', talentRoutes);
+app.use('/api', talentPaginationRoute);
 
 app.get('/', (req, res) => {
     res.send('Welcome to MeetDevs');
 });
+
+app.use(errorHandler);
 
 mongoose
     .connect(dbConnString, { useNewUrlParser: true } as ConnectOptions)
@@ -37,3 +47,5 @@ mongoose
     .catch((error) => {
         console.log(error);
     });
+
+export default app;

@@ -23,3 +23,11 @@ export const disconnectDB = async () => {
         console.log(error);
     }
 };
+
+export const dropDB = async () => {
+    try {
+        await mongoose.connection.db.dropDatabase();
+    } catch (error) {
+        console.log(error);
+    }
+};
