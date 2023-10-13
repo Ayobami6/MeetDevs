@@ -24,3 +24,14 @@ export const errorHandler = (
         .status(500)
         .json({ error: 'Server Error: something went wrong', statusCode: 500 });
 };
+
+export const handleError = (
+    
+    error: Error,
+    res: Response
+) => {
+    console.error(error);
+    return res
+        .status(500)
+        .json({ error: 'Internal server error' });
+};
