@@ -6,6 +6,7 @@ import mongoose, { ConnectOptions } from 'mongoose';
 import employerRoutes from './routes/employerRoute';
 import offerRoutes from './routes/offerRoutes';
 import talentRoutes from './routes/talentRoute';
+import skillRoute from './routes/skillRoute';
 
 import talentPaginationRoute from './routes/talentPaginationRoute';
 import { errorHandler } from './errors/customError';
@@ -28,8 +29,10 @@ app.use(cors());
 app.use('/employers', employerRoutes);
 app.use('/offers', offerRoutes);
 app.use('/talents', talentRoutes);
-app.use('/api', talentPaginationRoute);
+app.use('/api', talentPaginationRoute); //paginated api for talents
+app.use('/skills', skillRoute);
 
+// misc
 app.get('/', (req, res) => {
     res.send('Welcome to MeetDevs');
 });
