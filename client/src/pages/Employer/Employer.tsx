@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import TalentCard from '../../components/TalentCard';
 import TalentNav from '../../components/Navbar/TalentNav';
 import Search from '../../components/util/Search';
