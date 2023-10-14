@@ -2,7 +2,9 @@
 import { useState } from 'react';
 import { useSnackbar } from 'notistack';
 import axios, { AxiosError } from 'axios';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { talentSignupAuth, employerSignupAuth } from '../../actions/auth';
 
 interface ErrorResponse {
   message: string;
@@ -20,6 +22,7 @@ const Signup = ({ handleIsMemberClick }: SignUpProps) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const { enqueueSnackbar } = useSnackbar();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [user, setuser] = useState(
     JSON.parse(localStorage.getItem('talentProfile') || '{}'),
@@ -31,7 +34,6 @@ const Signup = ({ handleIsMemberClick }: SignUpProps) => {
       password,
     };
     try {
-      let res;
       if (password !== confirmPassword) {
         enqueueSnackbar('Password Does not Match', {
           variant: 'error',
@@ -40,27 +42,28 @@ const Signup = ({ handleIsMemberClick }: SignUpProps) => {
       // send request to talent signin endpoint
       if (isTalent) {
         setLoading(true);
-        res = await axios.post('http://0.0.0.0:3000/talents/signup', userData);
-        localStorage.setItem('talentProfile', JSON.stringify({ ...res.data }));
-        setLoading(false);
-        enqueueSnackbar('Signup Sucessful!', { variant: 'success' });
-        navigate('/auth');
+        dispatch(
+          talentSignupAuth(
+            'talents/signup',
+            userData,
+            enqueueSnackbar,
+            navigate,
+            setLoading,
+          ),
+        );
 
         // else to employer endpoint
       } else {
         setLoading(true);
-        res = await axios.post(
-          'http://0.0.0.0:3000/employers/signup',
-          userData,
+        dispatch(
+          employerSignupAuth(
+            'employers/signup',
+            userData,
+            enqueueSnackbar,
+            navigate,
+            setLoading,
+          ),
         );
-        console.log(res);
-        localStorage.setItem(
-          'employerProfile',
-          JSON.stringify({ ...res.data }),
-        );
-        setLoading(false);
-        enqueueSnackbar('Signup Sucessful!', { variant: 'success' });
-        navigate('/auth');
       }
     } catch (error) {
       const axiosError = error as AxiosError;
