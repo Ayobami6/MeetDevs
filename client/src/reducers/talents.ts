@@ -1,4 +1,4 @@
-export const talentReducer = (state = { isLoading: true, talents: [] }, action) => {
+export const talentReducer = (state = { isLoading: false, talents: [] }, action) => {
     switch (action.type) {
         case 'START_LOADING':
             return { ...state, isLoading: true };
