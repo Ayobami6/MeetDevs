@@ -11,6 +11,7 @@ import AddEducationModal from '../../components/Modal/AddEducationModal.tsx';
 const Talent = (): JSX.Element => {
   const { talentProfile } = localStorage;
   const temp = talentProfile ? JSON.parse(talentProfile as string).talent : {};
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [user, _setUser] = useState(temp);
   const [showexp, setShowexp] = useState(false);
   const [showproj, setShowproj] = useState(false);
