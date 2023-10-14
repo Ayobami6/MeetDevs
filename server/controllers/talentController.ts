@@ -41,7 +41,7 @@ export const signUp = async (req: Request, res: Response) => {
             JWT_SECRET,
             {
                 expiresIn: '24h',
-            }
+            },
         );
 
         res.status(201).json({ token, newTalent });
@@ -62,7 +62,7 @@ export const signIn = async (req: Request, res: Response) => {
 
         const isPasswordValid = await bcrypt.compare(
             password,
-            talent.hashedPassword
+            talent.hashedPassword,
         );
         if (!isPasswordValid) {
             return res.status(401).json({ message: 'Invalid credentials' });
@@ -73,7 +73,7 @@ export const signIn = async (req: Request, res: Response) => {
             JWT_SECRET,
             {
                 expiresIn: '24h',
-            }
+            },
         );
 
         res.json({ token, talent });
@@ -91,7 +91,7 @@ export const signIn = async (req: Request, res: Response) => {
  */
 export const allTalents = async (
     _req: Request,
-    res: Response
+    res: Response,
 ): Promise<Response> => {
     const talents = await Talent.find({});
     return res.json(talents);
@@ -107,7 +107,7 @@ export const allTalents = async (
 export const getTalentById = async (
     req: Request,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
 ): Promise<Response | undefined> => {
     try {
         const { id } = req.params;
@@ -140,7 +140,7 @@ export const getTalentById = async (
 export const updateTalent = async (
     req: Request & { talent: Talent },
     res: Response,
-    next: NextFunction
+    next: NextFunction,
 ): Promise<Response | undefined> => {
     try {
         const { id } = req.params;
@@ -155,7 +155,7 @@ export const updateTalent = async (
                 github,
                 socials,
             },
-            { new: true }
+            { new: true },
         )) as Talent;
 
         return res.json(talent);
@@ -167,7 +167,7 @@ export const updateTalent = async (
 export const deleteTalent = async (
     req: Request & { talent: Talent },
     res: Response,
-    next: NextFunction
+    next: NextFunction,
 ): Promise<Response | undefined> => {
     try {
         const { id } = req.params;

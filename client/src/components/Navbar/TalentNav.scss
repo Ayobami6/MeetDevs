@@ -1,0 +1,29 @@
+.talent-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 2rem;
+  height: 6rem;
+  box-shadow: 1px 0px 6px rgba(grey, 2);
+  z-index: 1000;
+
+  .nav-con {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+
+    img {
+      object-fit: cover;
+      width: 10rem;
+    }
+
+    a {
+      font-size: 1.2rem;
+    }
+
+    .nav-items-con {
+      display: flex;
+      gap: 2rem;
+    }
+  }
+}

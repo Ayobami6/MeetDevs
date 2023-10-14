@@ -1,0 +1,29 @@
+.AddExperienceModal {
+  position: fixed;
+  height: 100dvh;
+  width: 100dvw;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.3);
+  top: 0;
+  left: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.AddExperienceModal .content {
+  display: flex;
+  background-color: #111111;
+  flex-direction: column;
+  color: white;
+  max-height: 100%;
+  min-height: 30rem;
+  width: 40rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.showModal {
+  display: flex;
+}
+
+/*# sourceMappingURL=Modal.css.map */
