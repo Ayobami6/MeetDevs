@@ -1,6 +1,5 @@
-import React from "react";
-import { FaPlus } from "react-icons/fa";
-import "./AddInfo.css";
+import { FaPlus } from 'react-icons/fa';
+import './AddInfo.css';
 
 interface propInterface {
   title: string;
@@ -8,8 +7,8 @@ interface propInterface {
 
 function AddInfo({ title }: propInterface): JSX.Element {
   return (
-    <div className="add-info-con">
-      <div className="title">{title}</div>
+    <div className='add-info-con'>
+      <div className='title'>{title}</div>
       <button>
         <FaPlus />
       </button>

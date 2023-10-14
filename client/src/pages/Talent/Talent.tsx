@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import TalentNav from '../../components/Navbar/TalentNav';
 import './Talent.css';
-import AddInfo from '../../components/talentProfile/AddInfo';
 import { FaFile } from 'react-icons/fa';
 import TButton from '../../components/Button/TButton';
 import AddNewComp from '../../components/talentProfile/AddNewComp.tsx';
@@ -43,15 +42,18 @@ const Talent = (): JSX.Element => {
 
         <div className='tt-content'>
           <div className='main'>
-            <AddNewComp
-              title={'experience'}
-              children={
-                <AddExperienceModal show={showexp} setShow={setShowexp} />
-              }
-              onClick={() => {
-                setShowexp(true);
-              }}
-            />
+            <div className='showcase'>
+              <AddNewComp
+                title={'experience'}
+                children={
+                  <AddExperienceModal show={showexp} setShow={setShowexp} />
+                }
+                onClick={() => {
+                  setShowexp(true);
+                }}
+              />
+              <hr />
+            </div>
             <AddNewComp
               title={'projects'}
               onClick={() => {
@@ -71,32 +73,9 @@ const Talent = (): JSX.Element => {
           </div>
           <div className='sub-info'></div>
         </div>
-
-        <div className='profile-add-info'>
-          <AddInfo title='Experience' />
-          <AddInfo title='Skill' />
-          <AddInfo title='Education' />
-          <AddInfo title='Certificates' />
-        </div>
       </div>
     </>
   );
 };
-
-// /* eslint-disable @typescript-eslint/no-unused-vars */
-// import React, { useState } from "react";
-// import Navbar from "../../components/Navbar/Navbar2";
-
-// const Talent = () => {
-//   const [user, setUser] = useState(
-//     JSON.parse(localStorage.getItem("talentProfile") as string)
-//   );
-//   return (
-//     <div>
-//       <Navbar />
-//       <h2 className="text-3xl text-center my-4">Welcome {}</h2>
-//     </div>
-//   );
-// };
 
 export default Talent;

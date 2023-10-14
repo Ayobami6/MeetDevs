@@ -145,10 +145,6 @@ export const updateTalent = async (
                 name,
                 bio,
                 profileImg,
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
                 github,
                 socials,
             },
