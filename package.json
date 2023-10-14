@@ -10,9 +10,7 @@
         "install:all": "npm run install:client && npm run install:server"
     },
     "devDependencies": {
-        "concurrently": "^8.2.1"
-    },
-    "dependencies": {
+        "concurrently": "^8.2.1",
         "prettier": "^3.0.3"
     }
 }

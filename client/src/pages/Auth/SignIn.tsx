@@ -49,7 +49,10 @@ const SignIn = ({ handleIsMemberClick }: SignInProps) => {
           'http://0.0.0.0:3000/employers/login',
           credentials,
         );
-        localStorage.setItem('talentProfile', JSON.stringify({ ...res.data }));
+        localStorage.setItem(
+          'employerProfile',
+          JSON.stringify({ ...res.data }),
+        );
         setLoading(false);
         enqueueSnackbar('Signin Sucessful!', { variant: 'success' });
         navigate('/employer');
