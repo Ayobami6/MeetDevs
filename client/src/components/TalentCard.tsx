@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { AiFillGithub } from 'react-icons/ai';
 
 interface TalentProps {
 	name: string;
@@ -8,6 +9,7 @@ interface TalentProps {
 	location: string;
 	github: string;
 	profileImg: string;
+	id: string;
 }
 
 const TalentCard: React.FC<TalentProps> = ({
@@ -17,6 +19,7 @@ const TalentCard: React.FC<TalentProps> = ({
 	bio,
 	github,
 	profileImg,
+	id,
 }) => {
 	return (
 		<div className='bg-white shadow-md rounded-lg overflow-hidden'>
@@ -38,10 +41,10 @@ const TalentCard: React.FC<TalentProps> = ({
 				<p className='text-gray-600'>{location}</p>
 				<p className='text-gray-600'>{bio}</p>
 				<a href={github} className='text-blue-500 hover:underline'>
-					Github
+					<AiFillGithub className='text-xl text-green-400' /> Github
 				</a>
 			</div>
-			<Link to={'/auth'}>
+			<Link to={`/talent/${id}`}>
 				<button className='m-4 border-xl border-0 rounded-3xl w-[85px] h-[40px] bg-green-600'></button>
 			</Link>
 		</div>
