@@ -35,7 +35,8 @@ function TalentNav(): JSX.Element {
 				<nav className='nav-items-con'>
 					<Link to={'#'}>Get Ranked</Link>
 					<Link to={'#'}>Messages</Link>
-					<Link to={'#'}>Offers</Link>
+					{/* we'll a condition for this, if user is talent use talent else employer id */}
+					<Link to={`/offers/talent/${user.talent._id}`}>Offers</Link>
 				</nav>
 			</div>
 
