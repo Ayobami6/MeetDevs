@@ -8,6 +8,8 @@ export interface Talent {
     rank: number;
     socials?: Array<string>;
     github?: string;
+    linkedin?: string;
+    x?: string;
     bio?: string;
     profileImg?: string;
     createdAt?: Date;
