@@ -1,4 +1,4 @@
-import { getAllTalents } from "../api/talent";
+import { getAllTalents, getATalent } from "../api/talent";
 
 export const getTalents = (setLoading) => async (dispatch) => {
     try {
@@ -9,5 +9,17 @@ export const getTalents = (setLoading) => async (dispatch) => {
         setLoading(false)
     } catch (error) {
         console.log(error.message);
+    }
+}
+
+export const getTalent = (setLoading, id) => async (dispatch) => {
+    try {
+        setLoading(true)
+        const { data } = await getATalent(id);
+        dispatch({ type: 'FETCH_TALENT', payload: data })
+        setLoading(false)
+    } catch (error) {
+        console.log(error.message)
+
     }
 }

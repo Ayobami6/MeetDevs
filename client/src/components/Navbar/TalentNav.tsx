@@ -10,7 +10,7 @@ function TalentNav(): JSX.Element {
 	const location = useLocation();
 	const path = location.pathname;
 	let profile;
-	if (path === '/employer') {
+	if (path !== '/talent') {
 		profile = JSON.parse(localStorage.getItem('employerProfile'));
 	} else {
 		profile = JSON.parse(localStorage.getItem('talentProfile'));
@@ -36,7 +36,7 @@ function TalentNav(): JSX.Element {
 			<div className='nav-con'>
 				<img
 					className={'rounded-full'}
-					src='src/assets/logo.png'
+					src={'/assets/logo.png'}
 					alt=''
 				/>
 				<nav className='nav-items-con'>
@@ -63,7 +63,7 @@ function TalentNav(): JSX.Element {
 
 			<Link to={'#'}>
 				<img
-					src='src/assets/talents/no_image.png'
+					src='/assets/talents/no_image.png'
 					alt='fine girl'
 					className='w-20 rounded-full'
 				/>

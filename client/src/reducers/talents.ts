@@ -7,6 +7,9 @@ export const talentReducer = (state = { isLoading: false, talents: [] }, action)
         case 'FETCH_ALL':
             return { ...state, talents: action.payload }
 
+        case 'FETCH_TALENT':
+            return { ...state, talent: action.payload }
+
         default:
             return state;
     }

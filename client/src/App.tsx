@@ -43,7 +43,7 @@ const App = () => {
 						<Route
 							path='/talent/:id'
 							element={
-								<ProtectedRoute profileObj='talentProfile' />
+								<ProtectedRoute profileObj='employerProfile' />
 							}
 						>
 							<Route
