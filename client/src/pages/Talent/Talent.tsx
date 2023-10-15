@@ -7,8 +7,30 @@ import AddNewComp from '../../components/talentProfile/AddNewComp.tsx';
 import AddExperienceModal from '../../components/Modal/AddExperienceModal.tsx';
 import AddProjectModal from '../../components/Modal/AddProjectModal.tsx';
 import AddEducationModal from '../../components/Modal/AddEducationModal.tsx';
+import Showwcase from '../../components/talentProfile/Showwcase.tsx';
+import { ExperienceShowwcaseCard } from '../../components/talentProfile/ShowwcaseCard.tsx';
 
 const Talent = (): JSX.Element => {
+  const exp = {
+    title: 'Software Engineer',
+    company: 'Google',
+    start: new Date(),
+    end: new Date(),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl ultricies nunc, vitae aliq',
+    country: 'India',
+    city: 'Bangalore',
+  };
+  const exp1 = {
+    title: 'Software Engineer',
+    company: 'Google',
+    start: new Date(),
+    end: new Date(),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl ultricies nunc, vitae aliq',
+    country: 'India',
+    city: 'Bangalore',
+  };
   const { talentProfile } = localStorage;
   const temp = talentProfile ? JSON.parse(talentProfile as string).talent : {};
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -16,7 +38,10 @@ const Talent = (): JSX.Element => {
   const [showexp, setShowexp] = useState(false);
   const [showproj, setShowproj] = useState(false);
   const [showedu, setShowedu] = useState(false);
+  const [userExp, _setUserExp] = useState([exp, exp1]);
   console.log(user.name);
+
+  // @ts-ignore
   return (
     <>
       <TalentNav />
@@ -54,6 +79,11 @@ const Talent = (): JSX.Element => {
                 }}
               />
               <hr />
+              <Showwcase>
+                {userExp.map((exp) => (
+                  <ExperienceShowwcaseCard experience={exp} />
+                ))}
+              </Showwcase>
             </div>
             <AddNewComp
               title={'projects'}
