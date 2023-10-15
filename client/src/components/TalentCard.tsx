@@ -44,9 +44,18 @@ const TalentCard: React.FC<TalentProps> = ({
 					<AiFillGithub className='text-xl text-green-400' /> Github
 				</a>
 			</div>
-			<Link to={`/talent/${id}`}>
-				<button className='m-4 border-xl border-0 rounded-3xl w-[85px] h-[40px] bg-green-600'></button>
-			</Link>
+			<div className='flex justify-between'>
+				<Link to={`/talent/${id}`}>
+					<button className='m-4 border-xl border-2 rounded-3xl w-[85px] text-white text-sm h-[36px] bg-green-600 hover:bg-green-800'>
+						Check Out
+					</button>
+				</Link>
+				<Link to={`/talent/hire/${id}`}>
+					<button className='m-4 border-xl border-2 rounded-3xl w-[85px] text-white text-sm h-[36px] bg-green-600 hover:bg-green-800'>
+						Hire
+					</button>
+				</Link>
+			</div>
 		</div>
 	);
 };
