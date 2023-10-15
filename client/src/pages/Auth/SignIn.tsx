@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { talentAuth, employerAuth } from '../../actions/auth';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import axios, { AxiosError } from 'axios';
 
@@ -25,6 +27,7 @@ const SignIn = ({ handleIsMemberClick }: SignInProps) => {
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
   const handleSignIn = async () => {
     const credentials: SignInCredential = {
       email,
@@ -33,26 +36,27 @@ const SignIn = ({ handleIsMemberClick }: SignInProps) => {
     try {
       if (isTalent) {
         setLoading(true);
-        const res = await axios.post(
-          'http://0.0.0.0:3000/talents/signin',
-          credentials,
+        dispatch(
+          talentAuth(
+            'talents/signin',
+            credentials,
+            navigate,
+            enqueueSnackbar,
+            setLoading,
+          ),
         );
-        localStorage.setItem('talentProfile', JSON.stringify({ ...res.data }));
-        setLoading(false);
-        enqueueSnackbar('Signin Sucessful!', { variant: 'success' });
-        navigate('/talent');
-
         // send request to talent signin endpoint
       } else {
         setLoading(true);
-        const res = await axios.post(
-          'http://0.0.0.0:3000/employers/login',
-          credentials,
+        dispatch(
+          employerAuth(
+            'employers/login',
+            credentials,
+            navigate,
+            enqueueSnackbar,
+            setLoading,
+          ),
         );
-        localStorage.setItem('talentProfile', JSON.stringify({ ...res.data }));
-        setLoading(false);
-        enqueueSnackbar('Signin Sucessful!', { variant: 'success' });
-        navigate('/employer');
       }
       // else to employer endpoint
     } catch (error) {
