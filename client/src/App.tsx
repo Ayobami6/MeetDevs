@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { userReducer } from './reducers/users';
 import { talentReducer } from './reducers/talents';
+import { offerReducer } from './reducers/offer';
 import ShowTalent from './pages/Talent/ShowTalent';
 import TalentOffer from './pages/Talent/TalentOffer';
 import EmployerOffer from './pages/Employer/EmployerOffer';
@@ -19,6 +20,7 @@ const store = configureStore({
 	reducer: {
 		user: userReducer,
 		talents: talentReducer,
+		offers: offerReducer,
 	},
 });
 
