@@ -5,6 +5,7 @@ import {
     deleteTalent,
     getTalentById,
     updateTalent,
+    updatePatchTalent,
 } from '../controllers/talentController';
 // import { isTalentAuthenticated } from '../middlewares/talentAuth';
 
@@ -16,6 +17,7 @@ talentRoutes.post('/signin', signIn);
 // talentRoutes.use(isTalentAuthenticated);
 
 talentRoutes.put('/:id', updateTalent);
+talentRoutes.patch('/:id', updatePatchTalent);
 talentRoutes.delete('/:id', deleteTalent);
 
 talentRoutes.get('/', allTalents);

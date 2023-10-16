@@ -144,18 +144,31 @@ export const updateTalent = async (
 ): Promise<Response | undefined> => {
     try {
         const { id } = req.params;
-        const { name, bio, profileImg, github, socials }: TT = req.body;
+        const data: TT = req.body;
 
         const talent = (await Talent.findByIdAndUpdate(
-            id,
-            {
-                name,
-                bio,
-                profileImg,
-                github,
-                socials,
-            },
+            id, data,
             { new: true }
+        )) as Talent;
+
+        return res.json(talent);
+    } catch (err) {
+        next(err);
+    }
+};
+
+
+export const updatePatchTalent = async (
+    req: Request & { talent: Talent },
+    res: Response,
+    next: NextFunction
+): Promise<Response | undefined> => {
+    try {
+        const { id } = req.params;
+        const data: TT = req.body;
+
+        const talent = (await Talent.findByIdAndUpdate(
+            id, data,
         )) as Talent;
 
         return res.json(talent);
