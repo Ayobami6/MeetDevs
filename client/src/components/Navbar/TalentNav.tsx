@@ -10,7 +10,7 @@ function TalentNav(): JSX.Element {
 	const location = useLocation();
 	const path = location.pathname;
 	let profile;
-	if (path !== '/talent') {
+	if (!path.includes('talent')) {
 		profile = JSON.parse(localStorage.getItem('employerProfile'));
 	} else {
 		profile = JSON.parse(localStorage.getItem('talentProfile'));

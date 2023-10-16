@@ -45,12 +45,12 @@ const TalentCard: React.FC<TalentProps> = ({
 				</a>
 			</div>
 			<div className='flex justify-between'>
-				<Link to={`/talent/${id}`}>
+				<Link to={`/showdev/${id}`}>
 					<button className='m-4 border-xl border-2 rounded-3xl w-[85px] text-white text-sm h-[36px] bg-green-600 hover:bg-green-800'>
 						Check Out
 					</button>
 				</Link>
-				<Link to={`/talent/hire/${id}`}>
+				<Link to={`/hiredev/${id}`}>
 					<button className='m-4 border-xl border-2 rounded-3xl w-[85px] text-white text-sm h-[36px] bg-green-600 hover:bg-green-800'>
 						Hire
 					</button>

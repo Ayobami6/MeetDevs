@@ -41,13 +41,13 @@ const App = () => {
 							<Route path='/talent' element={<Talent />} />
 						</Route>
 						<Route
-							path='/talent/:id'
+							path='/showdev/:id'
 							element={
 								<ProtectedRoute profileObj='employerProfile' />
 							}
 						>
 							<Route
-								path='/talent/:id'
+								path='/showdev/:id'
 								element={<ShowTalent />}
 							/>
 						</Route>
@@ -74,13 +74,13 @@ const App = () => {
 							/>
 						</Route>
 						<Route
-							path='/talent/hire/:id'
+							path='/hiredev/:id'
 							element={
-								<ProtectedRoute profileObj='talentProfile' />
+								<ProtectedRoute profileObj='employerProfile' />
 							}
 						>
 							<Route
-								path='/talent/hire/:id'
+								path='/hiredev/:id'
 								element={<TalentHire />}
 							/>
 						</Route>
