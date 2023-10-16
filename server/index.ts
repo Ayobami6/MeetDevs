@@ -8,6 +8,9 @@ import offerRoutes from './routes/offerRoutes';
 import talentRoutes from './routes/talentRoute';
 import skillRoute from './routes/skillRoute';
 import experienceRoute from './routes/experienceRoute';
+import educationRoute from './routes/educationRoute';
+import projectRoute from './routes/projectRoute';
+import certificationRoute from './routes/certificationRoute';
 
 import talentPaginationRoute from './routes/talentPaginationRoute';
 // import { errorHandler } from './errors/customError';
@@ -31,7 +34,10 @@ app.use('/offers', offerRoutes);
 app.use('/talents', talentRoutes);
 app.use('/api', talentPaginationRoute); //paginated api for talents
 app.use('/skills', skillRoute);
-app.use('/experience', experienceRoute);
+app.use('/experiences', experienceRoute);
+app.use('/educations', educationRoute);
+app.use('/projects', projectRoute);
+app.use('/certifications', certificationRoute);
 
 // misc
 app.get('/', (req, res) => {

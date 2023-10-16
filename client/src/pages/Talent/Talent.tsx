@@ -1,35 +1,35 @@
-import { useState } from 'react';
-import TalentNav from '../../components/Navbar/TalentNav';
-import './Talent.css';
-import { FaFile } from 'react-icons/fa';
-import TButton from '../../components/Button/TButton';
-import AddNewComp from '../../components/talentProfile/AddNewComp.tsx';
-import AddExperienceModal from '../../components/Modal/AddExperienceModal.tsx';
-import AddProjectModal from '../../components/Modal/AddProjectModal.tsx';
-import AddEducationModal from '../../components/Modal/AddEducationModal.tsx';
-import Showwcase from '../../components/talentProfile/Showwcase.tsx';
-import { ExperienceShowwcaseCard } from '../../components/talentProfile/ShowwcaseCard.tsx';
+import { useState } from "react";
+import TalentNav from "../../components/Navbar/TalentNav";
+import "./Talent.css";
+import { FaFile } from "react-icons/fa";
+import TButton from "../../components/Button/TButton";
+import AddNewComp from "../../components/talentProfile/AddNewComp.tsx";
+import AddExperienceModal from "../../components/Modal/AddExperienceModal.tsx";
+import AddProjectModal from "../../components/Modal/AddProjectModal.tsx";
+import AddEducationModal from "../../components/Modal/AddEducationModal.tsx";
+import Showwcase from "../../components/talentProfile/Showwcase.tsx";
+import { ExperienceShowwcaseCard } from "../../components/talentProfile/ShowwcaseCard.tsx";
 
 const Talent = (): JSX.Element => {
   const exp = {
-    title: 'Software Engineer',
-    company: 'Google',
+    title: "Software Engineer",
+    company: "Google",
     start: new Date(),
     end: new Date(),
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl ultricies nunc, vitae aliq',
-    country: 'India',
-    city: 'Bangalore',
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl ultricies nunc, vitae aliq",
+    country: "India",
+    city: "Bangalore",
   };
   const exp1 = {
-    title: 'Software Engineer',
-    company: 'Google',
+    title: "Software Engineer",
+    company: "Google",
     start: new Date(),
     end: new Date(),
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl ultricies nunc, vitae aliq',
-    country: 'India',
-    city: 'Bangalore',
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl ultricies nunc, vitae aliq",
+    country: "India",
+    city: "Bangalore",
   };
   const { talentProfile } = localStorage;
   const temp = talentProfile ? JSON.parse(talentProfile as string).talent : {};
@@ -39,38 +39,37 @@ const Talent = (): JSX.Element => {
   const [showproj, setShowproj] = useState(false);
   const [showedu, setShowedu] = useState(false);
   const [userExp, _setUserExp] = useState([exp, exp1]);
-  console.log(user.name);
 
   // @ts-ignore
   return (
     <>
       <TalentNav />
-      <div className='talent-page'>
-        <div className='profile-info-card'>
-          <div className='p-img'>
-            <img src='src/assets/talents/no_image.png' alt='' />
+      <div className="talent-page">
+        <div className="profile-info-card">
+          <div className="p-img">
+            <img src="src/assets/talents/no_image.png" alt="" />
           </div>
-          <div className='info-con'>
-            <div className='info'>
-              <h2 className='text-xl font-bold'>{user.name}</h2>
+          <div className="info-con">
+            <div className="info">
+              <h2 className="text-xl font-bold">{user.name}</h2>
               <div>
-                <a href='#' className='flex gap-2'>
+                <a href="#" className="flex gap-2">
                   <FaFile /> <p>View Resume</p>
                 </a>
               </div>
             </div>
 
             <div>
-              <TButton value='Edit Profile' />
+              <TButton value="Edit Profile" />
             </div>
           </div>
         </div>
 
-        <div className='tt-content'>
-          <div className='main'>
-            <div className='showcase'>
+        <div className="tt-content">
+          <div className="main">
+            <div className="showcase">
               <AddNewComp
-                title={'experience'}
+                title={"experience"}
                 children={
                   <AddExperienceModal show={showexp} setShow={setShowexp} />
                 }
@@ -85,9 +84,9 @@ const Talent = (): JSX.Element => {
                 ))}
               </Showwcase>
             </div>
-            <div className='showcase'>
+            <div className="showcase">
               <AddNewComp
-                title={'projects'}
+                title={"projects"}
                 onClick={() => {
                   setShowproj(true);
                 }}
@@ -95,10 +94,10 @@ const Talent = (): JSX.Element => {
                 <AddProjectModal show={showproj} setShow={setShowproj} />
               </AddNewComp>
             </div>
-            <div className='showcase'>
-              {' '}
+            <div className="showcase">
+              {" "}
               <AddNewComp
-                title={'education'}
+                title={"education"}
                 onClick={() => {
                   setShowedu(true);
                 }}
@@ -107,7 +106,7 @@ const Talent = (): JSX.Element => {
               </AddNewComp>
             </div>
           </div>
-          <div className='sub-info'></div>
+          <div className="sub-info"></div>
         </div>
       </div>
     </>
