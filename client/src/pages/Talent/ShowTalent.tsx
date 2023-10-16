@@ -14,7 +14,7 @@ const ShowTalent = () => {
 
 	useEffect(() => {
 		dispatch(getTalent(setLoading, id));
-	}, []);
+	}, [id, dispatch]);
 	console.log(talent);
 
 	return (
