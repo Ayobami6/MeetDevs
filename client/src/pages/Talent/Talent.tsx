@@ -8,7 +8,10 @@ import AddExperienceModal from "../../components/Modal/AddExperienceModal.tsx";
 import AddProjectModal from "../../components/Modal/AddProjectModal.tsx";
 import AddEducationModal from "../../components/Modal/AddEducationModal.tsx";
 import Showwcase from "../../components/talentProfile/Showwcase.tsx";
-import { ExperienceShowwcaseCard } from "../../components/talentProfile/ShowwcaseCard.tsx";
+import {
+  ExperienceShowwcaseCard,
+  ProjectShowwcaseCard,
+} from "../../components/talentProfile/ShowwcaseCard.tsx";
 
 const Talent = (): JSX.Element => {
   const exp = {
@@ -31,6 +34,39 @@ const Talent = (): JSX.Element => {
     country: "India",
     city: "Bangalore",
   };
+
+  // dummy list of project objects
+  const projectList = [
+    {
+      talentId: "1",
+      name: "Project 1",
+      description: "Project 1 description",
+      startDate: new Date(),
+      endDate: new Date(),
+      link: "https://www.google.com",
+    },
+    {
+      talentId: "1",
+      name: "Project 2",
+      description: "Project 2 description",
+      startDate: new Date(),
+      endDate: new Date(),
+      link: "https://www.google.com",
+    },
+  ];
+
+  // dummy list of education objects
+  const educationList = [
+    {
+      talentId: "1",
+      school: "School 1",
+      degree: "Degree 1",
+      start: new Date(),
+      end: new Date(),
+      description: "Description 1",
+    },
+  ];
+
   const { talentProfile } = localStorage;
   const temp = talentProfile ? JSON.parse(talentProfile as string).talent : {};
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -93,6 +129,11 @@ const Talent = (): JSX.Element => {
               >
                 <AddProjectModal show={showproj} setShow={setShowproj} />
               </AddNewComp>
+              <Showwcase>
+                {projectList.map((project) => (
+                  <ProjectShowwcaseCard project={project} />
+                ))}
+              </Showwcase>
             </div>
             <div className="showcase">
               {" "}
