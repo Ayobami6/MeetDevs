@@ -55,6 +55,15 @@
     .main {
       display: flex;
       flex-direction: column;
+      gap: 2rem;
+
+      .showcase {
+        display: flex;
+        flex-direction: column;
+        gap:.5rem;
+      }
     }
   }
+
+
 }

@@ -85,22 +85,27 @@ const Talent = (): JSX.Element => {
                 ))}
               </Showwcase>
             </div>
-            <AddNewComp
-              title={'projects'}
-              onClick={() => {
-                setShowproj(true);
-              }}
-            >
-              <AddProjectModal show={showproj} setShow={setShowproj} />
-            </AddNewComp>
-            <AddNewComp
-              title={'education'}
-              onClick={() => {
-                setShowedu(true);
-              }}
-            >
-              <AddEducationModal show={showedu} setShow={setShowedu} />
-            </AddNewComp>
+            <div className='showcase'>
+              <AddNewComp
+                title={'projects'}
+                onClick={() => {
+                  setShowproj(true);
+                }}
+              >
+                <AddProjectModal show={showproj} setShow={setShowproj} />
+              </AddNewComp>
+            </div>
+            <div className='showcase'>
+              {' '}
+              <AddNewComp
+                title={'education'}
+                onClick={() => {
+                  setShowedu(true);
+                }}
+              >
+                <AddEducationModal show={showedu} setShow={setShowedu} />
+              </AddNewComp>
+            </div>
           </div>
           <div className='sub-info'></div>
         </div>
