@@ -29,12 +29,12 @@ export const getOffersEmployer =
 		}
 	};
 
-export const offerUpdate = (id, offerData, setLoading) => async (dispatch) => {
+export const offerUpdate = (id, offerData) => async (dispatch) => {
 	try {
-		setLoading(true);
+		dispatch({ type: 'START_LOADING' });
 		const { data } = await updateOffer(id, offerData);
 		dispatch({ type: 'UPDATE_OFFER', payload: data });
-		setLoading(false);
+		dispatch({ type: 'END_LOADING' });
 	} catch (error) {
 		console.log(error.message);
 	}

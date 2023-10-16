@@ -9,14 +9,14 @@ import { getOffersTalent } from '../../actions/offer';
 const TalentOffer = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
-	const offers = useSelector((state) => state.offers.talentOffers.offers);
+	const offers = useSelector((state) => state.offers.talentOffers);
 	const [loading, setLoading] = useState(false);
-	console.log(id);
-	console.log(offers);
 
 	useEffect(() => {
 		dispatch(getOffersTalent(id, setLoading));
 	}, [id, dispatch]);
+
+	console.log(offers);
 
 	return (
 		<>
