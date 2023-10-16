@@ -22,3 +22,8 @@ export const updateOffer = (id, offer) => {
 export const deleteOffer = (id) => {
 	axios.delete(`http://localhost:3000/offers/${id}`);
 };
+
+export const createOffer = (offerData) => {
+	const data = axios.post('http://localhost:3000/offers');
+	return data;
+};
