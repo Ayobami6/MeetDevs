@@ -12,6 +12,9 @@ import { userReducer } from './reducers/users';
 import { talentReducer } from './reducers/talents';
 import ShowTalent from './pages/Talent/ShowTalent';
 import TalentOffer from './pages/Talent/TalentOffer';
+import EmployerOffer from './pages/Employer/EmployerOffer';
+import GetRanked from './pages/Talent/GetRanked';
+import TalentHire from './pages/Talent/TalentHire';
 
 const store = configureStore({
 	reducer: {
@@ -38,13 +41,13 @@ const App = () => {
 							<Route path='/talent' element={<Talent />} />
 						</Route>
 						<Route
-							path='/talent/:id'
+							path='/showdev/:id'
 							element={
-								<ProtectedRoute profileObj='talentProfile' />
+								<ProtectedRoute profileObj='employerProfile' />
 							}
 						>
 							<Route
-								path='/talent/:id'
+								path='/showdev/:id'
 								element={<ShowTalent />}
 							/>
 						</Route>
@@ -57,6 +60,39 @@ const App = () => {
 							<Route
 								path='/offers/talent/:id'
 								element={<TalentOffer />}
+							/>
+						</Route>
+						<Route
+							path='/talent/getranked/:id'
+							element={
+								<ProtectedRoute profileObj='talentProfile' />
+							}
+						>
+							<Route
+								path='/talent/getranked/:id'
+								element={<GetRanked />}
+							/>
+						</Route>
+						<Route
+							path='/hiredev/:id'
+							element={
+								<ProtectedRoute profileObj='employerProfile' />
+							}
+						>
+							<Route
+								path='/hiredev/:id'
+								element={<TalentHire />}
+							/>
+						</Route>
+						<Route
+							path='/offers/employer/:id'
+							element={
+								<ProtectedRoute profileObj='employerProfile' />
+							}
+						>
+							<Route
+								path='/offers/employer/:id'
+								element={<EmployerOffer />}
 							/>
 						</Route>
 						<Route

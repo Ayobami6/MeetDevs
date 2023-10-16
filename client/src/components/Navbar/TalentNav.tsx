@@ -7,10 +7,17 @@ import './TalentNav.css';
 
 function TalentNav(): JSX.Element {
 	const navigate = useNavigate();
-	const talentProfile = JSON.parse(localStorage.getItem('talentProfile'));
-	const employerProfile = JSON.parse(localStorage.getItem('employerProfile'));
-	const [user, setUser] = useState(talentProfile || employerProfile || null);
 	const location = useLocation();
+	const path = location.pathname;
+	let profile;
+	if (!path.includes('talent')) {
+		profile = JSON.parse(localStorage.getItem('employerProfile'));
+	} else {
+		profile = JSON.parse(localStorage.getItem('talentProfile'));
+	}
+
+	const [user, setUser] = useState(profile);
+
 	const logout = () => {
 		localStorage.clear();
 		navigate('/auth');
@@ -29,23 +36,38 @@ function TalentNav(): JSX.Element {
 			<div className='nav-con'>
 				<img
 					className={'rounded-full'}
-					src='src/assets/logo.png'
+					src={'/assets/logo.png'}
 					alt=''
 				/>
 				<nav className='nav-items-con'>
-					<Link to={'#'}>Get Ranked</Link>
+					{user.data ? (
+						''
+					) : (
+						<Link to={`/talent/getranked/${user.talent._id}`}>
+							Get Ranked
+						</Link>
+					)}
 					<Link to={'#'}>Messages</Link>
-					{/* we'll a condition for this, if user is talent use talent else employer id */}
-					<Link to={`/offers/talent/${user.talent._id}`}>Offers</Link>
+					{/* we'll have a condition for this, if user is talent use talent else employer id */}
+					<Link
+						to={
+							user.talent
+								? `/offers/talent/${user.talent._id}`
+								: `/offers/employer/${user.data._id}`
+						}
+					>
+						Offers
+					</Link>
 				</nav>
 			</div>
 
 			<Link to={'#'}>
 				<img
-					src='src/assets/talents/no_image.png'
+					src='/assets/talents/no_image.png'
 					alt='fine girl'
 					className='w-20 rounded-full'
 				/>
+				<p>{user.data ? user.data.name : user.talent.name}</p>
 			</Link>
 			<button
 				className='border-white-300 bg-green-600 hover:bg-green-300 rounded-lg border-2 w-36 h-10'
