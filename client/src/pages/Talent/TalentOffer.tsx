@@ -1,13 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import TalentNav from '../../components/Navbar/TalentNav';
+import TalentOfferCard from './TalentOfferCard';
+import Loading from '../../components/Loading/Loading';
+import { getOffersTalent } from '../../actions/offer';
 
 const TalentOffer = () => {
 	const { id } = useParams();
-	console.log(id);
+	const dispatch = useDispatch();
+	const offers = useSelector((state) => state.offers.talentOffers);
+	const [loading, setLoading] = useState(false);
+
+	useEffect(() => {
+		dispatch(getOffersTalent(id, setLoading));
+	}, [id, dispatch]);
+
+	console.log(offers);
+
 	return (
 		<>
 			<TalentNav />
+			<div className='m-5 text-center text-3xl'>
+				Available Talents Offers
+			</div>
+			{loading ? (
+				<Loading />
+			) : (
+				offers.map((offer) => (
+					<TalentOfferCard key={offer._id} offer={offer} />
+				))
+			)}
 		</>
 	);
 };

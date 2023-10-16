@@ -1,7 +1,12 @@
 import React from 'react';
+import TalentNav from '../../components/Navbar/TalentNav';
 
 const EmployerOffer = () => {
-	return <div>EmployerOffer</div>;
+	return (
+		<>
+			<TalentNav />
+		</>
+	);
 };
 
 export default EmployerOffer;
