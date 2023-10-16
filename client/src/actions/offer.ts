@@ -3,6 +3,7 @@ import {
 	getEmployerOffers,
 	updateOffer,
 	deleteOffer,
+	createOffer,
 } from '../api/offer';
 
 export const getOffersTalent = (talentId, setLoading) => async (dispatch) => {
@@ -46,6 +47,17 @@ export const offerDelete = (id, setLoading) => async (dispatch) => {
 		await deleteOffer(id);
 		dispatch({ type: 'DELETE_OFFER', payload: id });
 		setLoading(false);
+	} catch (error) {
+		console.log(error.message);
+	}
+};
+
+export const offerCreate = (offerData) => async (dispatch) => {
+	try {
+		dispatch({ type: 'START_LOADING' });
+		const { data } = await createOffer(offerData);
+		dispatch({ type: 'CREATE_OFFER', payload: data });
+		dispatch({ type: 'END_LOADING' });
 	} catch (error) {
 		console.log(error.message);
 	}

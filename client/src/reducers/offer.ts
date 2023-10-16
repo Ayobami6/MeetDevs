@@ -16,10 +16,11 @@ export const offerReducer = (
 			return { ...state, talentOffers: action.payload.offers };
 
 		case 'FETCH_EMPLOYER_OFFER':
-			return { ...state, employerOffers: action.payload };
+			return { ...state, employerOffers: action.payload.offers };
 
 		case 'UPDATE_OFFER':
-			return { ...state, offers: action.payload };
+		case 'CREATE_OFFER':
+			return { ...state, offer: action.payload };
 
 		case 'DELETE_OFFER':
 			return { ...state };
