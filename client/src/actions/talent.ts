@@ -18,7 +18,7 @@ export const getTalent = (setLoading, id) => async (dispatch) => {
 		dispatch({ type: 'FETCH_TALENT', payload: data });
 		setLoading(false);
 	} catch (error) {
-		console.log(error.message);
+		console.log(error);
 	}
 };
 

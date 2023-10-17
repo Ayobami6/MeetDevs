@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -30,7 +31,7 @@ const TalentOfferCard: React.FC<TalentOfferCardProps> = ({
 	const dispatch = useDispatch();
 	const { id } = useParams();
 	const [loading, setLoading] = useState(false);
-	const handleAcceptClick = async () => {
+	const handleAcceptClick = () => {
 		const offerData = {
 			accepted: true,
 		};
@@ -39,6 +40,7 @@ const TalentOfferCard: React.FC<TalentOfferCardProps> = ({
 		};
 		dispatch(offerUpdate(offer._id, offerData));
 		dispatch(talentPatch(id, talentData));
+		window.location.reload();
 	};
 	const handleRejectOrTerminate = () => {
 		const talentData = {
@@ -46,6 +48,7 @@ const TalentOfferCard: React.FC<TalentOfferCardProps> = ({
 		};
 		dispatch(offerDelete(offer._id));
 		dispatch(talentPatch(id, talentData));
+		window.location.reload();
 	};
 	return (
 		<>
