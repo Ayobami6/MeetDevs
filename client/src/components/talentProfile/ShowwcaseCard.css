@@ -16,6 +16,14 @@
   display: flex;
   gap: 0.5rem;
 }
+.showwcasecard .project {
+  display: flex;
+  flex-direction: column;
+}
+.showwcasecard .project .project-info {
+  display: flex;
+  gap: 0.5rem;
+}
 .showwcasecard .title > h1 {
   font-size: 1.5rem;
   font-weight: bolder;
