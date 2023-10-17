@@ -17,6 +17,7 @@ router.get('/:id', getOffer);
 router.get('/talent/:talentId', getOfferByTalent);
 router.get('/employer/:employerId', getOfferByEmployer);
 router.patch('/:id', updateOffer);
+router.put('/:id', updateOffer);
 router.delete('/:id', deleteOffer);
 
 export default router;
