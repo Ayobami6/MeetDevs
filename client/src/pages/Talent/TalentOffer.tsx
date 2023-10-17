@@ -7,9 +7,10 @@ import Loading from '../../components/Loading/Loading';
 import { getOffersTalent } from '../../actions/offer';
 
 const TalentOffer = () => {
-	const { id } = useParams();
+	const { id } = useParams<{ id: string | undefined }>();
 	const dispatch = useDispatch();
 	const offers = useSelector((state) => state.offers.talentOffers);
+	const talent = JSON.parse(localStorage.getItem('talentProfile'));
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
@@ -21,14 +22,22 @@ const TalentOffer = () => {
 	return (
 		<>
 			<TalentNav />
-			<div className='m-5 text-center text-3xl'>
-				Available Talents Offers
+			<div className='m-5 text-center text-3xl font-bold'>
+				Available Employer Offers
 			</div>
 			{loading ? (
 				<Loading />
+			) : offers.length === 0 ? (
+				<h1 className='text-xl mt-6 text-center font-semibold'>
+					Currently you have no offer!
+				</h1>
 			) : (
 				offers.map((offer) => (
-					<TalentOfferCard key={offer._id} offer={offer} />
+					<TalentOfferCard
+						key={offer._id}
+						offer={offer}
+						user={talent}
+					/>
 				))
 			)}
 		</>

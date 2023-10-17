@@ -4,7 +4,6 @@ export const getTalents = (setLoading) => async (dispatch) => {
 	try {
 		setLoading(true);
 		const { data } = await getAllTalents();
-		// console.log(data)
 		dispatch({ type: 'FETCH_ALL', payload: data });
 		setLoading(false);
 	} catch (error) {
@@ -25,10 +24,10 @@ export const getTalent = (setLoading, id) => async (dispatch) => {
 
 export const talentPatch = (id, talentData) => async (dispatch) => {
 	try {
-		dispatch({ type: 'START_LOADING' });
+		// setLoading(true);
 		const { data } = await patchTalent(id, talentData);
 		dispatch({ type: 'PATCH_TALENT', payload: data });
-		dispatch({ type: 'END_LOADING' });
+		// setLoading(false);
 	} catch (error) {
 		console.log(error.message);
 	}

@@ -14,7 +14,7 @@ const Employer = () => {
 
 	useEffect(() => {
 		dispatch(getTalents(setLoading));
-	}, [setLoading]);
+	}, [dispatch]);
 	console.log(talents);
 	return (
 		<>
