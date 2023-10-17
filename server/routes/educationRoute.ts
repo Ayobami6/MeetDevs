@@ -5,6 +5,7 @@ import {
     getAllEducation,
     updateEducation,
     deleteEducation,
+    getAnEducationByTalent,
 } from '../controllers/educationController';
 
 const router = express.Router();
@@ -14,5 +15,6 @@ router.get('/:id', getAnEducation);
 router.get('/', getAllEducation);
 router.patch('/:id', updateEducation);
 router.delete('/:id', deleteEducation);
+router.get('/talent/:talentId', getAnEducationByTalent);
 
 export default router;

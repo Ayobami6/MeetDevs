@@ -46,6 +46,21 @@ export const getExperience = async <T>(
     }
 };
 
+// get an experience by ID
+export const getExperienceByTalent = async <T>(
+    req: GenericRequest<T>,
+    res: GenericResponse<ExperienceResponse, string>
+) => {
+    try {
+        const { talentId } = req.params;
+        const experience = await Experience.find({ talentId });
+        if (!experience)
+            return res.status(404).json({ message: 'Experience not found' });
+    } catch (error) {
+        errorHandler(error, res);
+    }
+};
+
 // update an experience
 export const updateExperience = async <T>(
     req: GenericRequest<T>,

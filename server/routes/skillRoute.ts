@@ -5,6 +5,7 @@ import {
     getAllSkill,
     updateSkill,
     deleteSkill,
+    getASkillByTalent,
 } from '../controllers/skillController';
 
 const router = express.Router();
@@ -14,5 +15,6 @@ router.get('/:id', getASkill);
 router.get('/', getAllSkill);
 router.put('/:id', updateSkill);
 router.delete('/:id', deleteSkill);
+router.get('/talent/:talentId', getASkillByTalent);
 
 export default router;
