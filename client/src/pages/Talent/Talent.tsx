@@ -9,6 +9,9 @@ import AddProjectModal from "../../components/Modal/AddProjectModal.tsx";
 import AddEducationModal from "../../components/Modal/AddEducationModal.tsx";
 import Showwcase from "../../components/talentProfile/Showwcase.tsx";
 import {
+  CertificationShowwcaseCard,
+  certificationShowwcaseCard,
+  EducationShowwcaseCard,
   ExperienceShowwcaseCard,
   ProjectShowwcaseCard,
 } from "../../components/talentProfile/ShowwcaseCard.tsx";
@@ -61,10 +64,17 @@ const Talent = (): JSX.Element => {
       talentId: "1",
       school: "School 1",
       degree: "Degree 1",
-      start: new Date(),
-      end: new Date(),
+      startDate: new Date(),
+      endDate: new Date(),
+      country: "Nigeria",
+      city: "benin",
       description: "Description 1",
     },
+  ];
+
+  const certificateList = [
+    { talentId: "1", title: "Certificate 1", description: "Description 1" },
+    { talentId: "1", title: "Certificate 2", description: "Description 2" },
   ];
 
   const { talentProfile } = localStorage;
@@ -145,6 +155,43 @@ const Talent = (): JSX.Element => {
               >
                 <AddEducationModal show={showedu} setShow={setShowedu} />
               </AddNewComp>
+              <Showwcase>
+                {educationList.map((education) => (
+                  <EducationShowwcaseCard education={education} />
+                ))}
+              </Showwcase>
+            </div>{" "}
+            <div className="showcase">
+              {" "}
+              <AddNewComp
+                title={"Skills"}
+                onClick={() => {
+                  setShowedu(true);
+                }}
+              >
+                <AddEducationModal show={showedu} setShow={setShowedu} />
+              </AddNewComp>
+              <Showwcase>
+                {educationList.map((education) => (
+                  <EducationShowwcaseCard education={education} />
+                ))}
+              </Showwcase>
+            </div>{" "}
+            <div className="showcase">
+              {" "}
+              <AddNewComp
+                title={"Certification"}
+                onClick={() => {
+                  setShowedu(true);
+                }}
+              >
+                <AddEducationModal show={showedu} setShow={setShowedu} />
+              </AddNewComp>
+              <Showwcase>
+                {certificateList.map((certs) => (
+                  <CertificationShowwcaseCard certificate={certs} />
+                ))}
+              </Showwcase>
             </div>
           </div>
           <div className="sub-info"></div>

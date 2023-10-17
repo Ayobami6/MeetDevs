@@ -29,7 +29,7 @@ interface projectProps {
 
 interface educationProps {
   education: {
-    talentId: string;
+    talentId?: string;
     degree: string;
     school: string;
     country: string;
@@ -146,7 +146,7 @@ const EducationShowwcaseCard: React.FC<educationProps> = ({
     </div>
   );
 };
-const certificationShowwcaseCard: React.FC<certificateProps> = ({
+const CertificationShowwcaseCard: React.FC<certificateProps> = ({
   certificate,
 }): React.ReactElement => {
   return (
@@ -166,7 +166,7 @@ const certificationShowwcaseCard: React.FC<certificateProps> = ({
     </div>
   );
 };
-const skillShowwcaseCard: React.FC<skillProps> = ({
+const SkillShowwcaseCard: React.FC<skillProps> = ({
   skill,
 }): React.ReactElement => {
   return (
@@ -188,6 +188,6 @@ export {
   ExperienceShowwcaseCard,
   ProjectShowwcaseCard,
   EducationShowwcaseCard,
-  certificationShowwcaseCard,
-  skillShowwcaseCard,
+  CertificationShowwcaseCard,
+  SkillShowwcaseCard,
 };
