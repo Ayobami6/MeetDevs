@@ -7,15 +7,14 @@ import TalentNav from '../../components/Navbar/TalentNav';
 import { getTalent } from '../../actions/talent';
 
 const ShowTalent = () => {
-	const talent = useSelector((state) => state.talents.talent);
+	const { talent } = useSelector((state) => state?.talents);
 	const dispatch = useDispatch();
-	const [loading, setLoading] = useState();
+	const [loading, setLoading] = useState(true);
 	const { id } = useParams();
 
 	useEffect(() => {
 		dispatch(getTalent(setLoading, id));
 	}, [id, dispatch]);
-	console.log(talent);
 
 	return (
 		<>

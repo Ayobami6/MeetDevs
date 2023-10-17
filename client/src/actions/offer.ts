@@ -56,12 +56,12 @@ export const offerDelete = (id) => async (dispatch) => {
 	}
 };
 
-export const offerCreate = (offerData) => async (dispatch) => {
+export const offerCreate = (offerData, setLoading) => async (dispatch) => {
 	try {
-		dispatch({ type: 'START_LOADING' });
+		setLoading(true);
 		const { data } = await createOffer(offerData);
 		dispatch({ type: 'CREATE_OFFER', payload: data });
-		dispatch({ type: 'END_LOADING' });
+		setLoading(false);
 	} catch (error) {
 		console.log(error.message);
 	}
