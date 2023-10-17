@@ -20,7 +20,7 @@ export const offerReducer = (
 
 		case 'UPDATE_OFFER':
 		case 'CREATE_OFFER':
-			return { ...state, offer: action.payload };
+			return { ...state, offer: action.payload.offer };
 
 		case 'DELETE_OFFER':
 			return { ...state };
