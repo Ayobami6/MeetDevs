@@ -5,7 +5,7 @@ import Education from '../models/educationModel';
 // add a Education
 export const addEducation = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<EducationResponse, string>,
+    res: GenericResponse<EducationResponse, string>
 ) => {
     try {
         const educationData: T = req.body;
@@ -20,7 +20,7 @@ export const addEducation = async <T>(
 // get all Education
 export const getAllEducation = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<EducationResponse, string>,
+    res: GenericResponse<EducationResponse, string>
 ) => {
     try {
         const educations: Array<T> = await Education.find();
@@ -34,12 +34,30 @@ export const getAllEducation = async <T>(
 // get a Education
 export const getAnEducation = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<EducationResponse, string>,
+    res: GenericResponse<EducationResponse, string>
 ) => {
     try {
         const { id } = req.params;
         const education = await Education.findById(id);
-        if (!Education) return res.status(404).json({ message: 'Education not found' });
+        if (!education)
+            return res.status(404).json({ message: 'Education not found' });
+        res.status(200).json(education);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
+// get a Education by Talent
+export const getAnEducationByTalent = async <T>(
+    req: GenericRequest<T>,
+    res: GenericResponse<EducationResponse, string>
+) => {
+    try {
+        const { talentId } = req.params;
+        const education = await Education.find({ talentId });
+        if (!education)
+            return res.status(404).json({ message: 'Education not found' });
         res.status(200).json(education);
     } catch (error) {
         console.log(error);
@@ -50,13 +68,14 @@ export const getAnEducation = async <T>(
 // update Education
 export const updateEducation = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<EducationResponse, string>,
+    res: GenericResponse<EducationResponse, string>
 ) => {
     try {
         const { id } = req.params;
         const data = req.body;
         const education = await Education.findByIdAndUpdate(id, data);
-        if (!education) return res.status(404).json({ message: 'Education not found' });
+        if (!education)
+            return res.status(404).json({ message: 'Education not found' });
     } catch (error) {
         console.log(error.message);
         res.status(500).json({ message: 'Internal Server Error' });
@@ -66,12 +85,13 @@ export const updateEducation = async <T>(
 // delete Education
 export const deleteEducation = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<EducationResponse, string>,
+    res: GenericResponse<EducationResponse, string>
 ) => {
     try {
         const { id } = req.params;
         const education = await Education.findByIdAndDelete(id);
-        if (!education) return res.status(404).json({ message: 'Education Not Found' });
+        if (!education)
+            return res.status(404).json({ message: 'Education Not Found' });
         res.status(200).json({ message: 'Education deleted successfully' });
     } catch (error) {
         console.log(error.message);

@@ -5,6 +5,7 @@ import {
     getExperience,
     updateExperience,
     deleteExperience,
+    getExperienceByTalent,
 } from '../controllers/experienceController';
 
 const router = express.Router();
@@ -14,5 +15,6 @@ router.get('/', getAllExperience);
 router.get('/:id', getExperience);
 router.put('/:id', updateExperience);
 router.delete('/:id', deleteExperience);
+router.get('/talent/:talentId', getExperienceByTalent);
 
 export default router;
