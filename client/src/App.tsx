@@ -15,100 +15,102 @@ import TalentOffer from './pages/Talent/TalentOffer';
 import EmployerOffer from './pages/Employer/EmployerOffer';
 import GetRanked from './pages/Talent/GetRanked';
 import TalentHire from './pages/Talent/TalentHire';
+import { metaReducer } from './reducers/talentMeta';
 
 const store = configureStore({
-	reducer: {
-		user: userReducer,
-		talents: talentReducer,
-		offers: offerReducer,
-	},
+    reducer: {
+        user: userReducer,
+        talents: talentReducer,
+        offers: offerReducer,
+        talentData: metaReducer,
+    },
 });
 
 const App = () => {
-	return (
-		<Provider store={store}>
-			<BrowserRouter>
-				<SnackbarProvider>
-					<Routes>
-						<Route path='/' element={<LandingPage />} />
-						<Route path='/auth' element={<Auth />} />
-						<Route path='/talent/:id' />
-						<Route
-							path='/talent'
-							element={
-								<ProtectedRoute profileObj='talentProfile' />
-							}
-						>
-							<Route path='/talent' element={<Talent />} />
-						</Route>
-						<Route
-							path='/showdev/:id'
-							element={
-								<ProtectedRoute profileObj='employerProfile' />
-							}
-						>
-							<Route
-								path='/showdev/:id'
-								element={<ShowTalent />}
-							/>
-						</Route>
-						<Route
-							path='/offers/talent/:id'
-							element={
-								<ProtectedRoute profileObj='talentProfile' />
-							}
-						>
-							<Route
-								path='/offers/talent/:id'
-								element={<TalentOffer />}
-							/>
-						</Route>
-						<Route
-							path='/talent/getranked/:id'
-							element={
-								<ProtectedRoute profileObj='talentProfile' />
-							}
-						>
-							<Route
-								path='/talent/getranked/:id'
-								element={<GetRanked />}
-							/>
-						</Route>
-						<Route
-							path='/hiredev/:id'
-							element={
-								<ProtectedRoute profileObj='employerProfile' />
-							}
-						>
-							<Route
-								path='/hiredev/:id'
-								element={<TalentHire />}
-							/>
-						</Route>
-						<Route
-							path='/offers/employer/:id'
-							element={
-								<ProtectedRoute profileObj='employerProfile' />
-							}
-						>
-							<Route
-								path='/offers/employer/:id'
-								element={<EmployerOffer />}
-							/>
-						</Route>
-						<Route
-							path='/employer'
-							element={
-								<ProtectedRoute profileObj='employerProfile' />
-							}
-						>
-							<Route path='/employer' element={<Employer />} />
-						</Route>
-					</Routes>
-				</SnackbarProvider>
-			</BrowserRouter>
-		</Provider>
-	);
+    return (
+        <Provider store={store}>
+            <BrowserRouter>
+                <SnackbarProvider>
+                    <Routes>
+                        <Route path='/' element={<LandingPage />} />
+                        <Route path='/auth' element={<Auth />} />
+                        <Route path='/talent/:id' />
+                        <Route
+                            path='/talent'
+                            element={
+                                <ProtectedRoute profileObj='talentProfile' />
+                            }
+                        >
+                            <Route path='/talent' element={<Talent />} />
+                        </Route>
+                        <Route
+                            path='/showdev/:id'
+                            element={
+                                <ProtectedRoute profileObj='employerProfile' />
+                            }
+                        >
+                            <Route
+                                path='/showdev/:id'
+                                element={<ShowTalent />}
+                            />
+                        </Route>
+                        <Route
+                            path='/offers/talent/:id'
+                            element={
+                                <ProtectedRoute profileObj='talentProfile' />
+                            }
+                        >
+                            <Route
+                                path='/offers/talent/:id'
+                                element={<TalentOffer />}
+                            />
+                        </Route>
+                        <Route
+                            path='/talent/getranked/:id'
+                            element={
+                                <ProtectedRoute profileObj='talentProfile' />
+                            }
+                        >
+                            <Route
+                                path='/talent/getranked/:id'
+                                element={<GetRanked />}
+                            />
+                        </Route>
+                        <Route
+                            path='/hiredev/:id'
+                            element={
+                                <ProtectedRoute profileObj='employerProfile' />
+                            }
+                        >
+                            <Route
+                                path='/hiredev/:id'
+                                element={<TalentHire />}
+                            />
+                        </Route>
+                        <Route
+                            path='/offers/employer/:id'
+                            element={
+                                <ProtectedRoute profileObj='employerProfile' />
+                            }
+                        >
+                            <Route
+                                path='/offers/employer/:id'
+                                element={<EmployerOffer />}
+                            />
+                        </Route>
+                        <Route
+                            path='/employer'
+                            element={
+                                <ProtectedRoute profileObj='employerProfile' />
+                            }
+                        >
+                            <Route path='/employer' element={<Employer />} />
+                        </Route>
+                    </Routes>
+                </SnackbarProvider>
+            </BrowserRouter>
+        </Provider>
+    );
 };
 
 export default App;

@@ -14,6 +14,7 @@ router.post('/', addCertification);
 router.get('/:id', getACertification);
 router.get('/', getAllCertification);
 router.patch('/:id', updateCertification);
+router.put('/:id', updateCertification);
 router.delete('/:id', deleteCertification);
 router.get('/talent/:talentId', getCertificationByTalent);
 
