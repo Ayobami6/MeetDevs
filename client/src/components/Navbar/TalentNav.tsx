@@ -11,10 +11,14 @@ function TalentNav(): JSX.Element {
 	const path = location.pathname;
 	let profile;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!path.includes('talent')) {
 =======
 	if (path === '/employer') {
 >>>>>>> ead260b (feat: add more page routes&adjust navbar)
+=======
+	if (path !== '/talent') {
+>>>>>>> b07ec96 (bug: fix assets images not loading in details page)
 		profile = JSON.parse(localStorage.getItem('employerProfile'));
 	} else {
 		profile = JSON.parse(localStorage.getItem('talentProfile'));
