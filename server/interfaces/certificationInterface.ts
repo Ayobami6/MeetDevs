@@ -4,3 +4,8 @@ export interface Certifications {
     description?: string;
     link?: string;
 }
+
+export interface CertificationResponse extends Certifications {
+    links?: Array<object>;
+    message?: string;
+}

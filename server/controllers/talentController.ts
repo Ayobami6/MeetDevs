@@ -10,6 +10,13 @@ dotenv.config();
 
 const JWT_SECRET: string = process.env.JWT_SECRET || 'string';
 
+//  TODO
+/* 
+we need to enhance the signup and signin endpoint
+for some validations
+name, email and password must be provided on signup if 
+not throw an error, Check the employer controller for how that is done
+ */
 export const signUp = async (req: Request, res: Response) => {
     try {
         const { name, email, password } = req.body;
@@ -137,19 +144,28 @@ export const updateTalent = async (
 ): Promise<Response | undefined> => {
     try {
         const { id } = req.params;
-        const { name, bio, profileImg, github, socials }: TT = req.body;
+        const data: TT = req.body;
 
-        const talent = (await Talent.findByIdAndUpdate(
-            id,
-            {
-                name,
-                bio,
-                profileImg,
-                github,
-                socials,
-            },
-            { new: true }
-        )) as Talent;
+        const talent = (await Talent.findByIdAndUpdate(id, data, {
+            new: true,
+        })) as Talent;
+
+        return res.json(talent);
+    } catch (err) {
+        next(err);
+    }
+};
+
+export const updatePatchTalent = async (
+    req: Request & { talent: Talent },
+    res: Response,
+    next: NextFunction
+): Promise<Response | undefined> => {
+    try {
+        const { id } = req.params;
+        const data: TT = req.body;
+
+        const talent = (await Talent.findByIdAndUpdate(id, data)) as Talent;
 
         return res.json(talent);
     } catch (err) {

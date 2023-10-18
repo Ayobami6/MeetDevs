@@ -6,9 +6,14 @@ import mongoose, { ConnectOptions } from 'mongoose';
 import employerRoutes from './routes/employerRoute';
 import offerRoutes from './routes/offerRoutes';
 import talentRoutes from './routes/talentRoute';
+import skillRoute from './routes/skillRoute';
+import experienceRoute from './routes/experienceRoute';
+import educationRoute from './routes/educationRoute';
+import projectRoute from './routes/projectRoute';
+import certificationRoute from './routes/certificationRoute';
 
 import talentPaginationRoute from './routes/talentPaginationRoute';
-import { errorHandler } from './errors/customError';
+// import { errorHandler } from './errors/customError';
 
 dotenv.config();
 
@@ -20,7 +25,7 @@ const dbConnString = `mongodb+srv://${dbUsername}:${dbPwd}@meetdevcluster.udvey1
 const app = express();
 
 const PORT: number = 3000;
-
+app.use(cors({ origin: true, credentials: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
@@ -28,13 +33,19 @@ app.use(cors());
 app.use('/employers', employerRoutes);
 app.use('/offers', offerRoutes);
 app.use('/talents', talentRoutes);
-app.use('/api', talentPaginationRoute);
+app.use('/api', talentPaginationRoute); //paginated api for talents
+app.use('/skills', skillRoute);
+app.use('/experiences', experienceRoute);
+app.use('/educations', educationRoute);
+app.use('/projects', projectRoute);
+app.use('/certifications', certificationRoute);
 
+// misc
 app.get('/', (req, res) => {
     res.send('Welcome to MeetDevs');
 });
 
-app.use(errorHandler);
+// app.use(errorHandler);
 
 mongoose
     .connect(dbConnString, { useNewUrlParser: true } as ConnectOptions)

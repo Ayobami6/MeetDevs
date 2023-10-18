@@ -9,6 +9,8 @@ const talentSchema = new Schema<Talent>({
     location: String,
     bio: String,
     github: String,
+    linkedin: String,
+    x: String,
     socials: [String],
     hasOffer: { type: Boolean, default: false },
     profileImg: String,

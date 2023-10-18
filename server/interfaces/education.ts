@@ -8,3 +8,8 @@ export interface Education {
     endDate?: string;
     description?: string;
 }
+
+export interface EducationResponse extends Education {
+    links?: Array<object>;
+    message?: string;
+}

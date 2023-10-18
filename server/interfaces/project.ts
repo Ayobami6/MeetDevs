@@ -6,3 +6,8 @@ export interface Project {
     endDate?: string;
     link?: string;
 }
+
+export interface ProjectResponse extends Project {
+    links?: Array<object>;
+    message?: string;
+}

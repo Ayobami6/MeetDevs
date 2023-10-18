@@ -3,3 +3,8 @@ export interface Skill {
     name?: string;
     subSkills?: string;
 }
+
+export interface SkillResponse extends Skill {
+    links?: Array<object>;
+    message?: string;
+}
