@@ -1,12 +1,36 @@
-import React from 'react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { offerDelete, offerUpdate } from '../../actions/offer';
 import { talentPatch } from '../../actions/talent';
 
-const TalentOfferCard = ({ offer }) => {
+export interface Offer {
+	talentId?: string;
+	employerId?: string;
+	title?: string;
+	description?: string;
+	accepted?: boolean;
+	createdAt?: Date;
+	updatedAt?: Date;
+}
+
+export interface ResponseDocument extends Offer {
+	links?: Array<object>;
+	message?: string;
+}
+interface TalentOfferCardProps {
+	offer: ResponseDocument;
+	user: { data: object };
+}
+
+const TalentOfferCard: React.FC<TalentOfferCardProps> = ({
+	offer,
+	user,
+}): JSX.Element => {
 	const dispatch = useDispatch();
 	const { id } = useParams();
+	const [loading, setLoading] = useState(false);
 	const handleAcceptClick = () => {
 		const offerData = {
 			accepted: true,
@@ -16,13 +40,15 @@ const TalentOfferCard = ({ offer }) => {
 		};
 		dispatch(offerUpdate(offer._id, offerData));
 		dispatch(talentPatch(id, talentData));
+		window.location.reload();
 	};
 	const handleRejectOrTerminate = () => {
 		const talentData = {
 			hasOffer: false,
 		};
-		dispatch(talentPatch(id, talentData));
 		dispatch(offerDelete(offer._id));
+		dispatch(talentPatch(id, talentData));
+		window.location.reload();
 	};
 	return (
 		<>
@@ -40,7 +66,14 @@ const TalentOfferCard = ({ offer }) => {
 							</p>
 						</div>
 						<div className='flex justify-center sm:justify-end m-2 sm:m-5 sm:flex-wrap gap-2 sm:gap-3'>
-							{offer.accepted ? (
+							{user.data ? (
+								<button
+									className='w-[4rem] sm:w-40 text-sm sm:text-xl h-[25px] md:h-[40px] border-2 border-white shadow-md hover:bg-red-800 rounded-full bg-red-600'
+									onClick={handleRejectOrTerminate}
+								>
+									Cancel
+								</button>
+							) : offer.accepted ? (
 								<button
 									className='w-[4rem] sm:w-40 text-sm sm:text-xl h-[25px] md:h-[40px] border-2 border-white shadow-md hover:bg-red-800 rounded-full bg-red-600'
 									onClick={handleRejectOrTerminate}
