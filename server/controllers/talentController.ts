@@ -146,17 +146,15 @@ export const updateTalent = async (
         const { id } = req.params;
         const data: TT = req.body;
 
-        const talent = (await Talent.findByIdAndUpdate(
-            id, data,
-            { new: true }
-        )) as Talent;
+        const talent = (await Talent.findByIdAndUpdate(id, data, {
+            new: true,
+        })) as Talent;
 
         return res.json(talent);
     } catch (err) {
         next(err);
     }
 };
-
 
 export const updatePatchTalent = async (
     req: Request & { talent: Talent },
@@ -167,9 +165,7 @@ export const updatePatchTalent = async (
         const { id } = req.params;
         const data: TT = req.body;
 
-        const talent = (await Talent.findByIdAndUpdate(
-            id, data,
-        )) as Talent;
+        const talent = (await Talent.findByIdAndUpdate(id, data)) as Talent;
 
         return res.json(talent);
     } catch (err) {
