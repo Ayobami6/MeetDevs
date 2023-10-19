@@ -13,7 +13,7 @@ export const getEducationsTalent =
         try {
             setLoading(true);
             const { data } = await getTalentEducations(talentId);
-            dispatch({ type: 'FETCH_TALENT_META', payload: data });
+            dispatch({ type: 'FETCH_TALENT_EDUCATION', payload: data });
             setLoading(false);
         } catch (error: any) {
             setLoading(false);
@@ -25,7 +25,7 @@ export const EducationUpdate = (id, EducationData) => async (dispatch) => {
     try {
         // dispatch({ type: 'START_LOADING' });
         const { data } = await updateEducation(id, EducationData);
-        dispatch({ type: 'UPDATE_TALENT_META', payload: data });
+        dispatch({ type: 'UPDATE_TALENT_EDUCATION', payload: data });
         // dispatch({ type: 'END_LOADING' });
     } catch (error) {
         console.log(error.message);
@@ -36,7 +36,7 @@ export const EducationDelete = (id) => async (dispatch) => {
     try {
         // setLoading(true);
         await deleteEducation(id);
-        dispatch({ type: 'DELETE_TALENT_META', payload: id });
+        dispatch({ type: 'DELETE_TALENT_EDUCATION', payload: id });
         // setLoading(false);
     } catch (error) {
         console.log(error.message);
@@ -48,7 +48,7 @@ export const EducationCreate =
         try {
             setLoading(true);
             const { data } = await createEducation(EducationData);
-            dispatch({ type: 'CREATE_TALENT_META', payload: data });
+            dispatch({ type: 'CREATE_TALENT_EDUCATION', payload: data });
             setLoading(false);
         } catch (error) {
             console.log(error.message);
