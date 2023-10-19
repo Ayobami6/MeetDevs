@@ -62,12 +62,17 @@ export const signIn = async (req: Request, res: Response) => {
 
         const isPasswordValid = await bcrypt.compare(
             password,
+<<<<<<< HEAD
             talent.hashedPassword
+=======
+            talent.hashedPassword,
+>>>>>>> eb5e484 (test: fix failed test for talentcontrollers)
         );
         if (!isPasswordValid) {
             return res.status(401).json({ message: 'Invalid credentials' });
         }
 
+<<<<<<< HEAD
         const token = jwt.sign(
             { userId: talent._id, email: talent.email },
             JWT_SECRET,
@@ -75,6 +80,11 @@ export const signIn = async (req: Request, res: Response) => {
                 expiresIn: '24h',
             }
         );
+=======
+        const token = jwt.sign({ userId: talent._id }, JWT_SECRET, {
+            expiresIn: '24h',
+        });
+>>>>>>> eb5e484 (test: fix failed test for talentcontrollers)
 
         res.json({ token, talent });
     } catch (error) {
