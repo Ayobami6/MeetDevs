@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import SignIn from './SignIn';
 import SignUp from './Signup';
@@ -35,3 +36,19 @@ const Auth: React.FC = () => {
 };
 
 export default Auth;
+=======
+import React from 'react'
+
+const Auth: React.FC = () => {
+  return (
+    <>
+    <div>Auth</div>
+
+        <div>Auth Page</div>
+    </>
+  )
+    
+}
+
+export default Auth
+>>>>>>> debe613 (feat: add talent and auth route to client app)

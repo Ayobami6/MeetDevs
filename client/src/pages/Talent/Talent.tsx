@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState } from 'react';
 import TalentNav from '../../components/Navbar/TalentNav';
 import './Talent.css';
@@ -81,3 +82,14 @@ const Talent = (): JSX.Element => {
 };
 
 export default Talent;
+=======
+import React from 'react'
+
+const Talent = () => {
+  return (
+    <div>Talent</div>
+  )
+}
+
+export default Talent
+>>>>>>> debe613 (feat: add talent and auth route to client app)
