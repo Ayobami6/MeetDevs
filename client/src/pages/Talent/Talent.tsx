@@ -16,6 +16,7 @@ const Talent = (): JSX.Element => {
   const [showexp, setShowexp] = useState(false);
   const [showproj, setShowproj] = useState(false);
   const [showedu, setShowedu] = useState(false);
+
   console.log(user.name);
   return (
     <>
