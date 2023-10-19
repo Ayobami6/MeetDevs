@@ -45,20 +45,14 @@ const TalentCard: React.FC<TalentProps> = ({
 				</a>
 			</div>
 			<div className='flex justify-between'>
-<<<<<<< HEAD
+
 				<Link to={`/showdev/${id}`}>
-=======
-				<Link to={`/talent/${id}`}>
->>>>>>> ead260b (feat: add more page routes&adjust navbar)
 					<button className='m-4 border-xl border-2 rounded-3xl w-[85px] text-white text-sm h-[36px] bg-green-600 hover:bg-green-800'>
 						Check Out
 					</button>
 				</Link>
-<<<<<<< HEAD
+
 				<Link to={`/hiredev/${id}`}>
-=======
-				<Link to={`/talent/hire/${id}`}>
->>>>>>> ead260b (feat: add more page routes&adjust navbar)
 					<button className='m-4 border-xl border-2 rounded-3xl w-[85px] text-white text-sm h-[36px] bg-green-600 hover:bg-green-800'>
 						Hire
 					</button>
