@@ -34,13 +34,13 @@ app.use(cors());
 app.use('/employers', employerRoutes);
 app.use('/offers', offerRoutes);
 app.use('/talents', talentRoutes);
-app.use('/api', talentPaginationRoute); //paginated api for talents
 app.use('/skills', skillRoute);
 app.use('/experiences', experienceRoute);
 app.use('/educations', educationRoute);
 app.use('/projects', projectRoute);
 app.use('/certifications', certificationRoute);
 app.use('/scores', scoreRoute);
+app.use('/api', talentPaginationRoute); //paginated api for talents
 
 // misc
 app.get('/', (req, res) => {
