@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { useState } from 'react';
 import TalentNav from '../../components/Navbar/TalentNav';
 import './Talent.css';
@@ -17,7 +16,6 @@ const Talent = (): JSX.Element => {
   const [showexp, setShowexp] = useState(false);
   const [showproj, setShowproj] = useState(false);
   const [showedu, setShowedu] = useState(false);
-
   console.log(user.name);
   return (
     <>
@@ -82,14 +80,3 @@ const Talent = (): JSX.Element => {
 };
 
 export default Talent;
-=======
-import React from 'react'
-
-const Talent = () => {
-  return (
-    <div>Talent</div>
-  )
-}
-
-export default Talent
->>>>>>> debe613 (feat: add talent and auth route to client app)
