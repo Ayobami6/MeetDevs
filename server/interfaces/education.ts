@@ -8,8 +8,11 @@ export interface Education {
     endDate?: string;
     description?: string;
 }
+<<<<<<< HEAD
 
 export interface EducationResponse extends Education {
     links?: Array<object>;
     message?: string;
 }
+=======
+>>>>>>> d5d009a (feat: add seperate models for the following)
