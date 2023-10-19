@@ -81,7 +81,6 @@ const GetRanked = () => {
         };
         const talentData = {
             rank: percentile,
-            github: 'Ayobami6',
         };
         await dispatch(ScoreUpdate(talentId, scoreData, setLoading));
         await dispatch(talentPatch(talentId, talentData));
