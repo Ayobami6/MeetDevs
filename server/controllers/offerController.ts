@@ -66,7 +66,6 @@ export const getOffer = async <T>(
         if (!offer) return res.status(404).json({ message: 'Offer not found' });
         res.status(200).json({
             ...offer.toJSON(),
-<<<<<<< HEAD
             links: [
                 { rel: 'self', href: '/offers' },
                 { rel: 'talent', href: '/talents' },
@@ -118,8 +117,6 @@ export const getOfferByEmployer = async <T>(
         const offers = await OfferModel.find({ employerId });
         res.status(200).json({
             offers,
-=======
->>>>>>> eb5e484 (test: fix failed test for talentcontrollers)
             links: [
                 { rel: 'self', href: '/offers' },
                 { rel: 'talent', href: '/talents' },
