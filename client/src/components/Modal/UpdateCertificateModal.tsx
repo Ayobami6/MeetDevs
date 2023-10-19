@@ -9,7 +9,7 @@ function AddCertificateModal({ show, setShow }: modalProps) {
     <div className={"Modal " + modalStyle}>
       <div className="content">
         <div className={"header-11"}>
-          <h1>Add Certification Modal</h1>{" "}
+          <h1>Update Certification Modal</h1>{" "}
           <TButton value={"X"} onClick={() => setShow(false)} />
         </div>
         <hr />

@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import TButton from "../Button/TButton.tsx";
 import "./ShowwcaseCard.css";
 import { noOfMonths } from "../util/numOfMonths.ts";
 import { FaGlobe } from "react-icons/fa";
+import UpdateCertificateModal from "../Modal/UpdateCertificateModal.tsx";
+import UpdateEducationModal from "../Modal/UpdateEducationModal.tsx";
+import UpdateExperienceModal from "../Modal/UpdateExperienceModal.tsx";
+import UpdateProjectModal from "../Modal/UpdateProjectModal.tsx";
+import UpdateSkillModal from "../Modal/UpdateSkillModal.tsx";
 
 interface experienceProp {
   experience: {
@@ -56,9 +61,12 @@ interface skillProps {
     subSkills?: string;
   };
 }
+
 const ExperienceShowwcaseCard: React.FC<experienceProp> = ({
   experience,
 }): React.ReactElement => {
+  const [showexp, setShowexp] = useState(false);
+
   return (
     <div className={"showwcasecard"}>
       <div className={"experience"}>
@@ -82,13 +90,24 @@ const ExperienceShowwcaseCard: React.FC<experienceProp> = ({
           <p>{experience.description}</p>
         </div>
       </div>
-      <TButton value={"edit"} />
+      <UpdateExperienceModal
+        show={showexp}
+        setShow={setShowexp}
+        info={experience}
+      />
+      <TButton
+        value={"edit"}
+        onClick={() => {
+          setShowexp(true);
+        }}
+      />
     </div>
   );
 };
 const ProjectShowwcaseCard: React.FC<projectProps> = ({
   project,
 }): React.ReactElement => {
+  const [showproj, setShowproj] = useState(false);
   return (
     <div className={"showwcasecard"}>
       <div className={"project"}>
@@ -111,13 +130,25 @@ const ProjectShowwcaseCard: React.FC<projectProps> = ({
           <p>{project.description}</p>
         </div>
       </div>
-      <TButton value={"edit"} />
+      <UpdateProjectModal
+        show={showproj}
+        setShow={setShowproj}
+        info={project}
+      />
+      <TButton
+        value={"edit"}
+        onClick={() => {
+          setShowproj(true);
+        }}
+      />
     </div>
   );
 };
 const EducationShowwcaseCard: React.FC<educationProps> = ({
   education,
 }): React.ReactElement => {
+  const [showedu, setShowedu] = useState(false);
+
   return (
     <div className={"showwcasecard"}>
       <div className={"experience"}>
@@ -142,13 +173,25 @@ const EducationShowwcaseCard: React.FC<educationProps> = ({
           <p>{education.description}</p>
         </div>
       </div>
-      <TButton value={"edit"} />
+      <UpdateEducationModal
+        show={showedu}
+        setShow={setShowedu}
+        info={education}
+      />
+      <TButton
+        value={"edit"}
+        onClick={() => {
+          setShowedu(true);
+        }}
+      />{" "}
     </div>
   );
 };
 const CertificationShowwcaseCard: React.FC<certificateProps> = ({
   certificate,
 }): React.ReactElement => {
+  const [showcert, setShowcert] = useState(false);
+
   return (
     <div className={"showwcasecard"}>
       <div className={"certificate"}>
@@ -162,13 +205,25 @@ const CertificationShowwcaseCard: React.FC<certificateProps> = ({
           <p>{certificate.description}</p>
         </div>
       </div>
-      <TButton value={"edit"} />
+      <UpdateCertificateModal
+        show={showcert}
+        setShow={setShowcert}
+        info={certificate}
+      />
+      <TButton
+        value={"edit"}
+        onClick={() => {
+          setShowcert(true);
+        }}
+      />{" "}
     </div>
   );
 };
 const SkillShowwcaseCard: React.FC<skillProps> = ({
   skill,
 }): React.ReactElement => {
+  const [showskill, setShowskill] = useState(false);
+
   return (
     <div className={"showwcasecard"}>
       <div className={"certificate"}>
@@ -179,7 +234,13 @@ const SkillShowwcaseCard: React.FC<skillProps> = ({
           <p>{skill.subSkills}</p>
         </div>
       </div>
-      <TButton value={"edit"} />
+      <UpdateSkillModal show={showskill} setShow={setShowskill} info={skill} />
+      <TButton
+        value={"edit"}
+        onClick={() => {
+          setShowskill(true);
+        }}
+      />{" "}
     </div>
   );
 };

@@ -2,14 +2,14 @@ import { modalProps } from "./interfaces/modaInterface.ts";
 import TButton from "../Button/TButton.tsx";
 import "./styles/AddProjectModal.css";
 
-function AddCertificateModal({ show, setShow }: modalProps) {
+function AddSkillModal({ show, setShow }: modalProps) {
   const modalStyle = show ? "showModal" : "";
 
   return (
     <div className={"Modal " + modalStyle}>
       <div className="content">
         <div className={"header-11"}>
-          <h1>Add Project</h1>{" "}
+          <h1>Add Skill</h1>{" "}
           <TButton value={"X"} onClick={() => setShow(false)} />
         </div>
         <hr />
@@ -33,4 +33,4 @@ function AddCertificateModal({ show, setShow }: modalProps) {
   );
 }
 
-export default AddCertificateModal;
+export default AddSkillModal;

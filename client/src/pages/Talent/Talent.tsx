@@ -15,6 +15,8 @@ import {
   ExperienceShowwcaseCard,
   ProjectShowwcaseCard,
 } from "../../components/talentProfile/ShowwcaseCard.tsx";
+import AddCertificateModal from "../../components/Modal/AddCertificateModal.tsx";
+import AddSkillModal from "../../components/Modal/AddSkillModal.tsx";
 
 const Talent = (): JSX.Element => {
   const exp = {
@@ -84,6 +86,8 @@ const Talent = (): JSX.Element => {
   const [showexp, setShowexp] = useState(false);
   const [showproj, setShowproj] = useState(false);
   const [showedu, setShowedu] = useState(false);
+  const [showskill, setShowskill] = useState(false);
+  const [showcert, setShowcert] = useState(false);
   const [userExp, _setUserExp] = useState([exp, exp1]);
 
   // @ts-ignore
@@ -166,10 +170,10 @@ const Talent = (): JSX.Element => {
               <AddNewComp
                 title={"Skills"}
                 onClick={() => {
-                  setShowedu(true);
+                  setShowskill(true);
                 }}
               >
-                <AddEducationModal show={showedu} setShow={setShowedu} />
+                <AddSkillModal show={showskill} setShow={setShowskill} />
               </AddNewComp>
               <Showwcase>
                 {educationList.map((education) => (
@@ -182,10 +186,10 @@ const Talent = (): JSX.Element => {
               <AddNewComp
                 title={"Certification"}
                 onClick={() => {
-                  setShowedu(true);
+                  setShowcert(true);
                 }}
               >
-                <AddEducationModal show={showedu} setShow={setShowedu} />
+                <AddCertificateModal show={showcert} setShow={setShowcert} />
               </AddNewComp>
               <Showwcase>
                 {certificateList.map((certs) => (
