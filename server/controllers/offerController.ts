@@ -5,7 +5,7 @@ import { GenericRequest, GenericResponse } from '../generics/types';
 // create offer controller
 export const createOffer = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ResponseDocument, string>,
+    res: GenericResponse<ResponseDocument, string>
 ) => {
     try {
         const offerData: T = req.body;
@@ -34,7 +34,7 @@ export const createOffer = async <T>(
 // get all offers
 export const getAllOffers = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ResponseDocument, string>,
+    res: GenericResponse<ResponseDocument, string>
 ) => {
     try {
         const offers = await OfferModel.find();
@@ -58,7 +58,7 @@ export const getAllOffers = async <T>(
 // get an offer
 export const getOffer = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ResponseDocument, string>,
+    res: GenericResponse<ResponseDocument, string>
 ) => {
     try {
         const { id } = req.params;
@@ -84,7 +84,7 @@ export const getOffer = async <T>(
 // get offer by talentId
 export const getOfferByTalent = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ResponseDocument, string>,
+    res: GenericResponse<ResponseDocument, string>
 ) => {
     try {
         const { talentId } = req.params;
@@ -106,11 +106,10 @@ export const getOfferByTalent = async <T>(
     }
 };
 
-
 // get offer by employerId
 export const getOfferByEmployer = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ResponseDocument, string>,
+    res: GenericResponse<ResponseDocument, string>
 ) => {
     try {
         const { employerId } = req.params;
@@ -135,7 +134,7 @@ export const getOfferByEmployer = async <T>(
 // update offer
 export const updateOffer = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ResponseDocument, string>,
+    res: GenericResponse<ResponseDocument, string>
 ) => {
     try {
         const { id } = req.params;
@@ -162,7 +161,7 @@ export const updateOffer = async <T>(
 // delete offer
 export const deleteOffer = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ResponseDocument, string>,
+    res: GenericResponse<ResponseDocument, string>
 ) => {
     try {
         const { id } = req.params;
