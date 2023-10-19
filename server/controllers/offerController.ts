@@ -132,56 +132,6 @@ export const getOfferByEmployer = async <T>(
     }
 };
 
-// get offer by talentId
-export const getOfferByTalent = async <T>(
-    req: GenericRequest<T>,
-    res: GenericResponse<ResponseDocument, string>
-) => {
-    try {
-        const { talentId } = req.params;
-        const offers = await OfferModel.find({ talentId });
-        res.status(200).json({
-            offers,
-            links: [
-                { rel: 'self', href: '/offers' },
-                { rel: 'talent', href: '/talents' },
-                {
-                    rel: 'employer',
-                    href: '/employers',
-                },
-            ],
-        });
-    } catch (error) {
-        console.log(error.message);
-        res.status(500).json({ message: 'Internal Server Error!' });
-    }
-};
-
-// get offer by employerId
-export const getOfferByEmployer = async <T>(
-    req: GenericRequest<T>,
-    res: GenericResponse<ResponseDocument, string>
-) => {
-    try {
-        const { employerId } = req.params;
-        const offers = await OfferModel.find({ employerId });
-        res.status(200).json({
-            offers,
-            links: [
-                { rel: 'self', href: '/offers' },
-                { rel: 'talent', href: '/talents' },
-                {
-                    rel: 'employer',
-                    href: '/employers',
-                },
-            ],
-        });
-    } catch (error) {
-        console.log(error.message);
-        res.status(500).json({ message: 'Internal Server Error!' });
-    }
-};
-
 // update offer
 export const updateOffer = async <T>(
     req: GenericRequest<T>,
