@@ -13,7 +13,7 @@ export const getExperiencesTalent =
         try {
             setLoading(true);
             const { data } = await getTalentExperiences(talentId);
-            dispatch({ type: 'FETCH_TALENT_META', payload: data });
+            dispatch({ type: 'FETCH_TALENT_EXPERIENCE', payload: data });
             setLoading(false);
         } catch (error: any) {
             setLoading(false);
@@ -25,7 +25,7 @@ export const ExperienceUpdate = (id, ExperienceData) => async (dispatch) => {
     try {
         // dispatch({ type: 'START_LOADING' });
         const { data } = await updateExperience(id, ExperienceData);
-        dispatch({ type: 'UPDATE_TALENT_META', payload: data });
+        dispatch({ type: 'UPDATE_TALENT_EXPERIENCE', payload: data });
         // dispatch({ type: 'END_LOADING' });
     } catch (error) {
         console.log(error.message);
@@ -36,7 +36,7 @@ export const ExperienceDelete = (id) => async (dispatch) => {
     try {
         // setLoading(true);
         await deleteExperience(id);
-        dispatch({ type: 'DELETE_TALENT_META', payload: id });
+        dispatch({ type: 'DELETE_TALENT_EXPERIENCE', payload: id });
         // setLoading(false);
     } catch (error) {
         console.log(error.message);
@@ -48,7 +48,7 @@ export const ExperienceCreate =
         try {
             setLoading(true);
             const { data } = await createExperience(ExperienceData);
-            dispatch({ type: 'CREATE_TALENT_META', payload: data });
+            dispatch({ type: 'CREATE_TALENT_EXPERIENCE', payload: data });
             setLoading(false);
         } catch (error) {
             console.log(error.message);

@@ -1,14 +1,14 @@
 export const scoreReducer = (
     state = {
+        talentScores: [],
         talentScore: null,
-        talentMeta: null,
     },
     action
 ) => {
     switch (action.type) {
-        case 'FETCH_TALENT_SCORE':
-            return { ...state, talentScore: action.payload.score };
-        case 'UPDATE_TALENT_META':
+        case 'FETCH_TALENTS_SCORE':
+            return { ...state, talentScores: action.payload };
+        case 'UPDATE_TALENT_SCORE':
             return { ...state, talentScore: action.payload.score };
 
         default:

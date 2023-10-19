@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-export const getTalentScores = (talentId) => {
-    const talentScores = axios.get(
-        `http://localhost:3000/scores/talent/${talentId}`
-    );
+export const getTalentScores = () => {
+    const talentScores = axios.get('http://localhost:3000/scores');
     return talentScores;
 };
 
