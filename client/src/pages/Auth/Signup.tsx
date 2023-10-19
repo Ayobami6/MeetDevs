@@ -2,9 +2,13 @@
 import { useState } from 'react';
 import { useSnackbar } from 'notistack';
 import axios, { AxiosError } from 'axios';
+<<<<<<< HEAD
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { talentSignupAuth, employerSignupAuth } from '../../actions/auth';
+=======
+import { useNavigate } from 'react-router-dom';
+>>>>>>> 2c1a1ab (Merge conflict: Accepted incoming changes)
 
 interface ErrorResponse {
   message: string;
@@ -42,6 +46,7 @@ const Signup = ({ handleIsMemberClick }: SignUpProps) => {
       // send request to talent signin endpoint
       if (isTalent) {
         setLoading(true);
+<<<<<<< HEAD
         dispatch(
           talentSignupAuth(
             'talents/signup',
@@ -51,10 +56,18 @@ const Signup = ({ handleIsMemberClick }: SignUpProps) => {
             setLoading,
           ),
         );
+=======
+        res = await axios.post('http://0.0.0.0:3000/talents/signup', userData);
+        localStorage.setItem('talentProfile', JSON.stringify({ ...res.data }));
+        setLoading(false);
+        enqueueSnackbar('Signup Sucessful!', { variant: 'success' });
+        navigate('/auth');
+>>>>>>> 2c1a1ab (Merge conflict: Accepted incoming changes)
 
         // else to employer endpoint
       } else {
         setLoading(true);
+<<<<<<< HEAD
         dispatch(
           employerSignupAuth(
             'employers/signup',
@@ -64,6 +77,20 @@ const Signup = ({ handleIsMemberClick }: SignUpProps) => {
             setLoading,
           ),
         );
+=======
+        res = await axios.post(
+          'http://0.0.0.0:3000/employers/signup',
+          userData,
+        );
+        console.log(res);
+        localStorage.setItem(
+          'employerProfile',
+          JSON.stringify({ ...res.data }),
+        );
+        setLoading(false);
+        enqueueSnackbar('Signup Sucessful!', { variant: 'success' });
+        navigate('/auth');
+>>>>>>> 2c1a1ab (Merge conflict: Accepted incoming changes)
       }
     } catch (error) {
       const axiosError = error as AxiosError;
