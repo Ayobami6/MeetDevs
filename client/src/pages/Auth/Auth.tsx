@@ -20,8 +20,13 @@ const Auth: React.FC = () => {
                     src='src/assets/auth3.jpg'
                     className='bg-img bg-cover w-fit'
                 />
+<<<<<<< HEAD
                 <div className='text-left mx-3 py-4'>
                     <Navbar isAuth={true} />
+=======
+                <div className='text-7xl mx-5 py-4 text-green-700'>
+                    MeetDevs
+>>>>>>> 25d23b9 (feat: implement user toggle auth type)
                 </div>
                 {isSignup ? (
                     <SignUp handleIsMemberClick={handleIsMemberClick} />
