@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { talentAuth, employerAuth } from '../../actions/auth';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import axios, { AxiosError } from 'axios';
 
@@ -76,9 +77,14 @@ const SignIn = ({ handleIsMemberClick }: SignInProps) => {
     try {
       if (isTalent) {
         setLoading(true);
-        const res = await axios.post(
-          'http://0.0.0.0:3000/talents/signin',
-          credentials,
+        dispatch(
+          talentAuth(
+            'talents/signin',
+            credentials,
+            navigate,
+            enqueueSnackbar,
+            setLoading,
+          ),
         );
         localStorage.setItem('talentProfile', JSON.stringify({ ...res.data }));
         setLoading(false);
