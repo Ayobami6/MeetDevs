@@ -10,7 +10,11 @@ function TalentNav(): JSX.Element {
 	const location = useLocation();
 	const path = location.pathname;
 	let profile;
+<<<<<<< HEAD
 	if (!path.includes('talent')) {
+=======
+	if (path === '/employer') {
+>>>>>>> ead260b (feat: add more page routes&adjust navbar)
 		profile = JSON.parse(localStorage.getItem('employerProfile'));
 	} else {
 		profile = JSON.parse(localStorage.getItem('talentProfile'));

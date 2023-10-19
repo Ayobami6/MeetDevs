@@ -73,6 +73,7 @@ const App = () => {
 							/>
 						</Route>
 						<Route
+<<<<<<< HEAD
 							path='/hiredev/:id'
 							element={
 								<ProtectedRoute profileObj='employerProfile' />
@@ -80,6 +81,15 @@ const App = () => {
 						>
 							<Route
 								path='/hiredev/:id'
+=======
+							path='/talent/hire/:id'
+							element={
+								<ProtectedRoute profileObj='talentProfile' />
+							}
+						>
+							<Route
+								path='/talent/hire/:id'
+>>>>>>> ead260b (feat: add more page routes&adjust navbar)
 								element={<TalentHire />}
 							/>
 						</Route>
