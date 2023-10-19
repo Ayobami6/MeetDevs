@@ -184,7 +184,6 @@ export const getTalentById = async (
  * @throws {Error} If an error occurs while updating the talent.
  */
 export const updateTalent = async (
-<<<<<<< HEAD
     req: Request & { talent: Talent },
     res: Response,
     next: NextFunction
@@ -192,18 +191,16 @@ export const updateTalent = async (
     try {
         const { id } = req.params;
         const data: TT = req.body;
-
-        const talent = (await Talent.findByIdAndUpdate(
-            id, data,
-            { new: true }
-        )) as Talent;
+      
+        const talent = (await Talent.findByIdAndUpdate(id, data, {
+            new: true,
+        })) as Talent;
 
         return res.json(talent);
     } catch (err) {
         next(err);
     }
 };
-
 
 export const updatePatchTalent = async (
     req: Request & { talent: Talent },
@@ -214,10 +211,16 @@ export const updatePatchTalent = async (
         const { id } = req.params;
         const data: TT = req.body;
 
-        const talent = (await Talent.findByIdAndUpdate(
-            id, data,
-        )) as Talent;
-=======
+        const talent = (await Talent.findByIdAndUpdate(id, data)) as Talent;
+
+        return res.json(talent);
+    } catch (err) {
+        next(err);
+    }
+};
+
+
+export const updatePatchTalent = async (
   req: Request & { talent: Talent },
   res: Response,
   next: NextFunction,
@@ -237,7 +240,6 @@ export const updatePatchTalent = async (
       },
       { new: true },
     )) as Talent;
->>>>>>> 2c1a1ab (Merge conflict: Accepted incoming changes)
 
     return res.json(talent);
   } catch (err) {
@@ -246,15 +248,9 @@ export const updatePatchTalent = async (
 };
 
 export const deleteTalent = async (
-<<<<<<< HEAD
     req: Request & { talent: Talent },
     res: Response,
     next: NextFunction
-=======
-  req: Request & { talent: Talent },
-  res: Response,
-  next: NextFunction,
->>>>>>> 2c1a1ab (Merge conflict: Accepted incoming changes)
 ): Promise<Response | undefined> => {
   try {
     const { id } = req.params;

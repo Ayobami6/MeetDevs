@@ -16,22 +16,59 @@ interface ErrorResponse {
   message: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+interface ErrorResponse {
+    message: string;
+}
+
 interface SignInProps {
   handleIsMemberClick: () => void;
 }
 
 const SignIn = ({ handleIsMemberClick }: SignInProps) => {
-  const [isTalent, setIsTalent] = useState(true);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const { enqueueSnackbar } = useSnackbar();
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
-  const handleSignIn = async () => {
-    const credentials: SignInCredential = {
-      email,
-      password,
+    const [isTalent, setIsTalent] = useState(true);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const { enqueueSnackbar } = useSnackbar();
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch();
+    const handleSignIn = async () => {
+        const credentials: SignInCredential = {
+            email,
+            password,
+        };
+        try {
+            if (isTalent) {
+                setLoading(true);
+                dispatch(
+                    talentAuth(
+                        'talents/signin',
+                        credentials,
+                        navigate,
+                        enqueueSnackbar,
+                        setLoading
+                    )
+                );
+                // send request to talent signin endpoint
+            } else {
+                setLoading(true);
+                dispatch(
+                    employerAuth(
+                        'employers/login',
+                        credentials,
+                        navigate,
+                        enqueueSnackbar,
+                        setLoading
+                    )
+                );
+            }
+            // else to employer endpoint
+        } catch (error) {
+            setLoading(false);
+            console.log(error.response.data.message);
+            enqueueSnackbar(error.response.data.message, { variant: 'error' });
+        }
     };
     try {
       if (isTalent) {

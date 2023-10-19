@@ -17,6 +17,7 @@ import EmployerOffer from './pages/Employer/EmployerOffer';
 import GetRanked from './pages/Talent/GetRanked';
 import TalentHire from './pages/Talent/TalentHire';
 import { metaReducer } from './reducers/talentMeta';
+import { scoreReducer } from './reducers/score';
 
 const store = configureStore({
     reducer: {
@@ -24,6 +25,7 @@ const store = configureStore({
         talents: talentReducer,
         offers: offerReducer,
         talentData: metaReducer,
+        score: scoreReducer,
     },
 });
 

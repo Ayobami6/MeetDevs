@@ -13,7 +13,7 @@ export const getCertificationsTalent =
         try {
             setLoading(true);
             const { data } = await getTalentCertifications(talentId);
-            dispatch({ type: 'FETCH_TALENT_META', payload: data });
+            dispatch({ type: 'FETCH_TALENT_CERTIFICATION', payload: data });
             setLoading(false);
         } catch (error: any) {
             setLoading(false);
@@ -26,7 +26,7 @@ export const CertificationUpdate =
         try {
             // dispatch({ type: 'START_LOADING' });
             const { data } = await updateCertification(id, certificationData);
-            dispatch({ type: 'UPDATE_TALENT_META', payload: data });
+            dispatch({ type: 'UPDATE_TALENT_CERTIFICATION', payload: data });
             // dispatch({ type: 'END_LOADING' });
         } catch (error) {
             console.log(error.message);
@@ -37,7 +37,7 @@ export const certificationDelete = (id) => async (dispatch) => {
     try {
         // setLoading(true);
         await deleteCertification(id);
-        dispatch({ type: 'DELETE_TALENT_META', payload: id });
+        dispatch({ type: 'DELETE_TALENT_CERTIFICATION', payload: id });
         // setLoading(false);
     } catch (error) {
         console.log(error.message);
@@ -49,7 +49,7 @@ export const certificationCreate =
         try {
             setLoading(true);
             const { data } = await createCertification(certificationData);
-            dispatch({ type: 'CREATE_TALENT_META', payload: data });
+            dispatch({ type: 'CREATE_TALENT_CERTIFICATION', payload: data });
             setLoading(false);
         } catch (error) {
             console.log(error.message);

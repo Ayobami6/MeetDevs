@@ -5,34 +5,76 @@ import axios, { AxiosError } from 'axios';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { talentSignupAuth, employerSignupAuth } from '../../actions/auth';
-import { useNavigate } from 'react-router-dom';
 
 interface ErrorResponse {
-  message: string;
+    message: string;
 }
 
 interface SignUpProps {
-  handleIsMemberClick: () => void;
+    handleIsMemberClick: () => void;
 }
 
 const Signup = ({ handleIsMemberClick }: SignUpProps) => {
-  const [loading, setLoading] = useState(false);
-  const [isTalent, setIsTalent] = useState(true);
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const { enqueueSnackbar } = useSnackbar();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [user, setuser] = useState(
-    JSON.parse(localStorage.getItem('talentProfile') || '{}'),
-  );
-  const handleSignUp = async () => {
-    const userData = {
-      email,
-      name,
-      password,
+    const [loading, setLoading] = useState(false);
+    const [isTalent, setIsTalent] = useState(true);
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const { enqueueSnackbar } = useSnackbar();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [user, setuser] = useState(
+        JSON.parse(localStorage.getItem('talentProfile') || '{}')
+    );
+    const handleSignUp = async () => {
+        const userData = {
+            email,
+            name,
+            password,
+        };
+        try {
+            if (password !== confirmPassword) {
+                enqueueSnackbar('Password Does not Match', {
+                    variant: 'error',
+                });
+            }
+            // send request to talent signin endpoint
+            if (isTalent) {
+                setLoading(true);
+                dispatch(
+                    talentSignupAuth(
+                        'talents/signup',
+                        userData,
+                        enqueueSnackbar,
+                        navigate,
+                        setLoading
+                    )
+                );
+
+                // else to employer endpoint
+            } else {
+                setLoading(true);
+                dispatch(
+                    employerSignupAuth(
+                        'employers/signup',
+                        userData,
+                        enqueueSnackbar,
+                        navigate,
+                        setLoading
+                    )
+                );
+            }
+        } catch (error) {
+            const axiosError = error as AxiosError;
+            if (axiosError.response) {
+                const responseData = axiosError.response.data as ErrorResponse;
+                setLoading(false);
+                console.log(axiosError);
+                enqueueSnackbar(responseData.message, { variant: 'error' });
+                console.log(user);
+            }
+        }
     };
     try {
       if (password !== confirmPassword) {
