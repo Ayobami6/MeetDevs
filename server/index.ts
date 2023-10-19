@@ -11,6 +11,7 @@ import experienceRoute from './routes/experienceRoute';
 import educationRoute from './routes/educationRoute';
 import projectRoute from './routes/projectRoute';
 import certificationRoute from './routes/certificationRoute';
+import scoreRoute from './routes/scoreRoute';
 
 import talentPaginationRoute from './routes/talentPaginationRoute';
 // import { errorHandler } from './errors/customError';
@@ -28,6 +29,7 @@ const PORT: number = 3000;
 app.use(cors({ origin: true, credentials: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
 
 app.use('/employers', employerRoutes);
 app.use('/offers', offerRoutes);
@@ -38,6 +40,7 @@ app.use('/experiences', experienceRoute);
 app.use('/educations', educationRoute);
 app.use('/projects', projectRoute);
 app.use('/certifications', certificationRoute);
+app.use('/scores', scoreRoute);
 
 // misc
 app.get('/', (req, res) => {

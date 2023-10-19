@@ -10,7 +10,6 @@ import AddEducationModal from "../../components/Modal/AddEducationModal.tsx";
 import Showwcase from "../../components/talentProfile/Showwcase.tsx";
 import {
   CertificationShowwcaseCard,
-  certificationShowwcaseCard,
   EducationShowwcaseCard,
   ExperienceShowwcaseCard,
   ProjectShowwcaseCard,
