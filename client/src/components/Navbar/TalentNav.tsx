@@ -12,16 +12,7 @@ function TalentNav(): JSX.Element {
   const location = useLocation();
   const path = location.pathname;
   let profile;
-
-	if (!path.includes('talent')) {
-
-	if (path === '/employer') {
-
-	if (path !== '/talent') {
-
-
   if (!path.includes('talent')) {
-
     profile = JSON.parse(localStorage.getItem('employerProfile'));
   } else {
     profile = JSON.parse(localStorage.getItem('talentProfile'));
@@ -42,6 +33,7 @@ function TalentNav(): JSX.Element {
       if (decodedToken.exp * 1000 < new Date().getTime()) logout();
     }
   }, [location]);
+
   return (
     <div className='talent-nav'>
       <div className='nav-con'>
@@ -59,7 +51,6 @@ function TalentNav(): JSX.Element {
             </Link>
           )}
           <Link to={'#'}>Messages</Link>
-{/* we'll have a condition for this, if user is talent use talent else employer id */}
           <Link 
             to={
               user.talent
@@ -72,12 +63,11 @@ function TalentNav(): JSX.Element {
         </nav>
       </div>
 
-      <Link to={'#'}>
+      <Link to={'#'} >
         <img
           src='/assets/talents/no_image.png'
           alt='fine girl'
           className='w-20 rounded-full'
-          
           onClick={() => setOpenProfile((prev) => !prev)}
         />
         <p>{user.data ? user.data.name : user.talent.name}</p>
