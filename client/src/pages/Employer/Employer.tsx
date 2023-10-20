@@ -14,7 +14,6 @@ const Employer = () => {
     useEffect(() => {
         dispatch(getTalents(setLoading));
     }, [dispatch]);
-    console.log(talents);
     return (
         <>
             <TalentNav />
