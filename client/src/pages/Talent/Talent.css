@@ -49,6 +49,12 @@
 .talent-page .tt-content .main {
   display: flex;
   flex-direction: column;
+  gap: 2rem;
+}
+.talent-page .tt-content .main .showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 /*# sourceMappingURL=Talent.css.map */

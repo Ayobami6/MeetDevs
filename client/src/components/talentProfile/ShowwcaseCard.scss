@@ -1,0 +1,42 @@
+@use '../../scss/defaults';
+
+.showwcasecard {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+
+
+  .experience {
+    display: flex;
+    flex-direction: column;
+
+    .work-info {
+      display: flex;
+      gap: .5rem;
+    }
+
+    .location-info{
+      display: flex;
+      gap: .5rem;
+    }
+
+  }
+
+  .project {
+    display: flex;
+    flex-direction: column;
+
+    .project-info {
+      display: flex;
+      gap: .5rem;
+    }
+
+  }
+
+  .title > h1 {
+    font-size: 1.5rem;
+    font-weight: bolder;
+  }
+
+}
