@@ -35,6 +35,7 @@ const Employer = () => {
                                 github={talent.github}
                                 profileImg={talent.profileImg}
                                 id={talent._id}
+                                rank={talent.rank}
                             />
                         ))}
                     </div>

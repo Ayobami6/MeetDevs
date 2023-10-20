@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AiFillGithub } from 'react-icons/ai';
+import { BsLinkedin } from 'react-icons/bs';
 
 interface TalentProps {
     name: string;
@@ -10,6 +11,7 @@ interface TalentProps {
     github: string;
     profileImg: string;
     id: string;
+    rank: number;
 }
 
 const TalentCard: React.FC<TalentProps> = ({
@@ -20,10 +22,11 @@ const TalentCard: React.FC<TalentProps> = ({
     github,
     profileImg,
     id,
+    rank,
 }) => {
     return (
         <div className='bg-white shadow-md rounded-lg overflow-hidden'>
-            <div className='m-5 h-[170px] rounded-full flex justify-center'>
+            <div className='m-5 h-[170px] rounded-full flex justify-between'>
                 <img
                     src={
                         !profileImg
@@ -33,6 +36,14 @@ const TalentCard: React.FC<TalentProps> = ({
                     alt={name}
                     className='w-25'
                 />
+                <p className='text-2xl border-[1px] border-green-400 rounded-3xl shadow-lg h-[70px] p-3 font-mono'>
+                    Percentile
+                    <br />
+                    <span className=''>{rank}%</span>
+                </p>
+                {/* <div className='border-[1px] border-green-400 w-12 h-12 rounded-full'>
+                    <p className='text-center p-2 text-xl'>{rank}</p>
+                </div> */}
             </div>
 
             <div className='p-6'>
@@ -40,18 +51,31 @@ const TalentCard: React.FC<TalentProps> = ({
                 <h3 className='text-xl text-gray-500'>{jobRole}</h3>
                 <p className='text-gray-600'>{location}</p>
                 <p className='text-gray-600'>{bio}</p>
-                <a href={github} className='text-blue-500 hover:underline'>
-                    <AiFillGithub className='text-xl text-green-400' /> Github
-                </a>
+                <div className='flex justify-start'>
+                    <a
+                        href={`https://github.com/${github}`}
+                        className='text-blue-500 hover:underline'
+                        target='blank'
+                    >
+                        <AiFillGithub className='text-2xl my-2 mr-2 text-green-400' />
+                    </a>
+                    <a
+                        href={`https://github.com/${github}`}
+                        className='text-blue-500 hover:underline'
+                        target='blank'
+                    >
+                        <BsLinkedin className='text-2xl my-2 text-green-400' />
+                    </a>
+                </div>
             </div>
             <div className='flex justify-between'>
                 <Link to={`/showdev/${id}`}>
-                    <button className='m-4 border-xl border-2 rounded-3xl w-[85px] text-white text-sm h-[36px] bg-green-600 hover:bg-green-800'>
+                    <button className='m-4 border-xl border-2 shadow-xl rounded-3xl w-[85px] text-white text-sm h-[36px] bg-green-600 hover:bg-green-800'>
                         Check Out
                     </button>
                 </Link>
                 <Link to={`/hiredev/${id}`}>
-                    <button className='m-4 border-xl border-2 rounded-3xl w-[85px] text-white text-sm h-[36px] bg-green-600 hover:bg-green-800'>
+                    <button className='m-4 border-xl border-2 shadow-xl rounded-3xl w-[85px] text-white text-sm h-[36px] bg-green-600 hover:bg-green-800'>
                         Hire
                     </button>
                 </Link>
