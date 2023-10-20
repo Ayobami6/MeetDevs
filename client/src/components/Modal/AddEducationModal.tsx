@@ -21,6 +21,9 @@ function AddProjectModal({ show, setShow }: modalProps) {
 
     await createEducation(data);
     tp.setRefresh(!tp.refresh);
+    const formElement = e.target as HTMLFormElement;
+    formElement.reset();
+    setShow(false);
   };
 
   return (
@@ -50,12 +53,12 @@ function AddProjectModal({ show, setShow }: modalProps) {
           </div>
           <div className={"flex start-end"}>
             <div className="form-control">
-              <label htmlFor="start">Start</label>
-              <input type="date" name={"start"} />
+              <label htmlFor="startDate">Start</label>
+              <input type="date" name={"startDate"} />
             </div>
             <div className="form-control">
-              <label htmlFor="end">End</label>
-              <input type="date" name={"end"} ref={endDateRef} />
+              <label htmlFor="endDate">End</label>
+              <input type="date" name={"endDate"} ref={endDateRef} />
               <h1 ref={textRef} style={{ display: "none" }}>
                 Present
               </h1>

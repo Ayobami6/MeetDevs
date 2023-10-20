@@ -19,6 +19,9 @@ function AddCertificateModal({ show, setShow }: modalProps) {
 
     await createExperience(data);
     tp.setRefresh(!tp.refresh);
+    const formElement = e.target as HTMLFormElement;
+    formElement.reset();
+    setShow(false);
   };
 
   return (

@@ -19,6 +19,9 @@ function AddSkillModal({ show, setShow }: modalProps) {
 
     await createSkill(data);
     tp.setRefresh(!tp.refresh);
+    const formElement = e.target as HTMLFormElement;
+    formElement.reset();
+    setShow(false);
   };
 
   return (

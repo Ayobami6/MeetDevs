@@ -149,7 +149,7 @@ const Talent = (): JSX.Element => {
                 <hr />
                 <Showwcase>
                   {talentSkills.map((skill) => (
-                    <SkillShowwcaseCard skill={skill} />
+                    <SkillShowwcaseCard skill={skill} key={skill._id} />
                   ))}
                 </Showwcase>
               </div>{" "}
