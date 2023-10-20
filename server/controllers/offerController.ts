@@ -84,7 +84,7 @@ export const getOffer = async <T>(
 // get offer by talentId
 export const getOfferByTalent = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ResponseDocument, string>
+    res: GenericResponse<ResponseDocument, string>,
 ) => {
     try {
         const { talentId } = req.params;
@@ -106,10 +106,11 @@ export const getOfferByTalent = async <T>(
     }
 };
 
+
 // get offer by employerId
 export const getOfferByEmployer = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ResponseDocument, string>
+    res: GenericResponse<ResponseDocument, string>,
 ) => {
     try {
         const { employerId } = req.params;

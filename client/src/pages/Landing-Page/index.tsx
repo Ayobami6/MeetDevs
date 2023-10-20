@@ -1,3 +1,4 @@
+
 import Home from "./Home";
 import Faq from "./FAQ";
 import AboutUs from "./About_us";
@@ -11,6 +12,6 @@ const LandingPage = () => {
       <Faq />
     </>
   );
-};
+}
 
 export default LandingPage;

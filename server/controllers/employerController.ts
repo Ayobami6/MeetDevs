@@ -9,7 +9,7 @@ const JWT_SECRET = process.env.JWT_SECRET ?? 'your-secret-key';
 export const employerSignup = async (
     req: Request,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
 ): Promise<Response | undefined> => {
     const { name, email, password } = req.body;
 
@@ -48,7 +48,7 @@ export const employerSignup = async (
 export const employerLogin = async (
     req: Request,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
 ): Promise<Response | undefined> => {
     const { email, password } = req.body;
 
