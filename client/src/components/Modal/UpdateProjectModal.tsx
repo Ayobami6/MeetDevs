@@ -39,7 +39,7 @@ function AddProjectModal({ show, setShow }: modalProps) {
               </h1>
             </div>
           </div>
-          <form className="form-control flex gap-2">
+          <div className="form-control flex gap-2">
             <label htmlFor="current">Current</label>
             <input
               type="checkbox"
@@ -47,7 +47,7 @@ function AddProjectModal({ show, setShow }: modalProps) {
               value="present"
               onChange={(e) => presentOrNot(e, endDateRef, textRef)}
             />
-          </form>
+          </div>
           <div className="form-control">
             <label htmlFor={"description"}>Description</label>
             <textarea name={"description"} />

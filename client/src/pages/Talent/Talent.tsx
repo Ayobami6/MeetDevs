@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import TalentNav from "../../components/Navbar/TalentNav";
 import "./Talent.css";
 import { FaFile } from "react-icons/fa";
@@ -13,71 +13,23 @@ import {
   EducationShowwcaseCard,
   ExperienceShowwcaseCard,
   ProjectShowwcaseCard,
+  SkillShowwcaseCard,
 } from "../../components/talentProfile/ShowwcaseCard.tsx";
 import AddCertificateModal from "../../components/Modal/AddCertificateModal.tsx";
 import AddSkillModal from "../../components/Modal/AddSkillModal.tsx";
+import { getTalentExperiences } from "../../api/experience.ts";
+import { getTalentProjects } from "../../api/project.ts";
+import { getTalentEducations } from "../../api/education.ts";
+import { getTalentCertifications } from "../../api/certifications.ts";
+import { getTalentSkills } from "../../api/skills.ts";
 
+// @ts-ignore
+export const TalentContext: React.Context<{
+  refresh: boolean;
+  setRefresh: React.Dispatch<React.SetStateAction<any>>;
+}> = createContext({});
 const Talent = (): JSX.Element => {
-  const exp = {
-    title: "Software Engineer",
-    company: "Google",
-    start: new Date(),
-    end: new Date(),
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl ultricies nunc, vitae aliq",
-    country: "India",
-    city: "Bangalore",
-  };
-  const exp1 = {
-    title: "Software Engineer",
-    company: "Google",
-    start: new Date(),
-    end: new Date(),
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl ultricies nunc, vitae aliq",
-    country: "India",
-    city: "Bangalore",
-  };
-
-  // dummy list of project objects
-  const projectList = [
-    {
-      talentId: "1",
-      name: "Project 1",
-      description: "Project 1 description",
-      startDate: new Date(),
-      endDate: new Date(),
-      link: "https://www.google.com",
-    },
-    {
-      talentId: "1",
-      name: "Project 2",
-      description: "Project 2 description",
-      startDate: new Date(),
-      endDate: new Date(),
-      link: "https://www.google.com",
-    },
-  ];
-
-  // dummy list of education objects
-  const educationList = [
-    {
-      talentId: "1",
-      school: "School 1",
-      degree: "Degree 1",
-      startDate: new Date(),
-      endDate: new Date(),
-      country: "Nigeria",
-      city: "benin",
-      description: "Description 1",
-    },
-  ];
-
-  const certificateList = [
-    { talentId: "1", title: "Certificate 1", description: "Description 1" },
-    { talentId: "1", title: "Certificate 2", description: "Description 2" },
-  ];
-
+  const [refresh, setRefresh] = useState(false);
   const { talentProfile } = localStorage;
   const temp = talentProfile ? JSON.parse(talentProfile as string).talent : {};
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -87,119 +39,142 @@ const Talent = (): JSX.Element => {
   const [showedu, setShowedu] = useState(false);
   const [showskill, setShowskill] = useState(false);
   const [showcert, setShowcert] = useState(false);
-  const [userExp, _setUserExp] = useState([exp, exp1]);
+  const [talentExperiences, setTalentExperiences] = useState([]);
+  const [talentProjects, setTalentProjects] = useState([]);
+  const [talentEducations, setTalentEducations] = useState([]);
+  const [talentSkills, setTalentSkills] = useState([]);
+  const [talentCertifications, setTalentCertifications] = useState([]);
 
-  // @ts-ignore
+  useEffect(() => {
+    // @ts-ignore
+    getTalentExperiences(user._id).then((value) => {
+      setTalentExperiences(value.data);
+    });
+    getTalentSkills(user._id).then((value) => setTalentSkills(value.data));
+    getTalentProjects(user._id).then((value) => setTalentProjects(value.data));
+    getTalentEducations(user._id).then((value) =>
+      setTalentEducations(value.data),
+    );
+    getTalentCertifications(user._id).then((value) =>
+      setTalentCertifications(value.data),
+    );
+  }, [refresh]);
   return (
     <>
       <TalentNav />
-      <div className="talent-page">
-        <div className="profile-info-card">
-          <div className="p-img">
-            <img src="src/assets/talents/no_image.png" alt="" />
-          </div>
-          <div className="info-con">
-            <div className="info">
-              <h2 className="text-xl font-bold">{user.name}</h2>
+      <TalentContext.Provider value={{ refresh, setRefresh }}>
+        <div className="talent-page">
+          <div className="profile-info-card">
+            <div className="p-img">
+              <img src="src/assets/talents/no_image.png" alt="" />
+            </div>
+            <div className="info-con">
+              <div className="info">
+                <h2 className="text-xl font-bold">{user.name}</h2>
+                <div>
+                  <a href="#" className="flex gap-2">
+                    <FaFile /> <p>View Resume</p>
+                  </a>
+                </div>
+              </div>
+
               <div>
-                <a href="#" className="flex gap-2">
-                  <FaFile /> <p>View Resume</p>
-                </a>
+                <TButton value="Edit Profile" />
               </div>
             </div>
+          </div>
 
-            <div>
-              <TButton value="Edit Profile" />
+          <div className="tt-content">
+            <div className="main">
+              <div className="showcase">
+                <AddNewComp
+                  title={"experience"}
+                  children={
+                    <AddExperienceModal show={showexp} setShow={setShowexp} />
+                  }
+                  onClick={() => {
+                    setShowexp(true);
+                  }}
+                />
+                <hr />
+                <Showwcase>
+                  {talentExperiences.map((exp) => (
+                    <ExperienceShowwcaseCard experience={exp} key={exp?._id} />
+                  ))}
+                </Showwcase>
+              </div>
+              <div className="showcase">
+                <AddNewComp
+                  title={"projects"}
+                  onClick={() => {
+                    setShowproj(true);
+                  }}
+                >
+                  <AddProjectModal show={showproj} setShow={setShowproj} />
+                </AddNewComp>
+                <hr />
+                <Showwcase>
+                  {talentProjects.map((project) => (
+                    <ProjectShowwcaseCard project={project} />
+                  ))}
+                </Showwcase>
+              </div>
+              <div className="showcase">
+                {" "}
+                <AddNewComp
+                  title={"education"}
+                  onClick={() => {
+                    setShowedu(true);
+                  }}
+                >
+                  <AddEducationModal show={showedu} setShow={setShowedu} />
+                </AddNewComp>
+                <hr />
+                <Showwcase>
+                  {talentEducations.map((education) => (
+                    <EducationShowwcaseCard education={education} />
+                  ))}
+                </Showwcase>
+              </div>{" "}
+              <div className="showcase">
+                {" "}
+                <AddNewComp
+                  title={"Skills"}
+                  onClick={() => {
+                    setShowskill(true);
+                  }}
+                >
+                  <AddSkillModal show={showskill} setShow={setShowskill} />
+                </AddNewComp>
+                <hr />
+                <Showwcase>
+                  {talentSkills.map((skill) => (
+                    <SkillShowwcaseCard skill={skill} />
+                  ))}
+                </Showwcase>
+              </div>{" "}
+              <div className="showcase">
+                {" "}
+                <AddNewComp
+                  title={"Certification"}
+                  onClick={() => {
+                    setShowcert(true);
+                  }}
+                >
+                  <AddCertificateModal show={showcert} setShow={setShowcert} />
+                </AddNewComp>
+                <hr />
+                <Showwcase>
+                  {talentCertifications.map((certs) => (
+                    <CertificationShowwcaseCard certificate={certs} />
+                  ))}
+                </Showwcase>
+              </div>
             </div>
+            <div className="sub-info"></div>
           </div>
         </div>
-
-        <div className="tt-content">
-          <div className="main">
-            <div className="showcase">
-              <AddNewComp
-                title={"experience"}
-                children={
-                  <AddExperienceModal show={showexp} setShow={setShowexp} />
-                }
-                onClick={() => {
-                  setShowexp(true);
-                }}
-              />
-              <hr />
-              <Showwcase>
-                {userExp.map((exp) => (
-                  <ExperienceShowwcaseCard experience={exp} />
-                ))}
-              </Showwcase>
-            </div>
-            <div className="showcase">
-              <AddNewComp
-                title={"projects"}
-                onClick={() => {
-                  setShowproj(true);
-                }}
-              >
-                <AddProjectModal show={showproj} setShow={setShowproj} />
-              </AddNewComp>
-              <Showwcase>
-                {projectList.map((project) => (
-                  <ProjectShowwcaseCard project={project} />
-                ))}
-              </Showwcase>
-            </div>
-            <div className="showcase">
-              {" "}
-              <AddNewComp
-                title={"education"}
-                onClick={() => {
-                  setShowedu(true);
-                }}
-              >
-                <AddEducationModal show={showedu} setShow={setShowedu} />
-              </AddNewComp>
-              <Showwcase>
-                {educationList.map((education) => (
-                  <EducationShowwcaseCard education={education} />
-                ))}
-              </Showwcase>
-            </div>{" "}
-            <div className="showcase">
-              {" "}
-              <AddNewComp
-                title={"Skills"}
-                onClick={() => {
-                  setShowskill(true);
-                }}
-              >
-                <AddSkillModal show={showskill} setShow={setShowskill} />
-              </AddNewComp>
-              <Showwcase>
-                {educationList.map((education) => (
-                  <EducationShowwcaseCard education={education} />
-                ))}
-              </Showwcase>
-            </div>{" "}
-            <div className="showcase">
-              {" "}
-              <AddNewComp
-                title={"Certification"}
-                onClick={() => {
-                  setShowcert(true);
-                }}
-              >
-                <AddCertificateModal show={showcert} setShow={setShowcert} />
-              </AddNewComp>
-              <Showwcase>
-                {certificateList.map((certs) => (
-                  <CertificationShowwcaseCard certificate={certs} />
-                ))}
-              </Showwcase>
-            </div>
-          </div>
-          <div className="sub-info"></div>
-        </div>
-      </div>
+      </TalentContext.Provider>
     </>
   );
 };

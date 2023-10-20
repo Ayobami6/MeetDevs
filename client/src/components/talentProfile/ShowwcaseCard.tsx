@@ -11,13 +11,13 @@ import UpdateSkillModal from "../Modal/UpdateSkillModal.tsx";
 
 interface experienceProp {
   experience: {
-    title: string;
-    company: string;
-    start: Date;
-    end: Date;
+    _id: string;
+    jobTitle: string;
+    employer: string;
+    startDate: string;
+    endDate: string;
     description: string;
     country: string;
-    city: string;
   };
 }
 
@@ -68,23 +68,29 @@ const ExperienceShowwcaseCard: React.FC<experienceProp> = ({
   const [showexp, setShowexp] = useState(false);
 
   return (
-    <div className={"showwcasecard"}>
+    <div className={"showwcasecard"} key={experience._id}>
       <div className={"experience"}>
         <div className={"title"}>
-          <h1>{experience.title}</h1>
+          <h1>{experience.jobTitle}</h1>
         </div>
         <div className={"work-info"}>
-          <p>{experience.company}</p>
+          <p>{experience.employer}</p>
           &bull;
           <p>
-            {experience.start.getFullYear()} - {experience.end.getFullYear()}
+            {new Date(experience.startDate).toDateString()} -{" "}
+            {new Date(experience.endDate).toDateString()}
           </p>
           &bull;
-          <p>{noOfMonths(experience.start, experience.end)} mo</p>
+          <p>
+            {noOfMonths(
+              new Date(experience.startDate),
+              new Date(experience.endDate),
+            )}{" "}
+            mo
+          </p>
         </div>
         <div className={"location-info"}>
           <p>{experience.country}</p>
-          <p>{experience.city}</p>
         </div>
         <div className={"description"}>
           <p>{experience.description}</p>
@@ -119,11 +125,11 @@ const ProjectShowwcaseCard: React.FC<projectProps> = ({
             <FaGlobe />
           </a>
           &bull;
-          <p>
-            {project.startDate.getFullYear()} - {project.endDate.getFullYear()}
-          </p>
-          &bull;
-          <p>{noOfMonths(project.startDate, project.endDate)} mo</p>
+          {/*<p>*/}
+          {/*  {project.startDate.getFullYear()} - {project.endDate.getFullYear()}*/}
+          {/*</p>*/}
+          {/*&bull;*/}
+          {/*<p>{noOfMonths(project.startDate, project.endDate)} mo</p>*/}
         </div>
 
         <div className={"description"}>
