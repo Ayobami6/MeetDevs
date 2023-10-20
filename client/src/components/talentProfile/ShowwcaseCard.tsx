@@ -121,6 +121,7 @@ const ExperienceShowwcaseCard: React.FC<experienceProp> = ({
 };
 const ProjectShowwcaseCard: React.FC<projectProps> = ({
     project,
+    showEdit = true,
 }): React.ReactElement => {
     const [showproj, setShowproj] = useState(false);
     return (
@@ -157,17 +158,22 @@ const ProjectShowwcaseCard: React.FC<projectProps> = ({
                 setShow={setShowproj}
                 info={project}
             />
-            <TButton
-                value={'edit'}
-                onClick={() => {
-                    setShowproj(true);
-                }}
-            />
+            {showEdit ? (
+                <TButton
+                    value={'edit'}
+                    onClick={() => {
+                        setShowproj(true);
+                    }}
+                />
+            ) : (
+                ''
+            )}
         </div>
     );
 };
 const EducationShowwcaseCard: React.FC<educationProps> = ({
     education,
+    showEdit = true,
 }): React.ReactElement => {
     const [showedu, setShowedu] = useState(false);
 
@@ -206,17 +212,22 @@ const EducationShowwcaseCard: React.FC<educationProps> = ({
                 setShow={setShowedu}
                 info={education}
             />
-            <TButton
-                value={'edit'}
-                onClick={() => {
-                    setShowedu(true);
-                }}
-            />{' '}
+            {showEdit ? (
+                <TButton
+                    value={'edit'}
+                    onClick={() => {
+                        setShowedu(true);
+                    }}
+                />
+            ) : (
+                ''
+            )}
         </div>
     );
 };
 const CertificationShowwcaseCard: React.FC<certificateProps> = ({
     certificate,
+    showEdit = true,
 }): React.ReactElement => {
     const [showcert, setShowcert] = useState(false);
 
@@ -238,17 +249,20 @@ const CertificationShowwcaseCard: React.FC<certificateProps> = ({
                 setShow={setShowcert}
                 info={certificate}
             />
-            <TButton
-                value={'edit'}
-                onClick={() => {
-                    setShowcert(true);
-                }}
-            />{' '}
+            {showEdit && (
+                <TButton
+                    value={'edit'}
+                    onClick={() => {
+                        setShowcert(true);
+                    }}
+                />
+            )}
         </div>
     );
 };
 const SkillShowwcaseCard: React.FC<skillProps> = ({
     skill,
+    showEdit = true,
 }): React.ReactElement => {
     const [showskill, setShowskill] = useState(false);
 
@@ -267,12 +281,14 @@ const SkillShowwcaseCard: React.FC<skillProps> = ({
                 setShow={setShowskill}
                 info={skill}
             />
-            <TButton
-                value={'edit'}
-                onClick={() => {
-                    setShowskill(true);
-                }}
-            />{' '}
+            {showEdit && (
+                <TButton
+                    value={'edit'}
+                    onClick={() => {
+                        setShowskill(true);
+                    }}
+                />
+            )}
         </div>
     );
 };

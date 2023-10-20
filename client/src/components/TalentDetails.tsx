@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { getExperiencesTalent } from '../actions/experience';
+import { getEducationsTalent } from '../actions/education.ts';
+import { getProjectsTalent } from '../actions/project.ts';
+import { getSkillsTalent } from '../actions/skill.ts';
+import { getCertificationsTalent } from '../actions/certifications.ts';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Showwcase from '../components/talentProfile/Showwcase.tsx';
@@ -16,12 +20,18 @@ const TalentDetails = ({ talent }) => {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState();
     const experiences = useSelector((state) => state.talentData.experiences);
+    const educations = useSelector((state) => state.talentData.educations);
+    const projects = useSelector((state) => state.talentData.projects);
+    const skills = useSelector((state) => state.talentData.skills);
+    const certs = useSelector((state) => state.talentData.certifications);
 
     useEffect(() => {
         dispatch(getExperiencesTalent(id, setLoading));
-    }, []);
-
-    console.log(experiences);
+        dispatch(getEducationsTalent(id, setLoading));
+        dispatch(getProjectsTalent(id, setLoading));
+        dispatch(getSkillsTalent(id, setLoading));
+        dispatch(getCertificationsTalent(id, setLoading));
+    }, [id, dispatch]);
 
     return (
         <>
@@ -74,7 +84,15 @@ const TalentDetails = ({ talent }) => {
                     <div>
                         <h2 className='text-3xl font-semibold'>Education</h2>
                         <div className='my-5'>
-                            <h3>All Education</h3>
+                            <Showwcase>
+                                {educations.map((edu) => (
+                                    <EducationShowwcaseCard
+                                        education={edu}
+                                        key={edu?._id}
+                                        showEdit={false}
+                                    />
+                                ))}
+                            </Showwcase>
                         </div>
                     </div>
 
@@ -83,7 +101,15 @@ const TalentDetails = ({ talent }) => {
                     <div>
                         <h2 className='text-3xl font-semibold'>Project</h2>
                         <div className='my-5'>
-                            <h3>All Projects</h3>
+                            <Showwcase>
+                                {projects.map((proj) => (
+                                    <ProjectShowwcaseCard
+                                        project={proj}
+                                        key={proj?._id}
+                                        showEdit={false}
+                                    />
+                                ))}
+                            </Showwcase>
                         </div>
                     </div>
 
@@ -92,7 +118,15 @@ const TalentDetails = ({ talent }) => {
                     <div>
                         <h2 className='text-3xl font-semibold'>Skills</h2>
                         <div className='my-5'>
-                            <h3>All Skills</h3>
+                            <Showwcase>
+                                {skills.map((skill) => (
+                                    <SkillShowwcaseCard
+                                        skill={skill}
+                                        key={skill?._id}
+                                        showEdit={false}
+                                    />
+                                ))}
+                            </Showwcase>
                         </div>
                     </div>
                     <hr className='my-5' />
@@ -102,7 +136,15 @@ const TalentDetails = ({ talent }) => {
                             Certification
                         </h2>
                         <div className='my-5'>
-                            <h3>All Certifications</h3>
+                            <Showwcase>
+                                {certs.map((cert) => (
+                                    <CertificationShowwcaseCard
+                                        certificate={cert}
+                                        key={cert?._id}
+                                        showEdit={false}
+                                    />
+                                ))}
+                            </Showwcase>
                         </div>
                     </div>
                 </div>
