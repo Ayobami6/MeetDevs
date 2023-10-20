@@ -23,12 +23,10 @@ export const getExperiencesTalent =
 
 export const ExperienceUpdate = (id, ExperienceData) => async (dispatch) => {
     try {
-        // dispatch({ type: 'START_LOADING' });
         const { data } = await updateExperience(id, ExperienceData);
         dispatch({ type: 'UPDATE_TALENT_EXPERIENCE', payload: data });
-        // dispatch({ type: 'END_LOADING' });
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
     }
 };
 
@@ -39,7 +37,7 @@ export const ExperienceDelete = (id) => async (dispatch) => {
         dispatch({ type: 'DELETE_TALENT_EXPERIENCE', payload: id });
         // setLoading(false);
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
     }
 };
 
@@ -51,6 +49,6 @@ export const ExperienceCreate =
             dispatch({ type: 'CREATE_TALENT_EXPERIENCE', payload: data });
             setLoading(false);
         } catch (error) {
-            console.log(error.message);
+            console.log(error);
         }
     };
