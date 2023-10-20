@@ -23,6 +23,7 @@ interface experienceProp {
 
 interface projectProps {
   project: {
+    _id: string;
     talentId: string;
     name?: string;
     description?: string;
@@ -34,6 +35,7 @@ interface projectProps {
 
 interface educationProps {
   education: {
+    _id: string;
     talentId?: string;
     degree: string;
     school: string;
@@ -47,6 +49,7 @@ interface educationProps {
 
 interface certificateProps {
   certificate: {
+    _id: string;
     talentId: string;
     title?: string;
     description?: string;
@@ -56,6 +59,7 @@ interface certificateProps {
 
 interface skillProps {
   skill: {
+    _id: string;
     talentId: string;
     name?: string;
     subSkills?: string;
@@ -125,11 +129,15 @@ const ProjectShowwcaseCard: React.FC<projectProps> = ({
             <FaGlobe />
           </a>
           &bull;
-          {/*<p>*/}
-          {/*  {project.startDate.getFullYear()} - {project.endDate.getFullYear()}*/}
-          {/*</p>*/}
-          {/*&bull;*/}
-          {/*<p>{noOfMonths(project.startDate, project.endDate)} mo</p>*/}
+          <p>
+            {new Date(project.startDate).toDateString()} -{" "}
+            {new Date(project.endDate).toDateString()}
+          </p>
+          &bull;
+          <p>
+            {noOfMonths(new Date(project.startDate), new Date(project.endDate))}{" "}
+            mo
+          </p>
         </div>
 
         <div className={"description"}>
@@ -165,11 +173,17 @@ const EducationShowwcaseCard: React.FC<educationProps> = ({
           <p>{education.school}</p>
           &bull;
           <p>
-            {education.startDate.getFullYear()} -{" "}
-            {education.endDate.getFullYear()}
+            {new Date(education.startDate).toDateString()} -{" "}
+            {new Date(education.endDate).toDateString()}
           </p>
           &bull;
-          <p>{noOfMonths(education.startDate, education.endDate)} mo</p>
+          <p>
+            {noOfMonths(
+              new Date(education.startDate),
+              new Date(education.endDate),
+            )}{" "}
+            mo
+          </p>
         </div>
         <div className={"location-info"}>
           <p>{education.country}</p>
