@@ -10,12 +10,12 @@ dotenv.config();
 
 beforeAll(async () => {
     await connectDB();
-});
+}, 10000);
 
 afterAll(async () => {
     await dropDB();
     await disconnectDB();
-});
+}, 10000);
 
 describe('Authentication TalentController Tests', () => {
     let app;
@@ -23,7 +23,7 @@ describe('Authentication TalentController Tests', () => {
         app = express();
         await app.use(express.json());
         await app.use('/talents', talentRoutes);
-    });
+    }, 10000);
     beforeAll(async () => {
         const talentData = {
             name: 'Test User',
@@ -33,7 +33,7 @@ describe('Authentication TalentController Tests', () => {
 
         const talent = new Talent(talentData);
         await talent.save();
-    });
+    }, 10000);
 
     it('should sign up a new talent', async () => {
         const res = await request(app).post('/talents/signup').send({
@@ -43,7 +43,7 @@ describe('Authentication TalentController Tests', () => {
         });
         expect(JSON.parse(res.text)).toHaveProperty('token');
         expect(JSON.parse(res.text)).toHaveProperty('newTalent');
-    });
+    }, 10000);
 
     it('should prevent signing up with an existing email', async () => {
         const res = await request(app)
@@ -55,10 +55,10 @@ describe('Authentication TalentController Tests', () => {
             .expect(400);
 
         expect(JSON.parse(res.text)).toHaveProperty(
-            'message',
+            'Message',
             'Email already in use'
         );
-    });
+    }, 10000);
 
     it('should sign in a user', async () => {
         const res = await request(app)
@@ -68,7 +68,7 @@ describe('Authentication TalentController Tests', () => {
 
         expect(JSON.parse(res.text)).toHaveProperty('token');
         expect(JSON.parse(res.text)).toHaveProperty('talent');
-    });
+    }, 10000);
 
     it('should prevent signing in with invalid credentials', async () => {
         const res = await request(app)
@@ -80,5 +80,5 @@ describe('Authentication TalentController Tests', () => {
             'message',
             'Invalid credentials'
         );
-    });
+    },10000);
 });

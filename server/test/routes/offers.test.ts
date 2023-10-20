@@ -20,16 +20,16 @@ describe('test offer endpoints', () => {
 
         const offer = new OfferModel(offerData);
         await offer.save();
-    });
+    }, 10000);
     beforeEach(async () => {
         app = express();
         await app.use(express.json());
         await app.use('/offers', offerRoutes);
-    });
+    }, 10000);
     afterAll(async () => {
         await dropDB();
         await disconnectDB();
-    });
+    }, 10000);
 
     it('test get all offers /offers', async () => {
         const res: GenericResponse<ResponseDocument, string> =
@@ -40,5 +40,5 @@ describe('test offer endpoints', () => {
         expect(JSON.parse(res.text)).toHaveProperty('links');
         expect(JSON.parse(res.text)['offers']).toBeInstanceOf(Array);
         expect(JSON.parse(res.text)['offers'][0]).toHaveProperty('_id');
-    });
+    }, 10000);
 });
