@@ -6,7 +6,7 @@ import { errorHandler } from '../errors/customError';
 // add experience
 export const addExperience = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ExperienceResponse, string>
+    res: GenericResponse<ExperienceResponse, string>,
 ) => {
     try {
         const data: T = req.body;
@@ -20,7 +20,7 @@ export const addExperience = async <T>(
 // get all experience
 export const getAllExperience = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ExperienceResponse, string>
+    res: GenericResponse<ExperienceResponse, string>,
 ) => {
     try {
         const experiences: Array<T> = await Experience.find();
@@ -34,7 +34,7 @@ export const getAllExperience = async <T>(
 
 export const getExperience = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ExperienceResponse, string>
+    res: GenericResponse<ExperienceResponse, string>,
 ) => {
     try {
         const { id } = req.params;
@@ -49,14 +49,17 @@ export const getExperience = async <T>(
 // get an experience by ID
 export const getExperienceByTalent = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ExperienceResponse, string>
+    res: GenericResponse<ExperienceResponse, string>,
 ) => {
+    console.log('here');
     try {
         const { talentId } = req.params;
         const experience = await Experience.find({ talentId });
         if (!experience)
             return res.status(404).json({ message: 'Experience not found' });
+        return res.status(200).json(experience);
     } catch (error) {
+        console.log('here');
         errorHandler(error, res);
     }
 };
@@ -64,7 +67,7 @@ export const getExperienceByTalent = async <T>(
 // update an experience
 export const updateExperience = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ExperienceResponse, string>
+    res: GenericResponse<ExperienceResponse, string>,
 ) => {
     try {
         const { id } = req.params;
@@ -81,7 +84,7 @@ export const updateExperience = async <T>(
 // delete experience
 export const deleteExperience = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ExperienceResponse, string>
+    res: GenericResponse<ExperienceResponse, string>,
 ) => {
     try {
         const { id } = req.params;

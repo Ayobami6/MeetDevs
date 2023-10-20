@@ -10,8 +10,8 @@ import {
 
 const router = express.Router();
 
-router.post('/', addExperience);
 router.get('/', getAllExperience);
+router.post('/', addExperience);
 router.get('/:id', getExperience);
 router.put('/:id', updateExperience);
 router.patch('/:id', updateExperience);

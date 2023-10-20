@@ -5,7 +5,7 @@ import Project from '../models/projectModel';
 // add a Project
 export const addProject = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ProjectResponse, string>
+    res: GenericResponse<ProjectResponse, string>,
 ) => {
     try {
         const projectData: T = req.body;
@@ -20,7 +20,7 @@ export const addProject = async <T>(
 // get all Project
 export const getAllProject = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ProjectResponse, string>
+    res: GenericResponse<ProjectResponse, string>,
 ) => {
     try {
         const projects: Array<T> = await Project.find();
@@ -34,7 +34,7 @@ export const getAllProject = async <T>(
 // get a Project
 export const getAProject = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ProjectResponse, string>
+    res: GenericResponse<ProjectResponse, string>,
 ) => {
     try {
         const { id } = req.params;
@@ -50,14 +50,14 @@ export const getAProject = async <T>(
 
 export const getAProjectByTalent = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ProjectResponse, string>
+    res: GenericResponse<ProjectResponse, string>,
 ) => {
     try {
         const { talentId } = req.params;
         const project = await Project.find({ talentId });
         if (!project)
             return res.status(404).json({ message: 'Project not found' });
-        res.status(200).json(Project);
+        res.status(200).json(project);
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: 'Internal Server Error' });
@@ -67,7 +67,7 @@ export const getAProjectByTalent = async <T>(
 // update Project
 export const updateProject = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ProjectResponse, string>
+    res: GenericResponse<ProjectResponse, string>,
 ) => {
     try {
         const { id } = req.params;
@@ -84,7 +84,7 @@ export const updateProject = async <T>(
 // delete Project
 export const deleteProject = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<ProjectResponse, string>
+    res: GenericResponse<ProjectResponse, string>,
 ) => {
     try {
         const { id } = req.params;

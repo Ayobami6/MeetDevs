@@ -1,63 +1,40 @@
 import "./styles/AddExperienceModal.css";
 import TButton from "../Button/TButton.tsx";
 import { modalProps } from "./interfaces/modaInterface.ts";
-import { useContext, useRef } from "react";
+import { useRef } from "react";
 import { presentOrNot } from "./utils/helpers.ts";
-import { createExperience } from "../../api/experience.ts";
-import { TalentContext } from "../../pages/Talent/Talent.tsx";
 
 function AddExperienceModal({ show, setShow }: modalProps): JSX.Element {
   const endDateRef = useRef<HTMLInputElement>(null);
   const textRef = useRef<HTMLInputElement>(null);
 
-  const { talentProfile } = localStorage;
-  const tal = talentProfile ? JSON.parse(talentProfile as string).talent : {};
   const modalStyle = show ? "showModal" : "";
-  const tp = useContext(TalentContext);
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.target as HTMLFormElement);
-
-    formData.append("talentId", tal._id);
-    const data = Object.fromEntries(formData);
-
-    await createExperience(data);
-    tp.setRefresh(!tp.refresh);
-    const formElement = e.target as HTMLFormElement;
-    formElement.reset();
-    setShow(false);
-  };
 
   return (
     <div className={"Modal " + modalStyle}>
       <div className={"content"}>
         <div className={"header-11"}>
-          <h1>Add Position</h1>{" "}
+          <h1>Update Position</h1>{" "}
           <TButton value={"X"} onClick={() => setShow(false)} />
         </div>
         <hr />
-        <form
-          onSubmit={async (e) => {
-            await handleSubmit(e);
-          }}
-        >
+        <form>
           <div className="form-control">
-            <label htmlFor="jobTitle">Title</label>
-            <input type="text" name={"jobTitle"} />
+            <label htmlFor="title">Title</label>
+            <input type="text" name={"title"} />
           </div>
           <div className="form-control">
-            <label htmlFor="employer">Company</label>
-            <input type="text" name={"employer"} />
+            <label htmlFor="company">Company</label>
+            <input type="text" name={"company"} />
           </div>
           <div className={"flex start-end"}>
             <div className="form-control">
-              <label htmlFor="startDate">Start</label>
-              <input type="date" name={"startDate"} />
+              <label htmlFor="start">Start</label>
+              <input type="date" name={"start"} />
             </div>
             <div className="form-control">
-              <label htmlFor="endDate">End</label>
-              <input type="date" name={"endDate"} ref={endDateRef} />
+              <label htmlFor="end">End</label>
+              <input type="date" name={"end"} ref={endDateRef} />
               <h1 ref={textRef} style={{ display: "none" }}>
                 Present
               </h1>
@@ -78,8 +55,17 @@ function AddExperienceModal({ show, setShow }: modalProps): JSX.Element {
           </div>
 
           <div className="form-control">
+            <label htmlFor={"description"}>Company</label>
+            <input type="text" name={"description"} />
+          </div>
+          <div className="form-control">
             <label htmlFor={"country"}>Country</label>
             <input type="text" name={"country"} />
+          </div>
+
+          <div className="form-control">
+            <label htmlFor={"city"}>City</label>
+            <input type="text" name={"city"} />
           </div>
 
           {/*  add a save button */}

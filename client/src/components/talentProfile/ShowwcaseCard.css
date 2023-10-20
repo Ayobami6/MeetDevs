@@ -1,0 +1,32 @@
+.showwcasecard {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+.showwcasecard .experience {
+  display: flex;
+  flex-direction: column;
+}
+.showwcasecard .experience .work-info {
+  display: flex;
+  gap: 0.5rem;
+}
+.showwcasecard .experience .location-info {
+  display: flex;
+  gap: 0.5rem;
+}
+.showwcasecard .project {
+  display: flex;
+  flex-direction: column;
+}
+.showwcasecard .project .project-info {
+  display: flex;
+  gap: 0.5rem;
+}
+.showwcasecard .title > h1 {
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+
+/*# sourceMappingURL=ShowwcaseCard.css.map */

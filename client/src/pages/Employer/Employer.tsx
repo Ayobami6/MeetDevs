@@ -14,7 +14,6 @@ const Employer = () => {
     useEffect(() => {
         dispatch(getTalents(setLoading));
     }, [dispatch]);
-    console.log(talents);
     return (
         <>
             <TalentNav />
@@ -36,6 +35,7 @@ const Employer = () => {
                                 github={talent.github}
                                 profileImg={talent.profileImg}
                                 id={talent._id}
+                                rank={talent.rank}
                             />
                         ))}
                     </div>
