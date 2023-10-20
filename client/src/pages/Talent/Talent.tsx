@@ -88,7 +88,7 @@ const Talent = (): JSX.Element => {
             <div className="main">
               <div className="showcase">
                 <AddNewComp
-                  title={"experience"}
+                  title={"Experiences"}
                   children={
                     <AddExperienceModal show={showexp} setShow={setShowexp} />
                   }
@@ -105,7 +105,7 @@ const Talent = (): JSX.Element => {
               </div>
               <div className="showcase">
                 <AddNewComp
-                  title={"projects"}
+                  title={"Projects"}
                   onClick={() => {
                     setShowproj(true);
                   }}
@@ -122,7 +122,7 @@ const Talent = (): JSX.Element => {
               <div className="showcase">
                 {" "}
                 <AddNewComp
-                  title={"education"}
+                  title={"Educations"}
                   onClick={() => {
                     setShowedu(true);
                   }}
