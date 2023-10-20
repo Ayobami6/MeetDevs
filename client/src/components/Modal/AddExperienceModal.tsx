@@ -18,6 +18,7 @@ function AddExperienceModal({ show, setShow }: modalProps): JSX.Element {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
+
     formData.append("talentId", tal._id);
     const data = Object.fromEntries(formData);
 
