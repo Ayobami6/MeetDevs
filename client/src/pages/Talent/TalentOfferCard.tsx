@@ -60,9 +60,7 @@ const TalentOfferCard: React.FC<TalentOfferCardProps> = ({
                                 Job Title: {offer.title}
                             </h1>
                             <p className='hidden sm:block'>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua.
+                                {offer.description}
                             </p>
                         </div>
                         <div className='flex justify-center sm:justify-end m-2 sm:m-5 sm:flex-wrap gap-2 sm:gap-3'>

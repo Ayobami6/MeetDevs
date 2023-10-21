@@ -29,46 +29,56 @@ const GetRanked = () => {
     const calculatePercentile = async () => {
         let score = 0;
         let percentile = 0;
-        if (talentUser.github) {
-            const result = await getGithubData(talentUser.github);
-            if (result.data.public_repos <= 30) score += 30;
-            else if (
-                result.data.public_repos > 30 &&
-                result.data.public_repos <= 70
-            )
-                score += 70;
-            else score += 100;
 
-            const updatedDate = new Date(result.data.updated_at);
-            const createdDate = new Date(result.data.created_at);
+        if (!talentUser.github) return [score, percentile];
 
-            const timeDifference = updatedDate - createdDate;
+        const result = await getGithubData(talentUser.github);
+        const { public_repos, created_at, updated_at, followers } = result.data;
 
-            const millisecondsInYear = 1000 * 60 * 60 * 24 * 365.25;
-            const yearsOfExperience = timeDifference / millisecondsInYear;
+        const repoRanges = [
+            [[0, 30], 30],
+            [[31, 70], 70],
+            [[71, Infinity], 100],
+        ];
 
-            const roundedYears = Math.round(yearsOfExperience);
-            if (roundedYears <= 3) score += 30;
-            else if (yearsOfExperience > 3 && yearsOfExperience <= 7)
-                score += 70;
-            else score += 100;
+        const experienceRanges = [
+            [[0, 3], 30],
+            [[4, 7], 70],
+            [[8, Infinity], 100],
+        ];
 
-            if (result.data.followers <= 30) score += 30;
-            else if (result.data.followers > 30 && result.data.followers <= 70)
-                score += 70;
-            else score += 100;
-
-            if (scores.length <= 1) {
-                percentile = 100;
-            } else {
-                scores.sort((a, b) => a - b);
-                const lesserScores = scores.filter((item) => item < score);
-                const lesserScoreLen = lesserScores.length;
-                if (lesserScoreLen <= 1) percentile = 100;
-                else percentile = (lesserScoreLen / scores.length) * 100;
+        const calculateScore = (value, ranges) => {
+            for (const [range, points] of ranges) {
+                if (value >= range[0] && value <= range[1]) {
+                    score += points;
+                    break;
+                }
             }
-            console.log(percentile);
-            return [score, percentile];
+        };
+
+        const updatedDate = new Date(updated_at);
+        const createdDate = new Date(created_at);
+
+        const timeDifference = updatedDate - createdDate;
+
+        const millisecondsInYear = 1000 * 60 * 60 * 24 * 365.25;
+        const yearsOfExperience = timeDifference / millisecondsInYear;
+
+        const roundedYears = Math.round(yearsOfExperience);
+
+        calculateScore(public_repos, repoRanges);
+        calculateScore(roundedYears, experienceRanges);
+
+        calculateScore(followers, repoRanges);
+
+        if (scores.length <= 1) {
+            percentile = 100;
+        } else {
+            scores.sort((a, b) => a - b);
+            const lesserScores = scores.filter((item) => item < score);
+            const lesserScoreLen = lesserScores.length;
+            if (lesserScoreLen <= 1) percentile = 100;
+            else percentile = (lesserScoreLen / scores.length) * 100;
         }
         return [score, percentile];
     };
