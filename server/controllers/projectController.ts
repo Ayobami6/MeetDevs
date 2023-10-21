@@ -75,6 +75,7 @@ export const updateProject = async <T>(
         const project = await Project.findByIdAndUpdate(id, data);
         if (!project)
             return res.status(404).json({ message: 'Project not found' });
+        res.status(200).json(project);
     } catch (error) {
         console.log(error.message);
         res.status(500).json({ message: 'Internal Server Error' });

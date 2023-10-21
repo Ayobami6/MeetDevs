@@ -6,7 +6,7 @@ import Certification from '../models/certificationModel';
 // add a Certification
 export const addCertification = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<CertificationResponse, string>
+    res: GenericResponse<CertificationResponse, string>,
 ) => {
     try {
         const certificationData: T = req.body;
@@ -23,7 +23,7 @@ export const addCertification = async <T>(
 // get all Certification
 export const getAllCertification = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<CertificationResponse, string>
+    res: GenericResponse<CertificationResponse, string>,
 ) => {
     try {
         const certifications: Array<T> = await Certification.find();
@@ -37,7 +37,7 @@ export const getAllCertification = async <T>(
 // get a Certification
 export const getACertification = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<CertificationResponse, string>
+    res: GenericResponse<CertificationResponse, string>,
 ) => {
     try {
         const { id } = req.params;
@@ -54,7 +54,7 @@ export const getACertification = async <T>(
 // get Certifications by Talent
 export const getCertificationByTalent = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<CertificationResponse, string>
+    res: GenericResponse<CertificationResponse, string>,
 ) => {
     try {
         const { talentId } = req.params;
@@ -71,7 +71,7 @@ export const getCertificationByTalent = async <T>(
 // update Certification
 export const updateCertification = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<CertificationResponse, string>
+    res: GenericResponse<CertificationResponse, string>,
 ) => {
     try {
         const { id } = req.params;
@@ -79,6 +79,7 @@ export const updateCertification = async <T>(
         const certification = await Certification.findByIdAndUpdate(id, data);
         if (!certification)
             return res.status(404).json({ message: 'Certification not found' });
+        res.status(200).json(certification);
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: 'Internal Server Error' });
@@ -88,7 +89,7 @@ export const updateCertification = async <T>(
 // delete Certification
 export const deleteCertification = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<CertificationResponse, string>
+    res: GenericResponse<CertificationResponse, string>,
 ) => {
     try {
         const { id } = req.params;
