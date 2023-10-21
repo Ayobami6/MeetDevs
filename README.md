@@ -47,7 +47,7 @@ A platform where developers from across the globe meets employers and vice versa
 
 # 📖 MeetDevs <a name="about-project"></a>
 
-**MeetDevs** is a cutting-edge website designed to connect employers with talented individuals in the tech industry. With a user-friendly interface and advanced search features, MeetDevs makes it easy for employers to find the perfect candidates for their projects or job openings. Employers can browse through a diverse pool of skilled professionals, filtering by specific skills, experience level, and location. The platform also allows employers to view detailed profiles, portfolios, and resumes of potential hires, making the selection process more efficient and informed. MeetDevs aims to streamline the hiring process, bringing together employers and talented developers in a seamless and productive manner.
+**MeetDevs** is a cutting-edge website designed to connect employers with talented individuals in the tech industry. With a user-friendly interface and advanced search features, MeetDevs makes it easy for employers to find the perfect candidates for their projects or job openings. Employers can browse through a diverse pool of skilled professionals, filtering by specific skills, experience level, and location. The platform also allows employers to view detailed profiles, portfolios, and resumes of potential hires, making the selection process more efficient and informed. MeetDevs aims to streamline the hiring process, bringing together employers and talented developers in a seamless and productive manner. You don't have to be a networking pro! to get that your dream job, you just need be a master at your craft and you will get that your dream job you deserve. So, even as an introvert you can get that job
 ## 🛠 Built With <a name="built-with"></a>
 
 ### MERN Stack <a name="tech-stack"></a>
@@ -63,10 +63,8 @@ A platform where developers from across the globe meets employers and vice versa
 
 ### Key Features <a name="key-features"></a>
 
-- **Ranking System**:
-- **Fairness Policy**:
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+- **Ranking System**: Talent get ranked based on their skills, years of experience and collaborations, leveraging github api to obtain metrics to be used to calculate talent rank percentile and weekly coding challenge, thus employer can easily identify the top 1% on the platform 
+- **Fairness Policy**: Every talent has a fair chance of getting their dream job, for no talent can accept two offers at a time, hence, other talent has a fair chance of getting served eventually. 
 
 <!-- LIVE DEMO -->
 
