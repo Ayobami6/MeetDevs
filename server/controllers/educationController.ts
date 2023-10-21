@@ -5,7 +5,7 @@ import Education from '../models/educationModel';
 // add a Education
 export const addEducation = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<EducationResponse, string>
+    res: GenericResponse<EducationResponse, string>,
 ) => {
     try {
         const educationData: T = req.body;
@@ -20,7 +20,7 @@ export const addEducation = async <T>(
 // get all Education
 export const getAllEducation = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<EducationResponse, string>
+    res: GenericResponse<EducationResponse, string>,
 ) => {
     try {
         const educations: Array<T> = await Education.find();
@@ -34,7 +34,7 @@ export const getAllEducation = async <T>(
 // get a Education
 export const getAnEducation = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<EducationResponse, string>
+    res: GenericResponse<EducationResponse, string>,
 ) => {
     try {
         const { id } = req.params;
@@ -51,7 +51,7 @@ export const getAnEducation = async <T>(
 // get a Education by Talent
 export const getAnEducationByTalent = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<EducationResponse, string>
+    res: GenericResponse<EducationResponse, string>,
 ) => {
     try {
         const { talentId } = req.params;
@@ -68,7 +68,7 @@ export const getAnEducationByTalent = async <T>(
 // update Education
 export const updateEducation = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<EducationResponse, string>
+    res: GenericResponse<EducationResponse, string>,
 ) => {
     try {
         const { id } = req.params;
@@ -76,6 +76,7 @@ export const updateEducation = async <T>(
         const education = await Education.findByIdAndUpdate(id, data);
         if (!education)
             return res.status(404).json({ message: 'Education not found' });
+        res.status(200).json(education);
     } catch (error) {
         console.log(error.message);
         res.status(500).json({ message: 'Internal Server Error' });
@@ -85,7 +86,7 @@ export const updateEducation = async <T>(
 // delete Education
 export const deleteEducation = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<EducationResponse, string>
+    res: GenericResponse<EducationResponse, string>,
 ) => {
     try {
         const { id } = req.params;

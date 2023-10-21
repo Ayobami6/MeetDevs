@@ -13,6 +13,7 @@ export const getEducationsTalent =
         try {
             setLoading(true);
             const { data } = await getTalentEducations(talentId);
+
             dispatch({ type: 'FETCH_TALENT_EDUCATION', payload: data });
             setLoading(false);
         } catch (error: any) {

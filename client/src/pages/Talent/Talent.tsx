@@ -1,27 +1,29 @@
-import { createContext, useEffect, useState } from "react";
-import TalentNav from "../../components/Navbar/TalentNav";
-import "./Talent.css";
-import { FaFile } from "react-icons/fa";
-import TButton from "../../components/Button/TButton";
-import AddNewComp from "../../components/talentProfile/AddNewComp.tsx";
-import AddExperienceModal from "../../components/Modal/AddExperienceModal.tsx";
-import AddProjectModal from "../../components/Modal/AddProjectModal.tsx";
-import AddEducationModal from "../../components/Modal/AddEducationModal.tsx";
-import Showwcase from "../../components/talentProfile/Showwcase.tsx";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { createContext, useEffect, useState } from 'react';
+import TalentNav from '../../components/Navbar/TalentNav';
+import './Talent.css';
+import { FaFile } from 'react-icons/fa';
+import TButton from '../../components/Button/TButton';
+import AddNewComp from '../../components/talentProfile/AddNewComp.tsx';
+import AddExperienceModal from '../../components/Modal/AddExperienceModal.tsx';
+import AddProjectModal from '../../components/Modal/AddProjectModal.tsx';
+import AddEducationModal from '../../components/Modal/AddEducationModal.tsx';
+import Showwcase from '../../components/talentProfile/Showwcase.tsx';
 import {
   CertificationShowwcaseCard,
   EducationShowwcaseCard,
   ExperienceShowwcaseCard,
   ProjectShowwcaseCard,
   SkillShowwcaseCard,
-} from "../../components/talentProfile/ShowwcaseCard.tsx";
-import AddCertificateModal from "../../components/Modal/AddCertificateModal.tsx";
-import AddSkillModal from "../../components/Modal/AddSkillModal.tsx";
-import { getTalentExperiences } from "../../api/experience.ts";
-import { getTalentProjects } from "../../api/project.ts";
-import { getTalentEducations } from "../../api/education.ts";
-import { getTalentCertifications } from "../../api/certifications.ts";
-import { getTalentSkills } from "../../api/skills.ts";
+} from '../../components/talentProfile/ShowwcaseCard.tsx';
+import AddCertificateModal from '../../components/Modal/AddCertificateModal.tsx';
+import AddSkillModal from '../../components/Modal/AddSkillModal.tsx';
+import { getTalentExperiences } from '../../api/experience.ts';
+import { getTalentProjects } from '../../api/project.ts';
+import { getTalentEducations } from '../../api/education.ts';
+import { getTalentCertifications } from '../../api/certifications.ts';
+import { getTalentSkills } from '../../api/skills.ts';
 
 // @ts-ignore
 export const TalentContext: React.Context<{
@@ -58,37 +60,37 @@ const Talent = (): JSX.Element => {
     getTalentCertifications(user._id).then((value) =>
       setTalentCertifications(value.data),
     );
-  }, [refresh]);
+  }, [refresh, user._id]);
   return (
     <>
       <TalentNav />
       <TalentContext.Provider value={{ refresh, setRefresh }}>
-        <div className="talent-page">
-          <div className="profile-info-card">
-            <div className="p-img">
-              <img src="src/assets/talents/no_image.png" alt="" />
+        <div className='talent-page'>
+          <div className='profile-info-card'>
+            <div className='p-img'>
+              <img src='src/assets/talents/no_image.png' alt='' />
             </div>
-            <div className="info-con">
-              <div className="info">
-                <h2 className="text-xl font-bold">{user.name}</h2>
+            <div className='info-con'>
+              <div className='info'>
+                <h2 className='text-xl font-bold'>{user.name}</h2>
                 <div>
-                  <a href="#" className="flex gap-2">
+                  <a href='#' className='flex gap-2'>
                     <FaFile /> <p>View Resume</p>
                   </a>
                 </div>
               </div>
 
               <div>
-                <TButton value="Edit Profile" />
+                <TButton value='Edit Profile' />
               </div>
             </div>
           </div>
 
-          <div className="tt-content">
-            <div className="main">
-              <div className="showcase">
+          <div className='tt-content'>
+            <div className='main'>
+              <div className='showcase'>
                 <AddNewComp
-                  title={"Experiences"}
+                  title={'Experiences'}
                   children={
                     <AddExperienceModal show={showexp} setShow={setShowexp} />
                   }
@@ -99,13 +101,14 @@ const Talent = (): JSX.Element => {
                 <hr />
                 <Showwcase>
                   {talentExperiences.map((exp) => (
+                    // @ts-ignore
                     <ExperienceShowwcaseCard experience={exp} key={exp?._id} />
                   ))}
                 </Showwcase>
               </div>
-              <div className="showcase">
+              <div className='showcase'>
                 <AddNewComp
-                  title={"Projects"}
+                  title={'Projects'}
                   onClick={() => {
                     setShowproj(true);
                   }}
@@ -115,14 +118,15 @@ const Talent = (): JSX.Element => {
                 <hr />
                 <Showwcase>
                   {talentProjects.map((project) => (
-                    <ProjectShowwcaseCard project={project} />
+                    // @ts-ignore
+                    <ProjectShowwcaseCard project={project} key={project._id} />
                   ))}
                 </Showwcase>
               </div>
-              <div className="showcase">
-                {" "}
+              <div className='showcase'>
+                {' '}
                 <AddNewComp
-                  title={"Educations"}
+                  title={'Educations'}
                   onClick={() => {
                     setShowedu(true);
                   }}
@@ -132,14 +136,18 @@ const Talent = (): JSX.Element => {
                 <hr />
                 <Showwcase>
                   {talentEducations.map((education) => (
-                    <EducationShowwcaseCard education={education} />
+                    <EducationShowwcaseCard
+                      education={education}
+                      // @ts-ignore
+                      key={education._id}
+                    />
                   ))}
                 </Showwcase>
-              </div>{" "}
-              <div className="showcase">
-                {" "}
+              </div>{' '}
+              <div className='showcase'>
+                {' '}
                 <AddNewComp
-                  title={"Skills"}
+                  title={'Skills'}
                   onClick={() => {
                     setShowskill(true);
                   }}
@@ -149,14 +157,15 @@ const Talent = (): JSX.Element => {
                 <hr />
                 <Showwcase>
                   {talentSkills.map((skill) => (
+                    // @ts-ignore
                     <SkillShowwcaseCard skill={skill} key={skill._id} />
                   ))}
                 </Showwcase>
-              </div>{" "}
-              <div className="showcase">
-                {" "}
+              </div>{' '}
+              <div className='showcase'>
+                {' '}
                 <AddNewComp
-                  title={"Certification"}
+                  title={'Certification'}
                   onClick={() => {
                     setShowcert(true);
                   }}
@@ -166,12 +175,16 @@ const Talent = (): JSX.Element => {
                 <hr />
                 <Showwcase>
                   {talentCertifications.map((certs) => (
-                    <CertificationShowwcaseCard certificate={certs} />
+                    <CertificationShowwcaseCard
+                      certificate={certs}
+                      // @ts-ignore
+                      key={certs._id}
+                    />
                   ))}
                 </Showwcase>
               </div>
             </div>
-            <div className="sub-info"></div>
+            <div className='sub-info'></div>
           </div>
         </div>
       </TalentContext.Provider>
