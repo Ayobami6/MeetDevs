@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import TalentCard from '../../components/TalentCard';
 import TalentNav from '../../components/Navbar/TalentNav';
 import Search from '../../components/util/Search';
@@ -19,7 +20,7 @@ const Employer = () => {
   useEffect(() => {
     dispatch(getTalentsPerPage(setLoading, page));
     // dispatch(getTalents(setLoading));
-  }, [page]);
+  }, [page, dispatch]);
 
   const prevPage = () => setPage((cur) => cur - 1);
   const nextPage = () => setPage((cur) => cur + 1);
