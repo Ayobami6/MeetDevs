@@ -43,21 +43,21 @@ app.use('/api', talentPaginationRoute); //paginated api for talents
 
 // misc
 app.get('/', (req, res) => {
-    res.send('Welcome to MeetDevs');
+  res.send('Welcome to MeetDevs');
 });
 
 // app.use(errorHandler);
 
 mongoose
-    .connect(dbConnString, { useNewUrlParser: true } as ConnectOptions)
-    .then(() => {
-        console.log('Database Connected');
-        app.listen(PORT, () => {
-            console.log(`Server is running on Port ${PORT}`);
-        });
-    })
-    .catch((error) => {
-        console.log(error);
+  .connect(dbConnString, { useNewUrlParser: true } as ConnectOptions)
+  .then(() => {
+    console.log('Database Connected');
+    app.listen(PORT, () => {
+      console.log(`Server is running on Port ${PORT}`);
     });
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 
 export default app;
