@@ -1,6 +1,9 @@
 import TButton from '../Button/TButton.tsx';
 import { FaEdit } from 'react-icons/fa';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useState, useContext } from 'react';
+import { useDispatch } from 'react-redux';
+import { TalentContext } from '../../pages/Talent/Talent.tsx';
+import { talentPatch } from '../../actions/talent.ts';
 import FileBase from 'react-file-base64';
 
 interface Talent {
@@ -34,14 +37,26 @@ const UpdateTalentModal = ({
 }: UpdateTalentModalProps): JSX.Element => {
   const modalStyle = showTalentEditModal ? 'showModal' : '';
   const [img, setImg] = useState('');
+  const tp = useContext(TalentContext);
+  const dispatch = useDispatch();
 
-  const handleSubmit = () => {};
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.target as HTMLFormElement);
+    formData.append('profileImg', img);
+    const data = Object.fromEntries(formData);
+    dispatch(talentPatch(talent._id, data));
+    tp.setRefresh(!tp.refresh);
+    const formElement = e.target as HTMLFormElement;
+    formElement.reset();
+    setShowTalentEditModal(false);
+  };
 
   return (
     <div className={'Modal ' + modalStyle}>
       <div className='content'>
         <div className={'header-11'}>
-          <h1>Add Education</h1>{' '}
+          <h1>Update Your Profile</h1>{' '}
           <TButton value={'X'} onClick={() => setShowTalentEditModal(false)} />
         </div>
         <hr />

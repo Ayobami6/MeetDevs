@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { createContext, useEffect, useState } from 'react';
 import TalentNav from '../../components/Navbar/TalentNav';
+import Loading from '../../components/Loading/Loading.tsx';
 import './Talent.css';
 import { FaFile } from 'react-icons/fa';
 import TButton from '../../components/Button/TButton';
@@ -25,7 +26,8 @@ import { getTalentEducations } from '../../api/education.ts';
 import { getTalentCertifications } from '../../api/certifications.ts';
 import { getTalentSkills } from '../../api/skills.ts';
 import UpdateTalentModal from '../../components/Modal/UpdateTalentModal.tsx';
-
+import { getTalent } from '../../actions/talent.ts';
+import { useDispatch, useSelector } from 'react-redux';
 // @ts-ignore
 export const TalentContext: React.Context<{
   refresh: boolean;
@@ -48,6 +50,9 @@ const Talent = (): JSX.Element => {
   const [talentEducations, setTalentEducations] = useState([]);
   const [talentSkills, setTalentSkills] = useState([]);
   const [talentCertifications, setTalentCertifications] = useState([]);
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState();
+  const talent = useSelector((state) => state.talents.talent) || {};
 
   useEffect(() => {
     // @ts-ignore
@@ -62,7 +67,9 @@ const Talent = (): JSX.Element => {
     getTalentCertifications(user._id).then((value) =>
       setTalentCertifications(value.data),
     );
+    dispatch(getTalent(setLoading, user._id));
   }, [refresh, user._id]);
+  console.log(talent);
   return (
     <>
       <TalentNav />
@@ -88,11 +95,15 @@ const Talent = (): JSX.Element => {
                   onClick={() => setShowTalentEditModal(true)}
                 />
               </div>
-              <UpdateTalentModal
-                showTalentEditModal={showTalentEditModal}
-                setShowTalentEditModal={setShowTalentEditModal}
-                talent={user}
-              />
+              {loading ? (
+                ''
+              ) : (
+                <UpdateTalentModal
+                  showTalentEditModal={showTalentEditModal}
+                  setShowTalentEditModal={setShowTalentEditModal}
+                  talent={talent}
+                />
+              )}
             </div>
           </div>
 
