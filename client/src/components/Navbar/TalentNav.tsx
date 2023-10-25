@@ -59,7 +59,13 @@ function TalentNav(): JSX.Element {
 
       <Link to={'#'}>
         <img
-          src='/assets/talents/no_image.png'
+          src={
+            user.talent
+              ? user.talent.profileImg
+                ? user.talent.profileImg
+                : '/assets/talents/no_image.png'
+              : '/assets/talents/no_image.png'
+          }
           alt='fine girl'
           className='w-[50px] h-[50px] rounded-full'
           onClick={() => setOpenProfile((prev) => !prev)}

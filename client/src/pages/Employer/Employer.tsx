@@ -11,7 +11,7 @@ import { getTalents, getTalentsPerPage } from '../../actions/talent';
 
 const Employer = () => {
   // const { talents } = useSelector((state) => state.talents);
-  const { pagination } = useSelector((state) => state.talents);
+  const pagination = useSelector((state) => state.talents.pagination) || [];
   const dispatch = useDispatch();
   const location = useLocation();
   const [loading, setLoading] = useState(true);
@@ -21,6 +21,7 @@ const Employer = () => {
     dispatch(getTalentsPerPage(setLoading, page));
     // dispatch(getTalents(setLoading));
   }, [page, dispatch]);
+  // console.log(pagination);
 
   const prevPage = () => setPage((cur) => cur - 1);
   const nextPage = () => setPage((cur) => cur + 1);

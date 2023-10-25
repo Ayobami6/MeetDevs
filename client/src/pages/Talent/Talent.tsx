@@ -77,7 +77,14 @@ const Talent = (): JSX.Element => {
         <div className='talent-page'>
           <div className='profile-info-card'>
             <div className='p-img'>
-              <img src={talent.profileImg} alt='' />
+              <img
+                src={
+                  talent.profileImg
+                    ? talent.profileImg
+                    : '/assets/talents/no_image.png'
+                }
+                alt=''
+              />
             </div>
             <div className='info-con'>
               <div className='info'>
