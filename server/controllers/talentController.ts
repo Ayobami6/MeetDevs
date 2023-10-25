@@ -18,69 +18,69 @@ name, email and password must be provided on signup if
 not throw an error, Check the employer controller for how that is done
  */
 export const signUp = async (req: Request, res: Response) => {
-  try {
-    const { name, email, password } = req.body;
+    try {
+        const { name, email, password } = req.body;
 
-    const existingUser = await Talent.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ message: 'Email already in use' });
+        const existingUser = await Talent.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ message: 'Email already in use' });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const newTalent = new Talent({
+            name,
+            email,
+            hashedPassword,
+        });
+
+        await newTalent.save();
+
+        const token = jwt.sign(
+            { userId: newTalent._id, email: newTalent.email },
+            JWT_SECRET,
+            {
+                expiresIn: '24h',
+            },
+        );
+
+        res.status(201).json({ token, newTalent });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
     }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const newTalent = new Talent({
-      name,
-      email,
-      hashedPassword,
-    });
-
-    await newTalent.save();
-
-    const token = jwt.sign(
-      { userId: newTalent._id, email: newTalent.email },
-      JWT_SECRET,
-      {
-        expiresIn: '24h',
-      },
-    );
-
-    res.status(201).json({ token, newTalent });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server error' });
-  }
 };
 
 export const signIn = async (req: Request, res: Response) => {
-  try {
-    const { email, password } = req.body;
+    try {
+        const { email, password } = req.body;
 
-    const talent = await Talent.findOne({ email });
-    if (!talent) {
-      return res.status(401).json({ message: 'Invalid credentials' });
+        const talent = await Talent.findOne({ email });
+        if (!talent) {
+            return res.status(401).json({ message: 'Invalid credentials' });
+        }
+
+        const isPasswordValid = await bcrypt.compare(
+            password,
+            talent.hashedPassword,
+        );
+        if (!isPasswordValid) {
+            return res.status(401).json({ message: 'Invalid credentials' });
+        }
+
+        const token = jwt.sign(
+            { userId: talent._id, email: talent.email },
+            JWT_SECRET,
+            {
+                expiresIn: '24h',
+            },
+        );
+
+        res.json({ token, talent });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
     }
-
-    const isPasswordValid = await bcrypt.compare(
-      password,
-      talent.hashedPassword,
-    );
-    if (!isPasswordValid) {
-      return res.status(401).json({ message: 'Invalid credentials' });
-    }
-
-    const token = jwt.sign(
-      { userId: talent._id, email: talent.email },
-      JWT_SECRET,
-      {
-        expiresIn: '24h',
-      },
-    );
-
-    res.json({ token, talent });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server error' });
-  }
 };
 /**
  *  Returns all talents objects from the database and
@@ -90,11 +90,11 @@ export const signIn = async (req: Request, res: Response) => {
  * @returns res
  */
 export const allTalents = async (
-  _req: Request,
-  res: Response,
+    _req: Request,
+    res: Response,
 ): Promise<Response> => {
-  const talents = await Talent.find({});
-  return res.json(talents);
+    const talents = await Talent.find({});
+    return res.json(talents);
 };
 
 /**
@@ -105,26 +105,26 @@ export const allTalents = async (
  * @returns res
  */
 export const getTalentById = async (
-  req: Request,
-  res: Response,
-  next: NextFunction,
+    req: Request,
+    res: Response,
+    next: NextFunction,
 ): Promise<Response | undefined> => {
-  try {
-    const { id } = req.params;
+    try {
+        const { id } = req.params;
 
-    if (!id) {
-      throw new CustomError('Required an id', 400);
+        if (!id) {
+            throw new CustomError('Required an id', 400);
+        }
+
+        const talent = await Talent.findById(id);
+        if (!talent) {
+            throw new CustomError('Talent not found', 404);
+        }
+
+        return res.json(talent);
+    } catch (err) {
+        next(err);
     }
-
-    const talent = await Talent.findById(id);
-    if (!talent) {
-      throw new CustomError('Talent not found', 404);
-    }
-
-    return res.json(talent);
-  } catch (err) {
-    next(err);
-  }
 };
 
 /**
@@ -138,53 +138,53 @@ export const getTalentById = async (
  * @throws {Error} If an error occurs while updating the talent.
  */
 export const updateTalent = async (
-  req: Request & { talent: Talent },
-  res: Response,
-  next: NextFunction,
+    req: Request & { talent: Talent },
+    res: Response,
+    next: NextFunction,
 ): Promise<Response | undefined> => {
-  try {
-    const { id } = req.params;
-    const data: TT = req.body;
+    try {
+        const { id } = req.params;
+        const data: TT = req.body;
 
-    const talent = (await Talent.findByIdAndUpdate(id, data, {
-      new: true,
-    })) as Talent;
+        const talent = (await Talent.findByIdAndUpdate(id, data, {
+            new: true,
+        })) as Talent;
 
-    return res.json(talent);
-  } catch (err) {
-    next(err);
-  }
+        return res.json(talent);
+    } catch (err) {
+        next(err);
+    }
 };
 
 export const updatePatchTalent = async (
-  req: Request & { talent: Talent },
-  res: Response,
-  next: NextFunction,
+    req: Request & { talent: Talent },
+    res: Response,
+    next: NextFunction,
 ): Promise<Response | undefined> => {
-  try {
-    const { id } = req.params;
-    const data: TT = req.body;
+    try {
+        const { id } = req.params;
+        const data: TT = req.body;
 
-    const talent = (await Talent.findByIdAndUpdate(id, data)) as Talent;
-    if (!talent) return res.status(404).json({ message: 'Not Found' });
+        const talent = (await Talent.findByIdAndUpdate(id, data)) as Talent;
+        if (!talent) return res.status(404).json({ message: 'Not Found' });
 
-    return res.json(talent);
-  } catch (err) {
-    next(err);
-  }
+        return res.json(talent);
+    } catch (err) {
+        next(err);
+    }
 };
 
 export const deleteTalent = async (
-  req: Request & { talent: Talent },
-  res: Response,
-  next: NextFunction,
+    req: Request & { talent: Talent },
+    res: Response,
+    next: NextFunction,
 ): Promise<Response | undefined> => {
-  try {
-    const { id } = req.params;
-    await Talent.findByIdAndDelete(id);
+    try {
+        const { id } = req.params;
+        await Talent.findByIdAndDelete(id);
 
-    return res.status(204).json();
-  } catch (err) {
-    next(err);
-  }
+        return res.status(204).json();
+    } catch (err) {
+        next(err);
+    }
 };
