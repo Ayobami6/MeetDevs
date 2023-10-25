@@ -24,6 +24,7 @@ import { getTalentProjects } from '../../api/project.ts';
 import { getTalentEducations } from '../../api/education.ts';
 import { getTalentCertifications } from '../../api/certifications.ts';
 import { getTalentSkills } from '../../api/skills.ts';
+import UpdateTalentModal from '../../components/Modal/UpdateTalentModal.tsx';
 
 // @ts-ignore
 export const TalentContext: React.Context<{
@@ -37,6 +38,7 @@ const Talent = (): JSX.Element => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [user, _setUser] = useState(temp);
   const [showexp, setShowexp] = useState(false);
+  const [showTalentEditModal, setShowTalentEditModal] = useState(false);
   const [showproj, setShowproj] = useState(false);
   const [showedu, setShowedu] = useState(false);
   const [showskill, setShowskill] = useState(false);
@@ -81,8 +83,16 @@ const Talent = (): JSX.Element => {
               </div>
 
               <div>
-                <TButton value='Edit Profile' />
+                <TButton
+                  value='Edit Profile'
+                  onClick={() => setShowTalentEditModal(true)}
+                />
               </div>
+              <UpdateTalentModal
+                showTalentEditModal={showTalentEditModal}
+                setShowTalentEditModal={setShowTalentEditModal}
+                talent={user}
+              />
             </div>
           </div>
 
