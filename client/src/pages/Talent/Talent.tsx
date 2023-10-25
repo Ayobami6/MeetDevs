@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { createContext, useEffect, useState } from 'react';
 import TalentNav from '../../components/Navbar/TalentNav';
-import Loading from '../../components/Loading/Loading.tsx';
 import './Talent.css';
 import { FaFile } from 'react-icons/fa';
 import TButton from '../../components/Button/TButton';
