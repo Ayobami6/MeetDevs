@@ -1,5 +1,6 @@
 import TButton from '../Button/TButton.tsx';
 import { FaEdit } from 'react-icons/fa';
+import './styles/UpdateTalentModal.css';
 import { Dispatch, SetStateAction, useState, useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { TalentContext } from '../../pages/Talent/Talent.tsx';
@@ -54,7 +55,7 @@ const UpdateTalentModal = ({
 
   return (
     <div className={'Modal ' + modalStyle}>
-      <div className='content'>
+      <div className='content modal-content-container'>
         <div className={'header-11'}>
           <h1>Update Your Profile</h1>{' '}
           <TButton value={'X'} onClick={() => setShowTalentEditModal(false)} />
@@ -108,6 +109,9 @@ const UpdateTalentModal = ({
               multiple={false}
               onDone={({ base64 }) => setImg(base64)}
             />
+          </div>
+          <div>
+            <img src={img} alt='Selected' className='w-5 h-4' />
           </div>
           <div className='form-control'>
             <label htmlFor={'bio'}>Bio</label>

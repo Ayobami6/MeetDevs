@@ -11,6 +11,10 @@ export const getATalent = (id) => {
 };
 
 export const patchTalent = (id, data) => {
-	const talent = axios.patch(`http://localhost:3000/talents/${id}`, data);
+	const talent = axios.patch(`http://localhost:3000/talents/${id}`, data, {
+		headers: {
+			'Content-Type': 'multipart/form-data',
+		},
+	});
 	return talent;
 };
