@@ -28,7 +28,7 @@ const Employer = () => {
     <>
       <TalentNav />
 
-      <div className='bg-gray-100 min-h-screen p-5'>
+      <div className='min-h-screen p-5'>
         <div className='flex mx-10 justify-end'>
           <Search />
         </div>
