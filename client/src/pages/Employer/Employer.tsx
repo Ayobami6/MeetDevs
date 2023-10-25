@@ -59,6 +59,10 @@ const Employer = () => {
               >
                 Prev
               </button>
+              <div className='mt-6 px-3 text-2xl font-semibold'>
+                {' '}
+                Page {pagination.currentPage} / {pagination.totalPages}
+              </div>
               <button
                 disabled={page === pagination.totalPages}
                 className='w-[70px] hover:border-green-200 h-[30px] rounded-md my-5 border-[1px] border-green-400 text-sm'
