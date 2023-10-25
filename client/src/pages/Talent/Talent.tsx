@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { createContext, useEffect, useState } from 'react';
@@ -68,7 +69,7 @@ const Talent = (): JSX.Element => {
       setTalentCertifications(value.data),
     );
     dispatch(getTalent(setLoading, user._id));
-  }, [refresh, user._id]);
+  }, [refresh, user._id, dispatch]);
   console.log(talent);
   return (
     <>
