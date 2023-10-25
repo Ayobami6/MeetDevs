@@ -44,15 +44,15 @@ const UpdateTalentModal = ({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
-    formData.append('profileImg', img);
+    if (!talent.profileImg) formData.append('profileImg', img);
     const data = Object.fromEntries(formData);
-    dispatch(talentPatch(talent._id, data));
+    await dispatch(talentPatch(talent._id, data));
     tp.setRefresh(!tp.refresh);
     const formElement = e.target as HTMLFormElement;
     formElement.reset();
     setShowTalentEditModal(false);
   };
-
+  console.log(talent._id);
   return (
     <div className={'Modal ' + modalStyle}>
       <div className='content modal-content-container'>
@@ -62,7 +62,7 @@ const UpdateTalentModal = ({
         </div>
         <hr />
         <form onSubmit={handleSubmit}>
-          <div className='form-control'>
+          <div className='form-control modal-content-container'>
             <label htmlFor='name'>Name</label>
             <input type='text' name={'name'} defaultValue={talent?.name} />
           </div>{' '}
@@ -91,15 +91,15 @@ const UpdateTalentModal = ({
             <input type='text' name={'github'} defaultValue={talent?.github} />
           </div>
           <div className='form-control'>
-            <label htmlFor='linkedIn'>LinkedIn Username</label>
+            <label htmlFor='linkedin'>LinkedIn Username</label>
             <input
               type='text'
-              name={'linkedIn'}
+              name={'linkedin'}
               defaultValue={talent?.linkedin}
             />
           </div>
           <div className='form-control'>
-            <label htmlFor='city'>X Username</label>
+            <label htmlFor='x'>X Username</label>
             <input type='text' name={'x'} defaultValue={talent?.x} />
           </div>
           <div className='form-control'>
