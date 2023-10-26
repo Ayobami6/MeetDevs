@@ -25,7 +25,6 @@ const EmployerOffer = () => {
 	useEffect(() => {
 		dispatch(getOffersEmployer(id, setLoading));
 	}, [id, dispatch]);
-	console.log(offers);
 	return (
 		<>
 			<TalentNav />
@@ -40,11 +39,7 @@ const EmployerOffer = () => {
 				</h1>
 			) : (
 				offers.map((offer) => (
-					<TalentOfferCard
-						key={offer._id}
-						offer={offer}
-						user={employer}
-					/>
+					<TalentOfferCard key={offer._id} offer={offer} user={employer} />
 				))
 			)}
 		</>

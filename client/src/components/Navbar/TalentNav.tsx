@@ -37,21 +37,15 @@ function TalentNav(): JSX.Element {
   return (
     <div className='talent-nav'>
       <div className='nav-con'>
-        <img
-          className={'rounded-full'}
-          src={'/assets/logo.png'}
-          alt=''
-        />
+        <img className={'rounded-full'} src={'/assets/logo.png'} alt='' />
         <nav className='nav-items-con' onClick={() => setOpenProfile(true)}>
           {user.data ? (
             ''
           ) : (
-            <Link to={`/talent/getranked/${user.talent._id}`}>
-              Get Ranked
-            </Link>
+            <Link to={`/talent/getranked/${user.talent._id}`}>Get Ranked</Link>
           )}
           <Link to={'#'}>Messages</Link>
-          <Link 
+          <Link
             to={
               user.talent
                 ? `/offers/talent/${user.talent._id}`
@@ -63,15 +57,20 @@ function TalentNav(): JSX.Element {
         </nav>
       </div>
 
-      <Link to={'#'} >
+      <Link to={'#'}>
         <img
-          src='/assets/talents/no_image.png'
+          src={
+            user.talent
+              ? user.talent.profileImg
+                ? user.talent.profileImg
+                : '/assets/talents/no_image.png'
+              : '/assets/talents/no_image.png'
+          }
           alt='fine girl'
-          className='w-20 rounded-full'
+          className='w-[50px] h-[50px] rounded-full'
           onClick={() => setOpenProfile((prev) => !prev)}
         />
         <p>{user.data ? user.data.name : user.talent.name}</p>
-        
       </Link>
       {openProfile && <ProfileDropDownMenu logout={logout} />}
     </div>

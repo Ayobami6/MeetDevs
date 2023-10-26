@@ -24,7 +24,9 @@ import { getTalentProjects } from '../../api/project.ts';
 import { getTalentEducations } from '../../api/education.ts';
 import { getTalentCertifications } from '../../api/certifications.ts';
 import { getTalentSkills } from '../../api/skills.ts';
-
+import UpdateTalentModal from '../../components/Modal/UpdateTalentModal.tsx';
+import { getTalent } from '../../actions/talent.ts';
+import { useDispatch, useSelector } from 'react-redux';
 // @ts-ignore
 export const TalentContext: React.Context<{
   refresh: boolean;
@@ -37,6 +39,7 @@ const Talent = (): JSX.Element => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [user, _setUser] = useState(temp);
   const [showexp, setShowexp] = useState(false);
+  const [showTalentEditModal, setShowTalentEditModal] = useState(false);
   const [showproj, setShowproj] = useState(false);
   const [showedu, setShowedu] = useState(false);
   const [showskill, setShowskill] = useState(false);
@@ -46,6 +49,9 @@ const Talent = (): JSX.Element => {
   const [talentEducations, setTalentEducations] = useState([]);
   const [talentSkills, setTalentSkills] = useState([]);
   const [talentCertifications, setTalentCertifications] = useState([]);
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState();
+  const talent = useSelector((state) => state.talents.talent) || {};
 
   useEffect(() => {
     // @ts-ignore
@@ -60,7 +66,9 @@ const Talent = (): JSX.Element => {
     getTalentCertifications(user._id).then((value) =>
       setTalentCertifications(value.data),
     );
-  }, [refresh, user._id]);
+    dispatch(getTalent(setLoading, user._id));
+  }, [refresh, user._id, dispatch]);
+  console.log(talent);
   return (
     <>
       <TalentNav />
@@ -68,7 +76,14 @@ const Talent = (): JSX.Element => {
         <div className='talent-page'>
           <div className='profile-info-card'>
             <div className='p-img'>
-              <img src='src/assets/talents/no_image.png' alt='' />
+              <img
+                src={
+                  talent.profileImg
+                    ? talent.profileImg
+                    : '/assets/talents/no_image.png'
+                }
+                alt=''
+              />
             </div>
             <div className='info-con'>
               <div className='info'>
@@ -81,8 +96,20 @@ const Talent = (): JSX.Element => {
               </div>
 
               <div>
-                <TButton value='Edit Profile' />
+                <TButton
+                  value='Edit Profile'
+                  onClick={() => setShowTalentEditModal(true)}
+                />
               </div>
+              {loading ? (
+                ''
+              ) : (
+                <UpdateTalentModal
+                  showTalentEditModal={showTalentEditModal}
+                  setShowTalentEditModal={setShowTalentEditModal}
+                  talent={talent}
+                />
+              )}
             </div>
           </div>
 

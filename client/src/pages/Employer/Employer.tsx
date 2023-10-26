@@ -11,7 +11,7 @@ import { getTalents, getTalentsPerPage } from '../../actions/talent';
 
 const Employer = () => {
   // const { talents } = useSelector((state) => state.talents);
-  const { pagination } = useSelector((state) => state.talents);
+  const pagination = useSelector((state) => state.talents.pagination) || [];
   const dispatch = useDispatch();
   const location = useLocation();
   const [loading, setLoading] = useState(true);
@@ -21,6 +21,7 @@ const Employer = () => {
     dispatch(getTalentsPerPage(setLoading, page));
     // dispatch(getTalents(setLoading));
   }, [page, dispatch]);
+  // console.log(pagination);
 
   const prevPage = () => setPage((cur) => cur - 1);
   const nextPage = () => setPage((cur) => cur + 1);
@@ -28,7 +29,7 @@ const Employer = () => {
     <>
       <TalentNav />
 
-      <div className='bg-gray-100 min-h-screen p-5'>
+      <div className='min-h-screen p-5'>
         <div className='flex mx-10 justify-end'>
           <Search />
         </div>
@@ -58,6 +59,10 @@ const Employer = () => {
               >
                 Prev
               </button>
+              <div className='mt-6 px-3 text-2xl font-semibold'>
+                {' '}
+                Page {pagination.currentPage} / {pagination.totalPages}
+              </div>
               <button
                 disabled={page === pagination.totalPages}
                 className='w-[70px] hover:border-green-200 h-[30px] rounded-md my-5 border-[1px] border-green-400 text-sm'
