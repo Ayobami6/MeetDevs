@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "outDir": "./dist",
+        "outDir": "./public",
         "moduleResolution": "node",
         "allowJs": true,
         "target": "ES6",
