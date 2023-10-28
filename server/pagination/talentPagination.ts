@@ -11,7 +11,7 @@ import Talent from '../models/talentModel';
 const paginateTalents = async (req: Request, res: Response) => {
     const rawPage = req.query.page as string | undefined;
     const page = rawPage ? parseInt(rawPage) : 1; // Current page, default to 1
-    const perPage = 12; // Number of talents per page
+    const perPage = 9; // Number of talents per page
 
     try {
         const totalTalents = await Talent.countDocuments();
@@ -23,6 +23,7 @@ const paginateTalents = async (req: Request, res: Response) => {
             totalTalents,
             currentPage: page,
             totalPages: Math.ceil(totalTalents / perPage),
+            talentsPerPage: perPage,
             talents,
         });
     } catch (error) {

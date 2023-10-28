@@ -56,7 +56,7 @@ describe('Authentication TalentController Tests', () => {
 
         expect(JSON.parse(res.text)).toHaveProperty(
             'message',
-            'Email already in use'
+            'Email already in use',
         );
     });
 
@@ -78,7 +78,7 @@ describe('Authentication TalentController Tests', () => {
 
         expect(JSON.parse(res.text)).toHaveProperty(
             'message',
-            'Invalid credentials'
+            'Invalid credentials',
         );
     });
 });

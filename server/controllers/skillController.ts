@@ -5,7 +5,7 @@ import Skill from '../models/skillsModel';
 // add a skill
 export const addSkill = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<SkillResponse, string>
+    res: GenericResponse<SkillResponse, string>,
 ) => {
     try {
         const skillData: T = req.body;
@@ -20,7 +20,7 @@ export const addSkill = async <T>(
 // get all skill
 export const getAllSkill = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<SkillResponse, string>
+    res: GenericResponse<SkillResponse, string>,
 ) => {
     try {
         const skills: Array<T> = await Skill.find();
@@ -34,7 +34,7 @@ export const getAllSkill = async <T>(
 // get a Skill
 export const getASkill = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<SkillResponse, string>
+    res: GenericResponse<SkillResponse, string>,
 ) => {
     try {
         const { id } = req.params;
@@ -49,7 +49,7 @@ export const getASkill = async <T>(
 
 export const getASkillByTalent = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<SkillResponse, string>
+    res: GenericResponse<SkillResponse, string>,
 ) => {
     try {
         const { talentId } = req.params;
@@ -65,13 +65,14 @@ export const getASkillByTalent = async <T>(
 // update skill
 export const updateSkill = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<SkillResponse, string>
+    res: GenericResponse<SkillResponse, string>,
 ) => {
     try {
         const { id } = req.params;
         const data = req.body;
         const skill = await Skill.findByIdAndUpdate(id, data);
         if (!skill) return res.status(404).json({ message: 'Skill not found' });
+        return res.status(200).json(skill);
     } catch (error) {
         console.log(error.message);
         res.status(500).json({ message: 'Internal Server Error' });
@@ -81,7 +82,7 @@ export const updateSkill = async <T>(
 // delete skill
 export const deleteSkill = async <T>(
     req: GenericRequest<T>,
-    res: GenericResponse<SkillResponse, string>
+    res: GenericResponse<SkillResponse, string>,
 ) => {
     try {
         const { id } = req.params;
