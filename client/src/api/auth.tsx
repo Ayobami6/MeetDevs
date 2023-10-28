@@ -12,7 +12,7 @@ export const authenticate = async (
   credentials: AuthCredentials,
 ) => {
   const res = await axios.post(
-    `http://localhost:3000/${endpoint}`,
+    `https://meetdevs-api.onrender.com/${endpoint}`,
     credentials,
   );
   return res;

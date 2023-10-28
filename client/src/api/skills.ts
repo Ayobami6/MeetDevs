@@ -3,21 +3,27 @@ import axios from 'axios';
 
 export const getTalentSkills = (talentId) => {
   const talentSkills = axios.get(
-    `http://localhost:3000/skills/talent/${talentId}`,
+    `https://meetdevs-api.onrender.com/skills/talent/${talentId}`,
   );
   return talentSkills;
 };
 
 export const updateSkill = (id, skill) => {
-  const res = axios.put(`http://localhost:3000/skills/${id}`, skill);
+  const res = axios.put(
+    `https://meetdevs-api.onrender.com/skills/${id}`,
+    skill,
+  );
   return res;
 };
 
 export const deleteSkill = (id) => {
-  axios.delete(`http://localhost:3000/skills/${id}`);
+  axios.delete(`https://meetdevs-api.onrender.com/skills/${id}`);
 };
 
 export const createSkill = (skillData) => {
-  const data = axios.post('http://localhost:3000/skills', skillData);
+  const data = axios.post(
+    'https://meetdevs-api.onrender.com/skills',
+    skillData,
+  );
   return data;
 };
