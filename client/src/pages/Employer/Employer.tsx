@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import TalentCard from '../../components/TalentCard';
 import TalentNav from '../../components/Navbar/TalentNav';

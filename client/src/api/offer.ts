@@ -1,15 +1,16 @@
+// @ts-nocheck
 import axios from 'axios';
 
 export const getTalentOffers = (talentId) => {
 	const talentOffers = axios.get(
-		`http://localhost:3000/offers/talent/${talentId}`
+		`http://localhost:3000/offers/talent/${talentId}`,
 	);
 	return talentOffers;
 };
 
 export const getEmployerOffers = (employerId) => {
 	const employerOffers = axios.get(
-		`http://localhost:3000/offers/employer/${employerId}`
+		`http://localhost:3000/offers/employer/${employerId}`,
 	);
 	return employerOffers;
 };

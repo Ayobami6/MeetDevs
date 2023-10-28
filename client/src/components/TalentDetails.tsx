@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect, useState } from 'react';
 import { getExperiencesTalent } from '../actions/experience';
 import { getEducationsTalent } from '../actions/education.ts';

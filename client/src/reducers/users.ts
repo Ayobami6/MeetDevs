@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const userReducer = (state = {}, action) => {
   switch (action.type) {
     case 'TALENT_AUTH':

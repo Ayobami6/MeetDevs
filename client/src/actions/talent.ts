@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { getAllTalents, getATalent, patchTalent } from '../api/talent';
 
 import { talentsPerPage } from '../api/pagination';

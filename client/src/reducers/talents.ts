@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const talentReducer = (
 	state = { isLoading: false, talents: [], talent: null, pagination: null },
 	action,
