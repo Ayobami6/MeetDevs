@@ -38,7 +38,7 @@ function TalentNav(): JSX.Element {
   return (
     <div className='talent-nav'>
       <div className='nav-con'>
-        <img className={'rounded-full'} src={'assets/logo.png'} alt='' />
+        <img className={'rounded-full'} src={'/assets/logo.png'} alt='' />
         <nav className='nav-items-con' onClick={() => setOpenProfile(true)}>
           {user.data ? (
             ''

@@ -6,9 +6,8 @@ const AuthNavbar = () => {
     <>
       <div className="flex justify-between p-3 px-10 { isAuth ? border-md : '' } ">
         <div className='flex gap-10 items-center'>
-          <img src='src/assets/logo.png' alt='logo' width={160} />
+          <img src='/assets/logo.png' alt='logo' width={160} />
         </div>
-        <h2>Name</h2>
       </div>
     </>
   );
