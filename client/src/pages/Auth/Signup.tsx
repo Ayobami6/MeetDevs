@@ -43,7 +43,7 @@ const Signup = ({ handleIsMemberClick }: SignUpProps) => {
       // send request to talent signin endpoint
       if (isTalent) {
         setLoading(true);
-        dispatch(
+        await dispatch(
           talentSignupAuth(
             'talents/signup',
             userData,
@@ -52,11 +52,12 @@ const Signup = ({ handleIsMemberClick }: SignUpProps) => {
             setLoading,
           ),
         );
+        handleIsMemberClick();
 
         // else to employer endpoint
       } else {
         setLoading(true);
-        dispatch(
+        await dispatch(
           employerSignupAuth(
             'employers/signup',
             userData,
@@ -65,6 +66,7 @@ const Signup = ({ handleIsMemberClick }: SignUpProps) => {
             setLoading,
           ),
         );
+        handleIsMemberClick();
       }
     } catch (error) {
       const axiosError = error as AxiosError;
