@@ -59,7 +59,7 @@ const Employer = () => {
               >
                 Prev
               </button>
-              <div className='mt-6 px-3 text-2xl font-semibold'>
+              <div className='mt-5 px-3 text-2xl font-semibold'>
                 {' '}
                 Page {pagination.currentPage} / {pagination.totalPages}
               </div>

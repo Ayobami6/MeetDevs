@@ -26,7 +26,11 @@ const dbConnString = `mongodb+srv://${dbUsername}:${dbPwd}@meetdevcluster.udvey1
 const app = express();
 
 const PORT: number = 3000;
-app.use(cors());
+app.use(
+    cors({
+        origin: 'https://organic-bassoon-677rjg69p99hr77q-5173.app.github.dev',
+    }),
+);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 

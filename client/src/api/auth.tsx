@@ -11,7 +11,7 @@ export const authenticate = async (
     credentials: AuthCredentials
 ) => {
     const res = await axios.post(
-        `http://localhost:3000/${endpoint}`,
+        `https://organic-bassoon-677rjg69p99hr77q-3000.app.github.dev/${endpoint}`,
         credentials
     );
     return res;

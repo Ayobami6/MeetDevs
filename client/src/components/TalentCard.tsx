@@ -27,7 +27,7 @@ const TalentCard: React.FC<TalentProps> = ({
   return (
     <div className='shadow-3xl border-[1px] border-green-600 rounded-lg overflow-hidden'>
       <div className='m-5 h-[170px] rounded-full flex justify-between'>
-        <div className='w-[160px] h-[160px]'>
+        <div className='w-[100px] h-[100px] sm:w-[160px] sm:h-[160px]'>
           <img
             src={!profileImg ? 'src/assets/talents/no_image.png' : profileImg}
             alt={name}
@@ -35,7 +35,7 @@ const TalentCard: React.FC<TalentProps> = ({
           />
         </div>
 
-        <p className='text-2xl border-[1px] border-green-600 rounded-3xl shadow-lg h-[70px] p-3 font-mono'>
+        <p className='text-2xl border-[1px] border-green-600 rounded-3xl shadow-lg h-[85px] p-3 font-mono'>
           Percentile
           <br />
           <span className=''>{rank}%</span>
