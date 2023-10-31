@@ -3,6 +3,7 @@ import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { talentAuth, employerAuth } from '../../actions/auth';
+import { BiShow } from 'react-icons/bi'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import axios, { AxiosError } from 'axios';
 
@@ -28,6 +29,7 @@ const SignIn = ({ handleIsMemberClick }: SignInProps) => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
+    const [hidePassword, setShowPassword] = useState(true);
     const handleSignIn = async () => {
         const credentials: SignInCredential = {
             email,
@@ -92,14 +94,17 @@ const SignIn = ({ handleIsMemberClick }: SignInProps) => {
                     className='border-1 text-2xl border-black-500 rounded-lg bg-gray-600 h-50 px-4 my-3 py-4 w-full justify-center'
                     placeholder='Email'
                     onChange={(e) => setEmail(e.target.value)}
+
                 />
+
                 <input
-                    type='text'
+                    type={`${hidePassword ? 'password' : 'text'}`}
                     value={password}
                     className='border-1 text-2xl border-black-500 rounded-lg bg-gray-600 h-50 px-4 my-3 py-4 w-full justify-center'
                     placeholder='Password'
                     onChange={(e) => setPassword(e.target.value)}
                 />
+                <p className='m-3'><input type="checkbox" onChange={() => setShowPassword(!hidePassword)} /> Show Password</p>
                 <button
                     className='w-full text-white bg-green-700 rounded-lg my-9 self-center text-lg font-bold p-4'
                     onClick={handleSignIn}
