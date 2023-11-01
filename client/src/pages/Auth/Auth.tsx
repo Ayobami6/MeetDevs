@@ -16,7 +16,7 @@ const Auth: React.FC = () => {
         {/* <div className="bg-[url('src/assets/auth3.jpg')] bg-img w-full bg-cover">
                     
                 </div> */}
-        <img src='src/assets/auth3.jpg' className='bg-img bg-cover w-fit' />
+        <img src='assets/auth3.jpg' className='bg-img bg-cover w-fit' />
         <div className='text-left mx-3 py-4'>
           <Navbar isAuth={true} />
         </div>

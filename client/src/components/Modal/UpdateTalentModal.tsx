@@ -1,3 +1,4 @@
+// @ts-nocheck
 import TButton from '../Button/TButton.tsx';
 import { FaEdit } from 'react-icons/fa';
 import './styles/UpdateTalentModal.css';

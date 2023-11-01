@@ -5,7 +5,7 @@ import './style.css';
 const Home = () => {
   return (
     <div className='home'>
-      <img src='src/assets/meetdev1.jpg' className='bg-img' />
+      <img src='/assets/meetdev1.jpg' className='bg-img' />
       <div className='main'>
         <p>
           Are you a talented developer looking for your next career move? <br />{' '}

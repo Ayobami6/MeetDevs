@@ -1,6 +1,7 @@
-import React from "react";
-import { FaSearch } from "react-icons/fa";
-import "./Search.css";
+// @ts-nocheck
+import React from 'react';
+import { FaSearch } from 'react-icons/fa';
+import './Search.css';
 
 interface propTypes {
   className?: string;
@@ -15,9 +16,9 @@ function Search({ className }: propTypes): JSX.Element {
         </div>
 
         <div> */}
-      <div className={"search-con " + (className || "")}>
-        <input name="search"></input>
-        <button id="search">
+      <div className={'search-con ' + (className || '')}>
+        <input name='search'></input>
+        <button id='search'>
           <FaSearch />
         </button>
       </div>

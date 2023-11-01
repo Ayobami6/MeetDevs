@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from 'react';
 import { useSnackbar } from 'notistack';

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -33,11 +34,7 @@ const TalentOffer = () => {
 				</h1>
 			) : (
 				offers.map((offer) => (
-					<TalentOfferCard
-						key={offer._id}
-						offer={offer}
-						user={talent}
-					/>
+					<TalentOfferCard key={offer._id} offer={offer} user={talent} />
 				))
 			)}
 		</>

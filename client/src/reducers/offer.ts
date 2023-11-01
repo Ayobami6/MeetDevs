@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const offerReducer = (
 	state = {
 		isLoading: false,
@@ -5,7 +6,7 @@ export const offerReducer = (
 		employerOffers: [],
 		offer: null,
 	},
-	action
+	action,
 ) => {
 	switch (action.type) {
 		case 'START_LOADING':

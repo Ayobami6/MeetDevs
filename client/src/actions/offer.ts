@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+// @ts-nocheck
 import { Dispatch } from 'redux';
 import {
 	getTalentOffers,

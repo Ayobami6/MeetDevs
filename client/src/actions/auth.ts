@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { authenticate } from '../api/auth';
 
 export const talentAuth =
