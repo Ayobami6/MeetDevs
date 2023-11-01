@@ -9,17 +9,17 @@ import { BiShow } from 'react-icons/bi'
 import axios, { AxiosError } from 'axios';
 
 interface SignInCredential {
-  email: string;
-  password: string;
+    email: string;
+    password: string;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface ErrorResponse {
-  message: string;
+    message: string;
 }
 
 interface SignInProps {
-  handleIsMemberClick: () => void;
+    handleIsMemberClick: () => void;
 }
 
 const SignIn = ({ handleIsMemberClick }: SignInProps) => {
@@ -127,46 +127,8 @@ const SignIn = ({ handleIsMemberClick }: SignInProps) => {
                     </a>
                 </h2>
             </div>
-
         </div>
-
-        <input
-          type='text'
-          value={email}
-          className='border-1 text-2xl border-black-500 rounded-lg bg-gray-600 h-50 px-4 my-3 py-4 w-full justify-center'
-          placeholder='Email'
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type='text'
-          value={password}
-          className='border-1 text-2xl border-black-500 rounded-lg bg-gray-600 h-50 px-4 my-3 py-4 w-full justify-center'
-          placeholder='Password'
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button
-          className='w-full text-white bg-green-700 rounded-lg my-9 self-center text-lg font-bold p-4'
-          onClick={handleSignIn}
-        >
-          {loading ? (
-            <p className='inline-block animate-spin mr-3 w-4 h-4 border-b-2 border-t-2 border-white-400 border-solid rounded-full'></p>
-          ) : (
-            ''
-          )}
-          Sign in as {isTalent ? 'Talent' : 'Employer'}
-        </button>
-        <h2 className='text-black-600 font-bold my-12 text-2xl'>
-          New to MeetDevs?{' '}
-          <a
-            className='inline text-2xl text-white underline'
-            onClick={handleIsMemberClick}
-          >
-            Sign up now
-          </a>
-        </h2>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default SignIn;
