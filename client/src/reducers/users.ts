@@ -1,6 +1,9 @@
-export const userReducer = (state = {
-  signupSuccessful: false,
-}, action) => {
+export const userReducer = (
+  state = {
+    signupSuccessful: false,
+  },
+  action: { type: string; data: { talent: object; data: object } },
+) => {
   switch (action.type) {
     case 'TALENT_AUTH':
       localStorage.setItem(
@@ -16,7 +19,7 @@ export const userReducer = (state = {
       return { ...state, user: action?.data?.data };
 
     case 'SIGN_SUCCESS':
-      return { ...state, signupSuccessful: true }
+      return { ...state, signupSuccessful: true };
     case 'LOGOUT':
       localStorage.clear();
       return { ...state, user: null };
