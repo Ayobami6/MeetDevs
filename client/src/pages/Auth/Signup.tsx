@@ -25,6 +25,7 @@ const Signup = ({ handleIsMemberClick }: SignUpProps) => {
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [hidePassword, setShowPassword] = useState(true);
   const [user, setuser] = useState(
     JSON.parse(localStorage.getItem('talentProfile') || '{}'),
   );
@@ -43,7 +44,7 @@ const Signup = ({ handleIsMemberClick }: SignUpProps) => {
       // send request to talent signin endpoint
       if (isTalent) {
         setLoading(true);
-        dispatch(
+        await dispatch(
           talentSignupAuth(
             'talents/signup',
             userData,
@@ -52,11 +53,12 @@ const Signup = ({ handleIsMemberClick }: SignUpProps) => {
             setLoading,
           ),
         );
+        handleIsMemberClick();
 
         // else to employer endpoint
       } else {
         setLoading(true);
-        dispatch(
+        await dispatch(
           employerSignupAuth(
             'employers/signup',
             userData,
@@ -65,6 +67,7 @@ const Signup = ({ handleIsMemberClick }: SignUpProps) => {
             setLoading,
           ),
         );
+        handleIsMemberClick();
       }
     } catch (error) {
       const axiosError = error as AxiosError;
@@ -111,19 +114,26 @@ const Signup = ({ handleIsMemberClick }: SignUpProps) => {
           onChange={(e) => setName(e.target.value)}
         />
         <input
-          type='text'
+          type={`${hidePassword ? 'password' : 'text'}`}
           value={password}
           className='border-1 text-2xl border-black-500 rounded-lg bg-gray-600 h-50 px-4 my-3 py-4 w-full justify-center'
           placeholder='Password'
           onChange={(e) => setPassword(e.target.value)}
         />
         <input
-          type='text'
+          type={`${hidePassword ? 'password' : 'text'}`}
           value={confirmPassword}
           className='border-1 text-2xl border-black-500 rounded-lg bg-gray-600 h-50 px-4 my-3 py-4 w-full justify-center'
           placeholder='Confirm Password'
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
+        <p className='m-3'>
+          <input
+            type='checkbox'
+            onChange={() => setShowPassword(!hidePassword)}
+          />{' '}
+          Show Password
+        </p>
         <button
           className='w-full text-white bg-green-700 rounded-lg my-6 self-center text-lg font-bold p-4'
           onClick={handleSignUp}
